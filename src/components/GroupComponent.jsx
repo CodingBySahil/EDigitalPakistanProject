@@ -3,72 +3,56 @@ import PropTypes from "prop-types";
 const GroupComponent = ({ className = "" }) => {
   return (
     <div
-      className={`relative w-full  mx-auto text-left text-lg  text-darkslateblue-100 font-poppins ${className}`}
+      className={`relative w-full flex flex-col items-center sm:flex-row mx-auto mt-16 text-center sm:text-left text-lg text-darkslateblue-100 font-poppins ${className}`}
     >
-      {/* text section */}
-      <div className="relative w-full">
-        <div className="text-3xl font-bold">
+      {/* Left text section */}
+      <div className="relative w-full sm:w-1/2 flex flex-col justify-center items-center sm:items-start px-4">
+        <div className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight">
           <span>Self-assessments, </span>
           <span className="text-turquoise">Quizzes</span>
           <span>, Tests, </span>
           <span className="text-lightseagreen">Exams</span>
-
-          <p className="text-2xl font-semibold mb-4">
-            Encourage students to regularly self-assess their understanding of
-            the material, reflecting on their learning process and adjusting
-            their study plans as needed.
-          </p>
         </div>
+        <p className="text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold mt-4">
+          Encourage students to regularly self-assess their understanding of
+          the material, reflecting on their learning process and adjusting their
+          study plans as needed.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+      {/* Right section */}
+      <div className="relative bg-white mt-16 sm:mt-0 sm:w-1/2 rounded-26xl">
         {/* Decorative Elements */}
-        {/* <div className="flex justify-center items-center space-x-4">
-          <div className="rounded-full bg-mediumspringgreen-200 w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"></div>
-          <div className="rounded-full bg-hotpink w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"></div>
-          <div className="rounded-full bg-royalblue w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48"></div>
-          <div className="rounded-full bg-sandybrown w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12"></div>
-        </div> */}
+        <div className="absolute -bottom-12 -left-12 rounded-full bg-mediumspringgreen-200 w-6 h-6"></div>
+        <div className="absolute rounded-full bg-hotpink -right-8 top-2/4 w-6 h-6"></div>
+        <div className="absolute -top-8 -left-14 -z-10 rounded-full bg-royalblue w-32 h-32"></div>
+        <div className="absolute -top-12 left-20 rounded-full bg-sandybrown w-6 h-6"></div>
 
         {/* Main Content Section */}
-        <div className="flex flex-col items-center justify-between bg-white shadow-lg rounded-lg p-6  relative">
-          <h4 className="text-steelblue rounded-full text-xl font-medium  bg-lightsteelblue-100 px-4 py-2">
+        <div className="flex flex-col items-start justify-between shadow-lg rounded-lg p-6 relative">
+          <h4 className="text-steelblue rounded-full text-xl font-medium bg-lightsteelblue-100 px-4 py-2">
             Question 1
           </h4>
           <p className="text-lg mb-4">
             True or false? Are plants living things?
           </p>
-          {/* main image */}
+          {/* Main image */}
           <img
             className="w-full h-auto object-cover"
-            alt=""
+            alt="question"
             src="/mask-group-1@2x.png"
           />
           {/* Decorative Images */}
           <img
-            className="w-24 h-auto object-contain absolute z-50 top-0 right-0"
-            alt=""
+            className="w-32 sm:w-40 object-contain absolute z-50 -top-12 right-0"
+            alt="decorative"
             src="/group-90@2x.png"
           />
           <img
-            className="w-24 h-auto object-contain absolute z-50"
-            alt=""
+            className="w-32 sm:w-40 object-contain absolute z-50 top-4 -right-12"
+            alt="decorative"
             src="/group-88@2x.png"
           />
-        </div>
-
-        {/* Additional Decorative Elements */}
-        <div className="flex justify-center items-center"></div>
-        <div className="flex justify-center items-center">
-          <div className="relative rounded-full bg-whitesmoke w-24 h-16 md:w-32 md:h-20 lg:w-40 lg:h-24">
-
-            {/* this image is not for this component */}
-            {/* <img
-              className="absolute inset-0 w-full h-full object-contain"
-              alt=""
-              src="/group-69.svg"
-            /> */}
-          </div>
         </div>
       </div>
     </div>
