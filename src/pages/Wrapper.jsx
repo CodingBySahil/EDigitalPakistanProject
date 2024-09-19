@@ -7,6 +7,7 @@ import WhatIsTOTC from "../components/WhatIsTOTC";
 import YouCanDoWithTOTC from "../components/YouCanDoWithTOTC";
 import SelfAssessments from "../components/SelfAssessments";
 import AlpCurriculum from "../components/AlpCurriculum";
+import TitleLeftAlign from "../components/TitleLeftAlign";
 
 const Wrapper = () => {
   return (
@@ -20,7 +21,8 @@ const Wrapper = () => {
 
       <SelfAssessments />
       <AlpCurriculum className="mt-48" />
-
+      <TitleLeftAlign/>
+      
       <Footer/>
     </div>
   );
