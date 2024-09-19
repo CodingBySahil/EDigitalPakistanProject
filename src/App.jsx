@@ -13,6 +13,7 @@ import Header from "./components/Header";
 import AllInOne from "./components/AllInOne";
 import Wrapper from "./pages/Wrapper";
 import GroupComponent1 from "./components/GroupComponent1";
+import NotFoundPage from "./pages/NotFoundPage";
 
 function App() {
   const action = useNavigationType();
@@ -52,6 +53,7 @@ function App() {
 
   return (
     <Routes>
+      <Route path="*" element={<NotFoundPage />} />
       <Route path="/" element={<Wrapper />} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
