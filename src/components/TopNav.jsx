@@ -22,7 +22,7 @@ const TopNav = ({ className = "" }) => {
           src="/edp-logo@2x.png"
         />
         <div className="hidden lg:flex space-x-3 md:space-x-6 lg:space-x-8 ">
-          <Link to={'/home'} className=" no-underline relative  text-white">Home</Link>
+          <Link to={'/'} className=" no-underline relative  text-white">Home</Link>
           <Link to={'/courses'} className=" no-underline relative  text-white">Courses</Link>
           <Link to={'/instructors'} className=" no-underline relative  text-white">Instructors</Link>
           <Link to={'/blog'} className=" no-underline relative  text-white">Blog</Link>

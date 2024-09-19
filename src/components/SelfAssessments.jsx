@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-const GroupComponent = ({ className = "" }) => {
+const SelfAssessments = ({ className = "" }) => {
   return (
     <div
       className={`relative w-full flex flex-col items-center sm:flex-row mx-auto mt-16 text-center sm:text-left text-lg text-darkslateblue-100 font-poppins ${className}`}
@@ -13,7 +13,7 @@ const GroupComponent = ({ className = "" }) => {
           <span>, Tests, </span>
           <span className="text-lightseagreen">Exams</span>
         </div>
-        <p className="text-base sm:text-lg lg:text-xl xl:text-2xl font-semibold mt-4">
+        <p className="text-base sm:text-lg lg:text-xl xl:text-3xl font-semibold mt-4">
           Encourage students to regularly self-assess their understanding of
           the material, reflecting on their learning process and adjusting their
           study plans as needed.
@@ -59,8 +59,8 @@ const GroupComponent = ({ className = "" }) => {
   );
 };
 
-GroupComponent.propTypes = {
+SelfAssessments.propTypes = {
   className: PropTypes.string,
 };
 
-export default GroupComponent;
+export default SelfAssessments;

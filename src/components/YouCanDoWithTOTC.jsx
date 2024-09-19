@@ -19,7 +19,7 @@ const YouCanDoWithTOTC = ({ className = "" }) => {
               <span>Everything you can do in a physical classroom, </span>
               <span className="text-turquoise">you can do with DALP</span>
             </div>
-            <div className="mt-4 tracking-wide leading-[180%] text-slategray-200">
+            <div className="mt-4 tracking-wide leading-[180%] text-slategray-200 font-poppins text-[1.2rem]">
               This includes reading, words meaning, pronunciation, practice with interactive exercises, long and short questions & answers with AI assistance, test your skills and knowledge with exams, audio visuals aids, communication with physical teachers nearby.
             </div>
           </div>

@@ -1,5 +1,5 @@
 import GroupComponent1 from "../components/GroupComponent1";
-import GroupComponent from "../components/GroupComponent";
+import SelfAssessments from "../components/SelfAssessments";
 import YouCanDoWithTOTC from "../components/YouCanDoWithTOTC";
 import WhatIsTOTC from "../components/WhatIsTOTC";
 import AllInOne from "../components/AllInOne";
@@ -41,7 +41,7 @@ const Landing = () => {
               <span className="font-black text-lightseagreen">Exams</span>
             </div>
           </div>
-          <GroupComponent />
+          <SelfAssessments />
         </div>
         <div className="absolute top-[139.031rem] left-[0rem] w-[87.738rem] h-[26.181rem]">
           <div className="absolute top-[2.269rem] left-[55rem] w-[32.737rem] h-[19.375rem]">
