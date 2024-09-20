@@ -24,7 +24,7 @@ const Course8th = () => {
 
   return (
     <>
-      <div className="py-8 bg-[#ebf5ff] min-h-screen">
+      <div className="py-8 bg-[#ebf5ff] ">
         {/* Class Title */}
         <div className="bg-red text-white px-6 py-2 rounded-md shadow-md w-fit text-lg mb-6">
           Class 8th

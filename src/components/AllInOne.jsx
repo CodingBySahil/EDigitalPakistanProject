@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 const AllInOne = ({ className = "" }) => {
   return (
-    <section className={`py-12 ${className} mt-[68rem]`} >
+    <section className={`py-12 ${className} mt-80 md:mt-[28rem] lg:mt-[56rem]`} >
       <div className="text-center mb-10 px-4 md:px-6 lg:px-8">
         <h2 className="text-3xl font-bold text-blue-900">
           How it <span className="text-green-500">Works</span>
