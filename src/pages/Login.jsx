@@ -1,14 +1,31 @@
+// src/pages/Login.jsx
 import PropTypes from "prop-types";
 import LoginImg from "../assets/LoginImg.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-const Login = ({ className = "" }) => {
+const Login = ({ className = "", onLogin }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (username === "admin" && password === "admin") {
+      onLogin();
+      navigate("/administration");
+    } else {
+      setError("Invalid username or password");
+    }
   };
 
   return (
@@ -48,13 +65,22 @@ const Login = ({ className = "" }) => {
             </div>
           </div>
 
-          <form>
+          {error && (
+            <div className="mb-4 text-red-500 text-center">
+              {error}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit}>
             <div className="mb-4">
               <label className="block text-black mb-2">User name</label>
               <input
                 type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 placeholder="Enter your User name"
                 className="w-full p-3 border border-lightseagreen-100 rounded-xl"
+                required
               />
             </div>
 
@@ -62,11 +88,14 @@ const Login = ({ className = "" }) => {
               <label className="block text-black mb-2">Password</label>
               <input
                 type={passwordVisible ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 placeholder="Enter your Password"
                 className="w-full p-3 border border-lightseagreen-100 rounded-xl"
+                required
               />
               <div
-                className="absolute inset-y-0 right-0 top-8 flex items-center cursor-pointer"
+                className="absolute inset-y-0 right-0 top-8 flex items-center px-3 cursor-pointer"
                 onClick={togglePasswordVisibility}
               >
                 {passwordVisible ? <FaEye /> : <FaEyeSlash />}
@@ -98,6 +127,7 @@ const Login = ({ className = "" }) => {
 
 Login.propTypes = {
   className: PropTypes.string,
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default Login;
