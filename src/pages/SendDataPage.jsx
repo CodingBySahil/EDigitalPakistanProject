@@ -1,6 +1,6 @@
 // src/pages/SendDataPage.jsx
 import React from "react";
-import BookForm from "../components/Forms/BookForm";
+import ContentForm from "../components/Forms/ContentForm";
 import ChapterForm from "../components/Forms/ChapterForm";
 import MCQsForm from "../components/Forms/MCQsForm";
 import SubjectForm from "../components/Forms/SubjectForm";
@@ -15,7 +15,7 @@ const SendDataPage = ({ onLogout }) => {
 
   const handleLogoutClick = () => {
     onLogout();
-    navigate("/");
+    navigate("/login");
   };
 
   return (
@@ -28,7 +28,7 @@ const SendDataPage = ({ onLogout }) => {
           Logout
         </button>
       </div>
-      <BookForm />
+      <ContentForm />
       <ChapterForm />
       <MCQsForm />
       <SubjectForm />

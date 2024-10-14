@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-const BookForm = () => {
+const ContentForm = () => {
   const [text, setText] = useState('');
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
@@ -139,4 +139,4 @@ const BookForm = () => {
   );
 };
 
-export default BookForm;
+export default ContentForm;
