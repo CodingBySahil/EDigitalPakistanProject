@@ -1,36 +1,43 @@
+const { sideBarToggleFalse992 } = require("./src/constants/const");
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      screens: {
+        sideBarToggleFalse992: `${sideBarToggleFalse992}px`,
+      },
       colors: {
+        "brand-color-cyan": "#49BBBD",
+        "brand-color-lightBlue": "#9DCCFF",
         white: "#fff",
         lightseagreen: {
-          "100": "#49bbbd",
-          "200": "rgba(73, 187, 189, 0.6)",
+          100: "#49bbbd",
+          200: "rgba(73, 187, 189, 0.6)",
         },
         mediumslateblue: "#545ae8",
         lightslategray: "#83839a",
         lightsteelblue: {
-          "100": "#ced8ff",
-          "200": "#b2b3cf",
+          100: "#ced8ff",
+          200: "#b2b3cf",
         },
         slategray: {
-          "100": "#696984",
-          "200": "#626381",
+          100: "#696984",
+          200: "#626381",
         },
         gray: {
-          "100": "#fbfbfb",
-          "200": "#252641",
-          "300": "rgba(255, 255, 255, 0.3)",
-          "400": "rgba(0, 0, 0, 0.87)",
-          "500": "rgba(0, 0, 0, 0.54)",
-          "600": "rgba(255, 255, 255, 0.87)",
-          "700": "#fffefc",
+          100: "#fbfbfb",
+          200: "#252641",
+          300: "rgba(255, 255, 255, 0.3)",
+          400: "rgba(0, 0, 0, 0.87)",
+          500: "rgba(0, 0, 0, 0.54)",
+          600: "rgba(255, 255, 255, 0.87)",
+          700: "#fffefc",
         },
         darkturquoise: {
-          "100": "#33d8ef",
-          "200": "#00bcd4",
+          100: "#33d8ef",
+          200: "#00bcd4",
         },
         black: "#000",
         darkgray: "rgba(162, 152, 152, 0)",
@@ -38,21 +45,21 @@ module.exports = {
         silver: "#c4c4c4",
         powderblue: "#b2ebf2",
         darkslateblue: {
-          "100": "#55578d",
-          "200": "#2f327d",
-          "300": "#171b41",
+          100: "#55578d",
+          200: "#2f327d",
+          300: "#171b41",
         },
         red: "#f50b0b",
         firebrick: "#c80a0a",
         lightskyblue: "#9dccff",
         turquoise: "#00cbb8",
         deepskyblue: {
-          "100": "#23bdee",
-          "200": "rgba(35, 189, 238, 0.9)",
+          100: "#23bdee",
+          200: "rgba(35, 189, 238, 0.9)",
         },
         mediumspringgreen: {
-          "100": "#33efa0",
-          "200": "#34e7a5",
+          100: "#33efa0",
+          200: "#34e7a5",
         },
         whitesmoke: "#f9f9f9",
         mediumaquamarine: "#41be91",

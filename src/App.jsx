@@ -14,6 +14,7 @@ import Wrapper from "./pages/Wrapper";
 import NotFoundPage from "./pages/NotFoundPage";
 import SendDataPage from "./pages/SendDataPage";
 import PrivateRoute from "./components/PrivateRoute";
+import CourseCalendarPage from "./pages/CourseCalendarPage";
 
 function App() {
   const action = useNavigationType();
@@ -78,6 +79,7 @@ function App() {
       <Route path="/" element={<Wrapper />} />
       <Route path="/login" element={<Login onLogin={handleLogin} />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/course-calender" element={<CourseCalendarPage />} />
       
       {/* Protected Administration Route */}
       <Route

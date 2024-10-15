@@ -26,7 +26,7 @@ const TopNav = ({ className = "" }) => {
             <Link to={"/"} className=" no-underline relative  text-white">
               Home
             </Link>
-            <Link to={'/courses'} className=" no-underline relative  text-white">Courses</Link>
+            <Link to={'/course-calender'} className=" no-underline relative  text-white">Courses</Link>
             <Link to={'/instructors'} className=" no-underline relative  text-white">Instructors</Link>
             <Link to={'/blog'} className=" no-underline relative  text-white">Blog</Link>
             <Link to={'/about-us'} className=" no-underline relative  text-white">About&nbsp;Us</Link>
@@ -72,7 +72,7 @@ const TopNav = ({ className = "" }) => {
           <Link to={"/"} className="py-2 text-white text-lg no-underline">
             Home
           </Link>
-          <Link to={'/courses'} className="py-2 text-white text-lg no-underline">Courses</Link>
+          <Link to={'/course-calender'} className="py-2 text-white text-lg no-underline">Courses</Link>
           <Link to={'/instructors'} className="py-2 text-white text-lg no-underline">Instructors</Link>
           <Link to={'/blog'} className="py-2 text-white text-lg no-underline">Blog</Link>
           <Link to={'/about-us'} className="py-2 text-white text-lg no-underline">About Us</Link>
