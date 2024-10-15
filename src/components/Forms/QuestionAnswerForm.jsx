@@ -1,23 +1,21 @@
 import React, { useState, useEffect } from "react";
 
-const WordMeaningForm = () => {
-  const [chapterCode, setChapterCode] = useState("");
-  const [words, setWords] = useState([{ word: "", meaning: "" }]);
+const QuestionAnswerForm = () => {
+  const [chapterID, setChapterID] = useState("");
+  const [questions, setQuestions] = useState([{ question: "", answer: "" }]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null); // To handle errors
-  const [success, setSuccess] = useState(false); // To handle success message
-  const [availableChapters, setAvailableChapters] = useState([]); // For chapter codes dropdown
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
+  const [availableChapters, setAvailableChapters] = useState([]);
 
   // Fetch available chapters (you can replace this with your actual API call)
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        // Example static chapters; replace with API call if needed
         const chapters = [
-          { code: "CHP001", name: "Introduction to Literature" },
-          { code: "CHP002", name: "Poetry and Prose" },
-          { code: "CHP003", name: "Drama and Plays" },
-          // Add more chapters as needed
+          { id: "CHP001", name: "Chapter One" },
+          { id: "CHP002", name: "Chapter Two" },
+          { id: "CHP003", name: "Chapter Three" },
         ];
         setAvailableChapters(chapters);
       } catch (err) {
@@ -29,21 +27,21 @@ const WordMeaningForm = () => {
     fetchChapters();
   }, []);
 
-  const handleWordChange = (index, field, value) => {
-    const updatedWords = words.map((item, i) =>
+  const handleQuestionChange = (index, field, value) => {
+    const updatedQuestions = questions.map((item, i) =>
       i === index ? { ...item, [field]: value } : item
     );
-    setWords(updatedWords);
+    setQuestions(updatedQuestions);
   };
 
-  const addWordField = () => {
-    setWords([...words, { word: "", meaning: "" }]);
+  const addQuestionField = () => {
+    setQuestions([...questions, { question: "", answer: "" }]);
   };
 
-  const removeWordField = (index) => {
-    if (words.length === 1) return; // Ensure at least one word field remains
-    const updatedWords = words.filter((_, i) => i !== index);
-    setWords(updatedWords);
+  const removeQuestionField = (index) => {
+    if (questions.length === 1) return;
+    const updatedQuestions = questions.filter((_, i) => i !== index);
+    setQuestions(updatedQuestions);
   };
 
   const handleSubmit = async (e) => {
@@ -52,47 +50,42 @@ const WordMeaningForm = () => {
     setError(null);
     setSuccess(false);
 
-    // Validation: Ensure all words and meanings are filled
-    for (let i = 0; i < words.length; i++) {
-      if (!words[i].word.trim() || !words[i].meaning.trim()) {
-        setError(`Please fill out all fields for word ${i + 1}.`);
+    // Validation: Ensure all questions and answers are filled
+    for (let i = 0; i < questions.length; i++) {
+      if (!questions[i].question.trim() || !questions[i].answer.trim()) {
+        setError(`Please fill out all fields for question ${i + 1}.`);
         setIsSubmitting(false);
         return;
       }
     }
 
-    // Prepare form data
     const formData = {
-      chapterCode,
-      words, // Array of { word, meaning }
+      chapterID,
+      questions,
     };
 
     try {
       const response = await fetch(
-        "https://your-api-endpoint.com/api/word-meanings",
+        "https://your-api-endpoint.com/api/questions",
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // Include any other headers you need, such as Authorization
           },
           body: JSON.stringify(formData),
         }
       );
 
       if (!response.ok) {
-        // Handle HTTP errors
         const errorData = await response.json();
         throw new Error(errorData.message || "Something went wrong!");
       }
 
-      // Optionally, you can handle the response data
       const data = await response.json();
       console.log("Success:", data);
 
-      // Reset form after successful submission
-      setChapterCode("");
-      setWords([{ word: "", meaning: "" }]);
+      setChapterID("");
+      setQuestions([{ question: "", answer: "" }]);
       setSuccess(true);
     } catch (err) {
       console.error("Error:", err);
@@ -105,7 +98,7 @@ const WordMeaningForm = () => {
   return (
     <div className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto mt-8">
       <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
-        Add New Words
+        Add New Questions
       </h2>
 
       {error && (
@@ -114,74 +107,72 @@ const WordMeaningForm = () => {
 
       {success && (
         <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
-          Words saved successfully!
+          Questions saved successfully!
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Chapter Code Dropdown */}
+        {/* Chapter ID Dropdown */}
         <div>
-          <label className="block font-semibold text-lg mb-2">
-            Chapter Code
-          </label>
+          <label className="block font-semibold text-lg mb-2">Chapter ID</label>
           <select
-            value={chapterCode}
-            onChange={(e) => setChapterCode(e.target.value)}
+            value={chapterID}
+            onChange={(e) => setChapterID(e.target.value)}
             className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
             required
           >
             <option value="" disabled>
-              Select chapter code
+              Select chapter ID
             </option>
             {availableChapters.map((chapter) => (
-              <option key={chapter.code} value={chapter.code}>
-                {chapter.code} - {chapter.name}
+              <option key={chapter.id} value={chapter.id}>
+                {chapter.id} - {chapter.name}
               </option>
             ))}
           </select>
         </div>
 
-        {/* Words and Meanings */}
-        {words.map((entry, index) => (
-          <div key={index} className="border p-4 rounded-md">
-            <h3 className="text-xl font-semibold mb-2">Word {index + 1}</h3>
+        {/* Questions and Answers */}
+        {questions.map((entry, index) => (
+          <div key={index} className="border p-4 rounded-md mb-4">
+            <h3 className="text-xl font-semibold mb-2">Question {index + 1}</h3>
 
-            {/* Word Input */}
+            {/* Question Input */}
             <div className="mb-4">
-              <label className="block font-medium mb-1">Word</label>
+              <label className="block font-medium mb-1">Question</label>
               <input
                 type="text"
-                value={entry.word}
+                value={entry.question}
                 onChange={(e) =>
-                  handleWordChange(index, "word", e.target.value)
+                  handleQuestionChange(index, "question", e.target.value)
                 }
-                placeholder="Enter word"
+                placeholder="Enter question"
                 className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
                 required
               />
             </div>
 
-            {/* Meaning Input */}
+            {/* Answer Input */}
             <div className="mb-4">
-              <label className="block font-medium mb-1">Meaning</label>
+              <label className="block font-medium mb-1">Answer</label>
               <textarea
-                value={entry.meaning}
+                value={entry.answer}
                 onChange={(e) =>
-                  handleWordChange(index, "meaning", e.target.value)
+                  handleQuestionChange(index, "answer", e.target.value)
                 }
-                placeholder="Enter meaning"
+                placeholder="Enter answer"
                 className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
                 rows="3"
                 required
               ></textarea>
             </div>
 
-            {/* Remove Word Button */}
+            {/* Remove Question Button */}
             <div className="flex justify-end">
-              {words.length > 1 && (
+              {questions.length > 1 && (
                 <button
                   type="button"
-                  onClick={() => removeWordField(index)}
+                  onClick={() => removeQuestionField(index)}
                   className="text-red-500 hover:text-red-700 font-semibold"
                 >
                   Remove
@@ -191,14 +182,14 @@ const WordMeaningForm = () => {
           </div>
         ))}
 
-        {/* Add Word Button */}
+        {/* Add Question Button */}
         <div>
           <button
             type="button"
-            onClick={addWordField}
+            onClick={addQuestionField}
             className="w-full py-2 px-4 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 transition-all duration-200 ease-in-out"
           >
-            Add Another Word
+            Add Another Question
           </button>
         </div>
 
@@ -210,11 +201,11 @@ const WordMeaningForm = () => {
           }`}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : "Save Words"}
+          {isSubmitting ? "Saving..." : "Save Questions"}
         </button>
       </form>
     </div>
   );
 };
 
-export default WordMeaningForm;
+export default QuestionAnswerForm;

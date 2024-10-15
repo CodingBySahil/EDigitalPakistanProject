@@ -9,6 +9,8 @@ import BookList from "../components/Forms/BookList";
 
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
+import QuestionAnswerForm from "../components/Forms/QuestionAnswerForm";
+import FillInTheBlanksForm from "../components/Forms/FillInTheBlanksForm";
 
 const SendDataPage = ({ onLogout }) => {
   const navigate = useNavigate();
@@ -33,6 +35,8 @@ const SendDataPage = ({ onLogout }) => {
       <MCQsForm />
       <SubjectForm />
       <WordMeaningForm />
+      <QuestionAnswerForm />
+      <FillInTheBlanksForm/>
       <BookList />
     </div>
   );

@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
+import React, { useState } from "react";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 const ContentForm = () => {
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [image, setImage] = useState(null);
   const [video, setVideo] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,12 +40,12 @@ const ContentForm = () => {
     e.preventDefault();
     setIsSubmitting(true);
     const formData = new FormData();
-    formData.append('text', text);
+    formData.append("text", text);
     if (image) {
-      formData.append('image', image);
+      formData.append("image", image);
     }
     if (video) {
-      formData.append('video', video);
+      formData.append("video", video);
     }
 
     try {
@@ -55,25 +55,29 @@ const ContentForm = () => {
       });
 
       if (response.ok) {
-        alert('Book saved successfully via API!');
-        setText('');
+        alert("Book saved successfully via API!");
+        setText("");
         setImage(null);
         setVideo(null);
       } else {
         const errorData = await response.json();
-        alert(`Error: ${errorData.message || 'An error occurred.'}`);
+        alert(`Error: ${errorData.message || "An error occurred."}`);
       }
     } catch (error) {
-      alert('An unexpected error occurred. Please try again.');
+      alert("An unexpected error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-2xl mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Add New Content</h2>
+    <div className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto mt-8">
+      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+        Add New Content
+      </h2>
+
       <form onSubmit={handleSubmit} className="space-y-6">
+        {/* Content Input */}
         <div>
           <label className="block font-semibold text-lg mb-2">Content</label>
           <ReactQuill
@@ -82,23 +86,26 @@ const ContentForm = () => {
             className="bg-white rounded-md"
             modules={{
               toolbar: [
-                [{ 'header': [1, 2, false] }],
-                ['bold', 'italic', 'underline'],
-                ['link', 'image', 'video'],
-                ['clean'] // remove formatting button
+                [{ header: [1, 2, false] }],
+                ["bold", "italic", "underline"],
+                ["link", "image", "video"],
+                ["clean"], // remove formatting button
               ],
             }}
             placeholder="Write your content here..."
           />
         </div>
 
+        {/* Image Upload */}
         <div>
-          <label className="block font-semibold text-lg mb-2">Image Upload</label>
+          <label className="block font-semibold text-lg mb-2">
+            Image Upload
+          </label>
           <input
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
           />
           {image && (
             <img
@@ -109,13 +116,16 @@ const ContentForm = () => {
           )}
         </div>
 
+        {/* Video Upload */}
         <div>
-          <label className="block font-semibold text-lg mb-2">Video Upload</label>
+          <label className="block font-semibold text-lg mb-2">
+            Video Upload
+          </label>
           <input
             type="file"
             accept="video/*"
             onChange={handleVideoUpload}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
           />
           {video && (
             <video controls className="mt-4 w-full rounded-md shadow-sm">
@@ -125,14 +135,15 @@ const ContentForm = () => {
           )}
         </div>
 
+        {/* Submit Button */}
         <button
           type="submit"
           className={`w-full py-3 text-lg bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-all duration-200 ease-in-out ${
-            isSubmitting ? 'opacity-50 cursor-not-allowed' : ''
+            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
           }`}
           disabled={isSubmitting}
         >
-          {isSubmitting ? 'Saving...' : 'Save Content'}
+          {isSubmitting ? "Saving..." : "Save Content"}
         </button>
       </form>
     </div>
