@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import TopNav from "./TopNav";
 import PropTypes from "prop-types";
+import { FaRegCalendarAlt } from "react-icons/fa";
 
 const Header = ({ className = "" }) => {
   return (
@@ -56,9 +57,30 @@ const Header = ({ className = "" }) => {
             </div>
 
             {/* Image Section */}
-            <div className="lg:w-5/12 lg:ml-6 mt-6 lg:mt-0 p-0 overflow-hidden hidden lg:flex">
+            <div className="relative lg:w-5/12 lg:ml-6 mt-6 lg:mt-0 p-0 overflow-hidden hidden lg:flex">
+              {/* Main container */}
+              <div className="absolute p-2 top-[20%] bg-[#f7f7f7] rounded-lg shadow-md w-56 h-16 overflow-hidden flex items-center">
+                {/* Icon and text container */}
+                <div className="flex items-center space-x-3">
+                  {/* Icon container */}
+                  <div className="w-8 h-8 flex items-center justify-center bg-blue-500 text-white rounded-lg">
+                    <FaRegCalendarAlt />
+                  </div>
+
+                  {/* Text container */}
+                  <div className="">
+                    <h3 className="text-md font-semibold leading-tight text-gray-900 mb-auto">
+                      250k
+                    </h3>
+                    <h6 className="text-sm text-gray-900 leading-tight mt-auto">
+                      Assisted Student
+                    </h6>
+                  </div>
+                </div>
+              </div>
+
               <img
-                className="w-full h-auto object-cover rounded-[28px] md:rounded-[20px] lg:rounded-[28px] max-h-[500px] md:max-h-[600px] lg:max-h-[700px]"
+                className="w-[80%] h-auto object-cover rounded-[28px] md:rounded-[20px] lg:rounded-[28px] max-h-[500px] md:max-h-[600px] lg:max-h-[700px]"
                 src="/alp-center-amrait-2-1@2x.png"
                 alt="Group of students"
               />
