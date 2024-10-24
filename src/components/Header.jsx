@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import TopNav from "./TopNav";
 import PropTypes from "prop-types";
-import { FaRegCalendarAlt } from "react-icons/fa";
+import { FaRegCalendarAlt, FaUser } from "react-icons/fa";
+import { IoMdMail } from "react-icons/io";
 
 const Header = ({ className = "" }) => {
   return (
@@ -58,9 +59,8 @@ const Header = ({ className = "" }) => {
 
             {/* Image Section */}
             <div className="relative lg:w-5/12 lg:ml-6 mt-6 lg:mt-0 p-0 overflow-hidden hidden lg:flex">
-              {/* Main container */}
-              <div className="absolute p-2 top-[20%] bg-[#f7f7f7] rounded-lg shadow-md w-56 h-16 overflow-hidden flex items-center">
-                {/* Icon and text container */}
+              {/* Icon and text container */}
+              <div className="absolute p-2 top-[20%] bg-[#f7f7f7]/80 rounded-lg shadow-md w-40 h-16 overflow-hidden flex items-center">
                 <div className="flex items-center space-x-3">
                   {/* Icon container */}
                   <div className="w-8 h-8 flex items-center justify-center bg-blue-500 text-white rounded-lg">
@@ -77,6 +77,51 @@ const Header = ({ className = "" }) => {
                     </h6>
                   </div>
                 </div>
+              </div>
+
+              {/* Icon and text container */}
+              <div className="absolute p-2 top-[40%] right-[10%] bg-[#f7f7f7]/80 rounded-lg shadow-md w-52 h-16 overflow-hidden flex items-center">
+                <div className="flex items-center space-x-3">
+                  {/* Icon container */}
+                  <div className="w-8 h-8 flex items-center justify-center bg-orange-500 text-white rounded-lg">
+                    <IoMdMail />
+                  </div>
+
+                  {/* Text container */}
+                  <div className="">
+                    <h3 className="text-md font-semibold leading-tight text-gray-900 mb-auto">
+                      Congratulation
+                    </h3>
+                    <h6 className="text-sm text-gray-900 leading-tight mt-auto">
+                      Your course is completed
+                    </h6>
+                  </div>
+                </div>
+              </div>
+
+              {/* Icon and text container */}
+              <div className="absolute p-2 top-[60%] bg-[#f7f7f7]/80 rounded-lg shadow-md w-58 h-auto overflow-hidden flex flex-col items-center space-y-2">
+                <div className="flex items-center space-x-3">
+                  {/* Icon container */}
+                  <div className="w-8 h-8 flex items-center justify-center bg-orange-500 text-white rounded-lg">
+                    <FaUser />
+                  </div>
+
+                  {/* Text container */}
+                  <div className="">
+                    <h3 className="text-md font-semibold leading-tight text-gray-900 mb-auto">
+                      User Experience class
+                    </h3>
+                    <h6 className="text-sm text-gray-900 leading-tight mt-auto">
+                      today at 12:00PM
+                    </h6>
+                  </div>
+                </div>
+
+                {/* Centered join now button */}
+                <button className="bg-pink-500 hover:bg-pink-700  cursor-pointer text-white font-bold py-2 px-4 rounded-full">
+                  Join Now
+                </button>
               </div>
 
               <img
