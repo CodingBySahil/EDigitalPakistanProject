@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { mainURL } from "../../constants/const";
 
 const ChapterForm = () => {
-  const [chapterName, setChapterName] = useState("");
+  const [chapName, setChapName] = useState("");
   const [className, setClassName] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
   const [chapterCode, setChapterCode] = useState("");
@@ -17,7 +18,7 @@ const ChapterForm = () => {
 
     // Prepare form data
     const formData = {
-      chapterName,
+      chapName,
       className,
       subjectCode,
       chapterCode,
@@ -25,7 +26,7 @@ const ChapterForm = () => {
 
     try {
       const response = await fetch(
-        "https://your-api-endpoint.com/api/chapters",
+        `${mainURL}/api/ENG101/chapter/data`,
         {
           method: "POST",
           headers: {
@@ -47,7 +48,7 @@ const ChapterForm = () => {
       console.log("Success:", data);
 
       // Reset form after successful submission
-      setChapterName("");
+      setChapName("");
       setClassName("");
       setSubjectCode("");
       setChapterCode("");
@@ -84,8 +85,8 @@ const ChapterForm = () => {
           </label>
           <input
             type="text"
-            value={chapterName}
-            onChange={(e) => setChapterName(e.target.value)}
+            value={chapName}
+            onChange={(e) => setChapName(e.target.value)}
             placeholder="Enter chapter name"
             className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
             required

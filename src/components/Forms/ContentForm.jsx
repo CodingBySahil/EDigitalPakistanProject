@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { mainURL } from "../../constants/const";
 
 const ContentForm = () => {
   const [text, setText] = useState("");
@@ -34,7 +35,8 @@ const ContentForm = () => {
     }
   };
 
-  const API = "http://192.168.1.11:3000/api/ENG101CH1/content/data";
+ 
+  const API = `${mainURL}/api/ENG101CH1/content/data`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

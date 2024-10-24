@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { mainURL } from "../../constants/const";
 
 const MCQForm = () => {
   const [chapCode, setChapCode] = useState("");
@@ -108,7 +109,7 @@ const MCQForm = () => {
 
     try {
       const response = await fetch(
-        "https://your-api-endpoint.com/api/mcqs/batch",
+        `${mainURL}/api/mcqs/batch`,
         {
           method: "POST",
           headers: {
