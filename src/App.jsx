@@ -16,6 +16,8 @@ import SendDataPage from "./pages/SendDataPage";
 import PrivateRoute from "./components/PrivateRoute";
 import CourseCalendarPage from "./pages/CourseCalendarPage";
 
+// branch courseCalendar created
+
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -80,7 +82,7 @@ function App() {
       <Route path="/login" element={<Login onLogin={handleLogin} />} />
       <Route path="/register" element={<Register />} />
       <Route path="/course-calender" element={<CourseCalendarPage />} />
-      
+
       {/* Protected Administration Route */}
       <Route
         path="/administration"
