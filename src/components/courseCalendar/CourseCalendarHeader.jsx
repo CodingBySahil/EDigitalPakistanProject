@@ -5,8 +5,6 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import { sideBarToggleFalse992 } from "../../constants/const";
 import CourseCalendarToggleButton from "./CourseCalendarToggleButton";
 
-
-
 // COMPONENT START
 export default function CourseCalendarHeader({ sideBarToggle }) {
   // VARIABLES
@@ -27,7 +25,7 @@ export default function CourseCalendarHeader({ sideBarToggle }) {
       )}
 
       <div
-        className={`grid h-[70px] grid-rows-2 gap-[10px] bg-brand-color-cyan p-[10px] pl-[30px] text-white`}
+        className={`grid h-[70px] grid-rows-2 gap-[10px] bg-brand-color-cyan p-[10px] pl-[30px] text-white items-center `}
       >
         {/*  main heading */}
         <div>

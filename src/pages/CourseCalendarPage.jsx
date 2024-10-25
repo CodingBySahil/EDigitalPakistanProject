@@ -1,6 +1,6 @@
 // import CourseCalendar from "./CourseCalendar";
 
-import CourseCalendar from "../components/CourseCalenderComponents/CourseCalendar";
+import CourseCalendar from "../components/courseCalendar/CourseCalendar";
 
 // COMPONENT START
 export default function CourseCalendarPage() {
