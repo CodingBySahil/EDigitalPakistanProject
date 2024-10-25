@@ -16,7 +16,7 @@ import SendDataPage from "./pages/SendDataPage";
 import PrivateRoute from "./components/PrivateRoute";
 import CourseCalendarPage from "./pages/CourseCalendarPage";
 
-// font converted to roboto commit 2
+// main merged into courseCalendar
 
 function App() {
   const action = useNavigationType();
