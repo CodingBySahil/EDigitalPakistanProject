@@ -18,7 +18,7 @@ export default function CourseCalendarSideBar({ sideBarToggle }) {
       style={{
         position: screenWidth < sideBarToggleFalse992 ? "absolute" : "relative",
       }}
-      className="grid h-screen w-[250px] grid-rows-[50px_28%_1fr]  bg-white px-[7px]"
+      className="grid h-screen w-[250px] grid-rows-[50px_40%_1fr] gap-[10px]  bg-white px-[7px]"
     >
       {/* Toggle Button */}
       <div>

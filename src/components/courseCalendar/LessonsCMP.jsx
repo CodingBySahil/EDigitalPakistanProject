@@ -1,11 +1,12 @@
 import PropTypes from "prop-types";
 import { IoBookSharp } from "react-icons/io5";
 
-export default function LessonCMP() {
+export default function LessonCMP({ lessonData, chapterNo, bgColor = "pink" }) {
+  // JSX
   return (
     <div
-      className="grid h-[40px] w-full grid-cols-[10%_1fr_15%] gap-[5px] text-nowrap rounded-[5px] p-[5px] text-[10px] items-center"
-      style={{ backgroundColor: "pink" }} // Use inline style for dynamic background color
+      className="grid min-h-[40px] w-full grid-cols-[10%_70%_50px] gap-[5px] text-nowrap rounded-[5px] p-[5px] text-[10px] items-center"
+      style={{ backgroundColor: bgColor }} // Use inline style for dynamic background color
     >
       {/* Icon */}
       <div className="flex justify-center items-center">
@@ -13,8 +14,10 @@ export default function LessonCMP() {
       </div>
 
       {/* Lesson Title */}
-      <div>
-        <p>Lesson 01 : Introduction about XD</p>
+      <div className="overflow-hidden">
+        <p className="truncate">
+          {`Lesson ${chapterNo} : ${lessonData?.name}`}
+        </p>
       </div>
 
       {/* Duration */}
@@ -24,3 +27,9 @@ export default function LessonCMP() {
     </div>
   );
 }
+
+LessonCMP.propTypes = {
+  lessonData: PropTypes.object,
+  chapterNo: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  bgColor: PropTypes.string,
+};

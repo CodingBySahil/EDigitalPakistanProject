@@ -1,6 +1,9 @@
 import { createContext, useEffect, useState } from "react";
+
 import CourseCalendarHeader from "./CourseCalendarHeader";
 import CourseCalendarSideBar from "./CourseCalendarSideBar";
+import LoadingSpinner from "../LoadingSpinner";
+import CourseCalendarBody from "./CourseCalendarBody";
 import { useGetScreenWidth } from "./useGetScreenWidth";
 import { mainURL, sideBarToggleFalse992 } from "../../constants/const";
 
@@ -41,7 +44,7 @@ export default function CourseCalendar() {
 
         // step 2 : parsing the json
         const data = JSON.parse(jsonText);
-        console.log(data);
+        // console.log(data);
 
         // step 3 : setting the state
         setLessonsData(data);
@@ -68,7 +71,7 @@ export default function CourseCalendar() {
           {/* DIVIDER layout for bigger screens */}
           <>
             {screenWidth >= sideBarToggleFalse992 && (
-              <div className="grid h-screen grid-cols-[auto_1fr]">
+              <div className="grid h-screen grid-cols-[auto_1fr] overflow-x-hidden overflow-y-hidden">
                 {/* div for side bar */}
                 <div>
                   <CourseCalendarSideBar />
@@ -85,7 +88,7 @@ export default function CourseCalendar() {
                   {/* page body */}
                   <div>
                     <div className="h-screen bg-brand-color-lightBlue/30">
-                      page body
+                      <CourseCalendarBody />
                     </div>
                   </div>
                 </div>
@@ -96,7 +99,7 @@ export default function CourseCalendar() {
           {/* DIVIDER layout for mobile & tab  */}
           <>
             {screenWidth < sideBarToggleFalse992 && (
-              <div className="relative grid h-screen grid-rows-[auto_1fr]">
+              <div className="relative grid h-screen grid-rows-[auto_1fr] overflow-x-hidden overflow-y-hidden">
                 {/*  header */}
                 <CourseCalendarHeader
                   sideBarToggle={sideBarToggle}
@@ -104,7 +107,9 @@ export default function CourseCalendar() {
                 />
 
                 {/* page body */}
-                <div className="bg-brand-color-lightBlue/30">page body</div>
+                <div className="bg-brand-color-lightBlue/30">
+                  <CourseCalendarBody />
+                </div>
 
                 {/* page side bar */}
                 {isShowing && (
@@ -118,8 +123,8 @@ export default function CourseCalendar() {
     );
   } else {
     return (
-      <div>
-        <p>Loading...</p>
+      <div className="w-[100%] h-[100vh] flex justify-center items-center">
+        <LoadingSpinner size={30} />
       </div>
     );
   }
