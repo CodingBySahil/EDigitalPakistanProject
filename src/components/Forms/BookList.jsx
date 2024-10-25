@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { mainURL } from '../../constants/const';
 
 const BookListFromAPI = () => {
   const [books, setBooks] = useState([]);
   const [error, setError] = useState(null);
 
   // API endpoint
-  const API = "http://192.168.1.11:3000/api/ENG101CH1/content/data";
+  const API = `${mainURL}/api/ENG101CH1/content/data`;
 
   useEffect(() => {
     const fetchBooks = async () => {

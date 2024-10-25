@@ -1,6 +1,7 @@
 // src/components/SubjectForm.jsx
 
 import React, { useState } from "react";
+import { mainURL } from "../../constants/const";
 
 const SubjectForm = () => {
   const [subjectName, setSubjectName] = useState("");
@@ -18,7 +19,7 @@ const SubjectForm = () => {
   ];
 
   // API endpoint - Update this to your actual endpoint
-  const API = "http://192.168.1.13:3000/api/subject/data";
+  const API = `${mainURL}/api/subject/data`;
 
   // Handle form submission to post data to API
   const handleSubmit = async (e) => {

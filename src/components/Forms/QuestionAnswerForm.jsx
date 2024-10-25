@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { mainURL } from "../../constants/const";
 
 const QuestionAnswerForm = () => {
   const [chapterID, setChapterID] = useState("");
@@ -66,7 +67,7 @@ const QuestionAnswerForm = () => {
 
     try {
       const response = await fetch(
-        "https://your-api-endpoint.com/api/questions",
+        `${mainURL}/api/questions`,
         {
           method: "POST",
           headers: {
