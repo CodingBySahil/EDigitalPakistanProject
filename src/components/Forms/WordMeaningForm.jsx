@@ -15,9 +15,9 @@ const WordMeaningForm = () => {
       try {
         // Example static chapters; replace with API call if needed
         const chapters = [
-          { code: "CHP001", name: "Introduction to Literature" },
-          { code: "CHP002", name: "Poetry and Prose" },
-          { code: "CHP003", name: "Drama and Plays" },
+          { code: "ENG101CH1", name: "Hazrat Muhammad (S.A.w) The Rasool Of Mercy" },
+          { code: "ENG101CH2", name: "New Boy in Class" },
+          { code: "ENG101CH2", name: "A Nation's Strength" },
           // Add more chapters as needed
         ];
         setAvailableChapters(chapters);

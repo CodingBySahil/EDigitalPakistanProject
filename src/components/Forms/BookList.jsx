@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { mainURL } from '../../constants/const';
+import React, { useEffect, useState } from "react";
+import { mainURL } from "../../constants/const";
 
 const BookListFromAPI = () => {
   const [books, setBooks] = useState([]);
@@ -22,7 +22,6 @@ const BookListFromAPI = () => {
           setBooks(result.data);
           console.log(result.data);
           console.log(books);
-          
         } else {
           setError("Invalid data format received from the API.");
         }
@@ -48,20 +47,26 @@ const BookListFromAPI = () => {
             <h3 className="text-xl font-semibold mb-2">Book ID: {book._id}</h3>
             <div
               className="prose"
-              dangerouslySetInnerHTML={{ __html: book.text }}  // Render HTML content
+              dangerouslySetInnerHTML={{ __html: book.text }} // Render HTML content
             />
 
             {book.img && (
               <div className="mt-4">
-                <img src={`http://192.168.1.11:3000/${book.img}`} alt="Book" className="w-64" />
+                <img
+                  src={`http://192.168.1.11:3000/${book.img}`}
+                  alt="Book"
+                  className="w-64"
+                />
               </div>
-              
             )}
 
             {book.video && (
               <div className="mt-4">
                 <video controls className="w-64">
-                  <source src={`http://192.168.1.11:3000/${book.video}`} type="video/mp4" />
+                  <source
+                    src={`http://192.168.1.11:3000/${book.video}`}
+                    type="video/mp4"
+                  />
                 </video>
               </div>
             )}
