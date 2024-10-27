@@ -3,9 +3,10 @@ import { createContext, useEffect, useState } from "react";
 import CourseCalendarHeader from "./CourseCalendarHeader";
 import CourseCalendarSideBar from "./CourseCalendarSideBar";
 import LoadingSpinner from "../LoadingSpinner";
-import CourseCalendarBody from "./CourseCalendarBody";
+// import CourseCalendarBody from "./CourseCalendarBody";
 import { useGetScreenWidth } from "./useGetScreenWidth";
 import { mainURL, sideBarToggleFalse992 } from "../../constants/const";
+import { useGetLessonsData } from "./useGetLessonsData";
 
 export const courseCalendarContext = createContext();
 
@@ -14,8 +15,7 @@ export default function CourseCalendar() {
   // VARIABLES
   const [isShowing, setIsShowing] = useState(false);
   const { screenWidth } = useGetScreenWidth();
-  const [lessonsData, setLessonsData] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, lessonsData, setLessonsData } = useGetLessonsData();
 
   // FUNCTION
   function sideBarToggle() {
@@ -27,36 +27,6 @@ export default function CourseCalendar() {
   }
 
   //FUNCTION gets the lessons names
-  useEffect(() => {
-    async function getLessonsData() {
-      try {
-        setIsLoading(true);
-        // step 1 : sending a get request
-        const response = await fetch(`${mainURL}/api/ENG101/chapter/data`, {
-          headers: {
-            "ngrok-skip-browser-warning": "true",
-            "User-Agent": "Custom-Agent",
-          },
-          method: "GET",
-        });
-
-        const jsonText = await response.text();
-
-        // step 2 : parsing the json
-        const data = JSON.parse(jsonText);
-        // console.log(data);
-
-        // step 3 : setting the state
-        setLessonsData(data);
-      } catch (error) {
-        throw new Error(`Unable to get lessons data ${error.message}`);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
-    getLessonsData();
-  }, []);
 
   // JSX
   if (isLoading === false) {
@@ -88,7 +58,8 @@ export default function CourseCalendar() {
                   {/* page body */}
                   <div>
                     <div className="h-screen bg-brand-color-lightBlue/30">
-                      <CourseCalendarBody />
+                      {/* <CourseCalendarBody /> */}
+                      course calendar body
                     </div>
                   </div>
                 </div>
@@ -108,7 +79,8 @@ export default function CourseCalendar() {
 
                 {/* page body */}
                 <div className="bg-brand-color-lightBlue/30">
-                  <CourseCalendarBody />
+                  {/* <CourseCalendarBody /> */}
+                  Course calendar body
                 </div>
 
                 {/* page side bar */}
