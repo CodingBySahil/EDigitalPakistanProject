@@ -81,6 +81,8 @@ function App() {
       <Route path="/" element={<Wrapper />} />
       <Route path="/login" element={<Login onLogin={handleLogin} />} />
       <Route path="/register" element={<Register />} />
+
+      {/* DIVIDER routes for course calendar */}
       <Route path="/course-calender" element={<CourseCalendarPage />} />
 
       {/* Protected Administration Route */}

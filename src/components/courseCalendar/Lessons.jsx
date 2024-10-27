@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import LessonCMP from "./LessonsCMP";
 import { useCourseCalendarContext } from "./useCourseCalendarContext";
 
@@ -32,10 +33,11 @@ function getBgColor(index) {
 export default function Lessons() {
   // VARIABLES
   const { lessonsData } = useCourseCalendarContext();
+  const navigate = useNavigate();
 
   //FUNCTION
   function lessonClicked(chapterNo) {
-    console.log(`chapter ${chapterNo} clicked`);
+    navigate(`?chapterNumber=${chapterNo}`);
   }
 
   return (
