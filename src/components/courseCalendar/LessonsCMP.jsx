@@ -5,7 +5,7 @@ export default function LessonCMP({ lessonData, chapterNo, bgColor = "pink" }) {
   // JSX
   return (
     <div
-      className="grid min-h-[40px] w-full grid-cols-[10%_70%_50px] gap-[5px] text-nowrap rounded-[5px] p-[5px] text-[10px] items-center"
+      className="cursor-pointer grid min-h-[40px] w-full grid-cols-[10%_70%_50px] gap-[5px] text-nowrap rounded-[5px] p-[5px] text-[10px] items-center"
       style={{ backgroundColor: bgColor }} // Use inline style for dynamic background color
     >
       {/* Icon */}

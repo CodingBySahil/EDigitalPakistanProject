@@ -3,10 +3,11 @@ import { createContext, useEffect, useState } from "react";
 import CourseCalendarHeader from "./CourseCalendarHeader";
 import CourseCalendarSideBar from "./CourseCalendarSideBar";
 import LoadingSpinner from "../LoadingSpinner";
-// import CourseCalendarBody from "./CourseCalendarBody";
-import { useGetScreenWidth } from "./useGetScreenWidth";
+import CourseCalendarBody from "./CourseCalendarBody";
+import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 import { mainURL, sideBarToggleFalse992 } from "../../constants/const";
 import { useGetLessonsData } from "./useGetLessonsData";
+import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 
 export const courseCalendarContext = createContext();
 
@@ -35,6 +36,8 @@ export default function CourseCalendar() {
         value={{
           lessonsData,
           setLessonsData,
+          isShowing,
+          setIsShowing,
         }}
       >
         <>
@@ -58,8 +61,7 @@ export default function CourseCalendar() {
                   {/* page body */}
                   <div>
                     <div className="h-screen bg-brand-color-lightBlue/30">
-                      {/* <CourseCalendarBody /> */}
-                      course calendar body
+                      <CourseCalendarBody />
                     </div>
                   </div>
                 </div>
@@ -79,7 +81,7 @@ export default function CourseCalendar() {
 
                 {/* page body */}
                 <div className="bg-brand-color-lightBlue/30">
-                  {/* <CourseCalendarBody /> */}
+                  <CourseCalendarBody />
                   Course calendar body
                 </div>
 
@@ -95,9 +97,9 @@ export default function CourseCalendar() {
     );
   } else {
     return (
-      <div className="w-[100%] h-[100vh] flex justify-center items-center">
+      <LoadingSpinnerContainer>
         <LoadingSpinner size={30} />
-      </div>
+      </LoadingSpinnerContainer>
     );
   }
 

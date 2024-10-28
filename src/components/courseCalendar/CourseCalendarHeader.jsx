@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { FaRegClock } from "react-icons/fa";
-import { useGetScreenWidth } from "./useGetScreenWidth";
+import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { sideBarToggleFalse992 } from "../../constants/const";
 import CourseCalendarToggleButton from "./CourseCalendarToggleButton";
