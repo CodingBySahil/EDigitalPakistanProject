@@ -35,7 +35,6 @@ const ContentForm = () => {
     }
   };
 
- 
   const API = `${mainURL}/api/ENG101CH1/content/data`;
 
   const handleSubmit = async (e) => {
