@@ -17,7 +17,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import CourseCalendarPage from "./pages/CourseCalendarPage";
 import CourseCalendar from "./components/courseCalendar/CourseCalendar";
 
-// main merged into courseCalendar
+// mcqs server made
 
 function App() {
   const action = useNavigationType();
