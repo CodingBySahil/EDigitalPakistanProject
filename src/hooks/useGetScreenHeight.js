@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function useGetScreenHeight() {
+export function useGetScreenHeight() {
   const [screenHeight, setScreenHeight] = useState(window.innerHeight);
 
   useEffect(() => {
@@ -23,5 +23,3 @@ function useGetScreenHeight() {
 
   return screenHeight;
 }
-
-export default useGetScreenHeight;

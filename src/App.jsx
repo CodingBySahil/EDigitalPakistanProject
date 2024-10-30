@@ -15,6 +15,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SendDataPage from "./pages/SendDataPage";
 import PrivateRoute from "./components/PrivateRoute";
 import CourseCalendarPage from "./pages/CourseCalendarPage";
+import CourseCalendar from "./components/courseCalendar/CourseCalendar";
 
 // main merged into courseCalendar
 
@@ -83,7 +84,9 @@ function App() {
       <Route path="/register" element={<Register />} />
 
       {/* DIVIDER routes for course calendar */}
-      <Route path="/course-calender" element={<CourseCalendarPage />} />
+      <Route path="/course-calender" element={<CourseCalendarPage />}>
+        <Route path="quiz" element={<CourseCalendar />} />
+      </Route>
 
       {/* Protected Administration Route */}
       <Route

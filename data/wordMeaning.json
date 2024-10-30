@@ -1,0 +1,106 @@
+{
+  "questionsArr": [
+    {
+      "id": 1,
+      "word": "Abate",
+
+      "meaning": "Lessen"
+    },
+    {
+      "id": 2,
+      "word": "Candid",
+      "meaning": "Honest"
+    },
+    {
+      "id": 3,
+      "word": "Elate",
+      "meaning": "Excite"
+    },
+    {
+      "id": 4,
+      "word": "Fickle",
+      "meaning": "Changeable"
+    },
+    {
+      "id": 5,
+      "word": "Gleam",
+      "meaning": "Shine"
+    },
+    {
+      "id": 6,
+      "word": "Haste",
+      "meaning": "Speed"
+    },
+    {
+      "id": 7,
+      "word": "Jubilant",
+      "meaning": "Joyful"
+    },
+    {
+      "id": 8,
+      "word": "Livid",
+      "meaning": "Angry"
+    },
+    {
+      "id": 9,
+      "word": "Mirth",
+      "meaning": "Glee"
+    },
+    {
+      "id": 10,
+      "word": "Nimble",
+      "meaning": "Agile"
+    },
+    {
+      "id": 11,
+      "word": "Abate",
+
+      "meaning": "Lessen"
+    },
+    {
+      "id": 12,
+      "word": "Candid",
+      "meaning": "Honest"
+    },
+    {
+      "id": 13,
+      "word": "Elate",
+      "meaning": "Excite"
+    },
+    {
+      "id": 14,
+      "word": "Fickle",
+      "meaning": "Changeable"
+    },
+    {
+      "id": 15,
+      "word": "Gleam",
+      "meaning": "Shine"
+    },
+    {
+      "id": 16,
+      "word": "Haste",
+      "meaning": "Speed"
+    },
+    {
+      "id": 17,
+      "word": "Jubilant",
+      "meaning": "Joyful"
+    },
+    {
+      "id": 18,
+      "word": "Livid",
+      "meaning": "Angry"
+    },
+    {
+      "id": 19,
+      "word": "Mirth",
+      "meaning": "Glee"
+    },
+    {
+      "id": 20,
+      "word": "Nimble",
+      "meaning": "Agile"
+    }
+  ]
+}
