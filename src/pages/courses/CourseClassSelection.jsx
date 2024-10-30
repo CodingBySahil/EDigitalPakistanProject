@@ -6,7 +6,7 @@ const CourseClassSelection = () => {
   return (
     <div className="bg-white text-gray-900">
       {/* Header Section */}
-      <CourseNavbar/>
+      <CourseNavbar changeURL={''}/>
 
       {/* Course Title */}
       <section className="text-center mt-8 mb-12">

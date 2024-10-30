@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const CourseNavbar = () => {
+const CourseNavbar = ({changeURL}) => {
   return (
     <>
       {/* Header Section */}
@@ -32,7 +32,7 @@ const CourseNavbar = () => {
         <div className="flex items-center">
           <span className="mr-2">Lina</span>
           <img
-            src="group-88@2x.png"
+            src={`${changeURL}mask-group-1@2x.png`}
             alt="User Profile"
             className="w-8 h-8 rounded-full"
           />

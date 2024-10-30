@@ -7,14 +7,14 @@ const ClassDetails = () => {
   const { classLink } = useParams();
   return (
     <div className="bg-white text-gray-900">
-      <h2>Details for {classLink.replace('class', 'Class ')}</h2>
       {/* Header Section */}
-      <CourseNavbar/>
+      <CourseNavbar changeURL={'../'}/>
+      {/* <h2>Details for {classLink.replace('class', 'Class ')}</h2> */}
 
       {/* Course Title */}
       <section className="text-center mt-8 mb-12">
         <h2 className="text-3xl font-bold">
-          Select the COURSE/CLASS you are intrusted in
+         All subjects of {classLink.replace('class', 'Class ')} are listed below, Select the subject you are intrusted in
         </h2>
       </section>
 
@@ -22,12 +22,15 @@ const ClassDetails = () => {
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-8">
         {[
             // array from class 1st to class 8th
-          { title: "The New Science Of Curiosity" , author:"by Garden Gordan"},
-          {title: "Biology", author: "by Garden Gordan"},
-          {title: "Chemistry", author: "by Garden Gordan"},
-          {title: "Physics", author: "by Garden Gordan"},
-          {title: "Mathematics", author: "by Garden Gordan"},
-          {title: "English", author: "by Garden Gordan"},
+            {title: "English Class 7th 8th", author: "Garden Gordan", bookImg:'book-1@2x.png'},
+            { title: "Biology" , author:"Garden Gordan", bookImg:'3@2x.png'},
+            {title: "English Class 7th 8th", author: "Garden Gordan", bookImg:'book-1@2x.png'},
+            {title: "Mathematics", author: "Garden Gordan", bookImg:'mathClass6&7.png'},
+            {title: "English Class 8th", author: "Garden Gordan", bookImg:'eng8th.png'},
+          {title: "Mathematics", author: "Garden Gordan", bookImg:'mathClass6&7.png'},
+          {title: "English Class 8th", author: "Garden Gordan", bookImg:'eng8th.png'},
+          { title: "Biology" , author:"Garden Gordan", bookImg:'3@2x.png'},
+          
         ].map((subject, index) => (
           <Link to={`${subject.classLink}`} key={index}>
             <div
@@ -35,7 +38,7 @@ const ClassDetails = () => {
               className="bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer"
             >
               <img
-                src={`eng8th.png`}
+                src={`../${subject.bookImg}`}
                 alt={subject.title}
                 className="w-full object-cover"
               />
