@@ -35,7 +35,8 @@ const ContentForm = () => {
     }
   };
 
-  const API = `${mainURL}/api/ENG101CH1/content/data`;
+ const API = `${mainURL}/api/ENG101CH3/content/data`;
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,13 +82,13 @@ const ContentForm = () => {
         {/* Content Input */}
         <div>
           <label className="block font-semibold text-lg mb-2">Content</label>
-          <ReactQuill
+          {/* <ReactQuill
             value={text}
             onChange={setText}
             className="bg-white rounded-md"
             modules={{
               toolbar: [
-                [{ header: [1, 2, false] }],
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
                 ["bold", "italic", "underline", "strike", "blockquote"],
                 [
                   { list: "ordered" },
@@ -99,6 +100,50 @@ const ContentForm = () => {
                 ["clean"], // remove formatting button
               ],
             }}
+            placeholder="Write your content here..."
+          /> */}
+          <ReactQuill
+            value={text}
+            onChange={setText}
+            className="bg-white rounded-md"
+            modules={{
+              toolbar: [
+                [{ header: [1, 2, 3, 4, 5, 6, false] }],
+                [{ font: [] }], // font selection
+                [{ size: [] }], // font size
+                ["bold", "italic", "underline", "strike", "blockquote"],
+                [
+                  { color: [] }, // text color
+                  { background: [] }, // background color
+                ],
+                [
+                  { list: "ordered" },
+                  { list: "bullet" },
+                  { indent: "-1" },
+                  { indent: "+1" },
+                ],
+                ["link", "image", "video"],
+                ["clean"], // remove formatting button
+              ],
+            }}
+            formats={[
+              "header",
+              "font",
+              "size",
+              "bold",
+              "italic",
+              "underline",
+              "strike",
+              "blockquote",
+              "color",
+              "background",
+              "list",
+              "bullet",
+              "indent",
+              "link",
+              "image",
+              "video",
+            ]}
             placeholder="Write your content here..."
           />
         </div>
