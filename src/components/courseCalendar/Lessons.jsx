@@ -1,7 +1,6 @@
-import LessonCMP from "./LessonsCMP";
 import { useNavigate } from "react-router-dom";
+import LessonCMP from "./LessonsCMP";
 import { useCourseCalendarContext } from "./useCourseCalendarContext";
-import { useEffect, useRef } from "react";
 
 let i = 1;
 
@@ -33,25 +32,13 @@ function getBgColor(index) {
 // COMPONENT START
 export default function Lessons() {
   // VARIABLES
-  const { lessonsData, setIsShowing } = useCourseCalendarContext();
+  const { lessonsData } = useCourseCalendarContext();
   const navigate = useNavigate();
 
   //FUNCTION
-  function lessonClicked(val) {
-    setIsShowing(false);
-    navigate(`/course-calender?chapterNumber=${val?.chapterCode}`);
+  function lessonClicked(chapterNo) {
+    navigate(`?chapterNumber=${chapterNo}`);
   }
-
-  useEffect(() => {
-    i = 1;
-  });
-
-  // FUNCTION
-  useEffect(() => {
-    return () => {
-      i = 1; // This will run only when the component unmounts
-    };
-  }, []);
 
   return (
     <div className="grid grid-rows-[auto_1fr] gap-[10px]">
@@ -63,13 +50,11 @@ export default function Lessons() {
       {/* Body */}
       <div className="flex flex-col gap-[5px] overflow-x-hidden overflow-y-auto">
         {lessonsData.map((val, index) => (
-          <div key={index} onClick={() => lessonClicked(val)}>
+          <div key={index} onClick={() => lessonClicked(index + 1)}>
             <LessonCMP
-              type={"lessons"}
               bgColor={getBgColor(index)}
               chapterNo={index + 1}
               lessonData={val}
-              quizDetails={{}}
             />
           </div>
         ))}
