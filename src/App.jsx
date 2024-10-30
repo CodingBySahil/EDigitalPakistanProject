@@ -18,7 +18,7 @@ import CourseCalendarPage from "./pages/CourseCalendarPage";
 import CourseClassSelection from "./pages/courses/CourseClassSelection";
 import ClassDetails from "./pages/courses/ClassDetails";
 
-// main merged into courseCalendar
+// mcqs server made
 
 function App() {
   const action = useNavigationType();
