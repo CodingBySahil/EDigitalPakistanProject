@@ -13,7 +13,7 @@ const CourseNavbar = ({changeURL}) => {
           <Link to="/" className="hover:text-green-600 no-underline">
             Home
           </Link>
-          <Link to="/courses" className="hover:text-green-600 no-underline">
+          <Link to="/course-calender" className="hover:text-green-600 no-underline">
             Courses
           </Link>
           <Link
