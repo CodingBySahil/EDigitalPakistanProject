@@ -7,6 +7,11 @@ module.exports = {
     extend: {
       screens: {
         sideBarToggleFalse992: `${sideBarToggleFalse992}px`,
+        mobileM: "375px",
+        mobileL: "412px",
+        tabS: "640px",
+        tabL: "768px",
+        laptop14: "1200px",
       },
       colors: {
         "brand-color-cyan": "#49BBBD",

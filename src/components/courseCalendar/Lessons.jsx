@@ -1,5 +1,5 @@
-import { useNavigate } from "react-router-dom";
 import LessonCMP from "./LessonsCMP";
+import { useNavigate } from "react-router-dom";
 import { useCourseCalendarContext } from "./useCourseCalendarContext";
 import { useEffect, useRef } from "react";
 
@@ -39,8 +39,12 @@ export default function Lessons() {
   //FUNCTION
   function lessonClicked(val) {
     setIsShowing(false);
-    navigate(`?chapterNumber=${val?.chapterCode}`);
+    navigate(`/course-calender?chapterNumber=${val?.chapterCode}`);
   }
+
+  useEffect(() => {
+    i = 1;
+  });
 
   // FUNCTION
   useEffect(() => {
@@ -61,9 +65,11 @@ export default function Lessons() {
         {lessonsData.map((val, index) => (
           <div key={index} onClick={() => lessonClicked(val)}>
             <LessonCMP
+              type={"lessons"}
               bgColor={getBgColor(index)}
               chapterNo={index + 1}
               lessonData={val}
+              quizDetails={{}}
             />
           </div>
         ))}

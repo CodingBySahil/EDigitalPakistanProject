@@ -4,10 +4,10 @@ import CourseCalendarHeader from "./CourseCalendarHeader";
 import CourseCalendarSideBar from "./CourseCalendarSideBar";
 import LoadingSpinner from "../LoadingSpinner";
 import CourseCalendarBody from "./CourseCalendarBody";
+import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 import { mainURL, sideBarToggleFalse992 } from "../../constants/const";
 import { useGetLessonsData } from "./useGetLessonsData";
-import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 
 export const courseCalendarContext = createContext();
 
@@ -82,7 +82,6 @@ export default function CourseCalendar() {
                 {/* page body */}
                 <div className="bg-brand-color-lightBlue/30">
                   <CourseCalendarBody />
-                  Course calendar body
                 </div>
 
                 {/* page side bar */}

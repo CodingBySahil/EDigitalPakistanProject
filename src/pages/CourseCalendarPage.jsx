@@ -1,5 +1,3 @@
-// import CourseCalendar from "./CourseCalendar";
-
 import CourseCalendar from "../components/courseCalendar/CourseCalendar";
 
 // COMPONENT START

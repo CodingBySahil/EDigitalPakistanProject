@@ -15,8 +15,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SendDataPage from "./pages/SendDataPage";
 import PrivateRoute from "./components/PrivateRoute";
 import CourseCalendarPage from "./pages/CourseCalendarPage";
-import CourseClassSelection from "./pages/courses/CourseClassSelection";
-import ClassDetails from "./pages/courses/ClassDetails";
+import CourseCalendar from "./components/courseCalendar/CourseCalendar";
 
 // main merged into courseCalendar
 
@@ -83,12 +82,11 @@ function App() {
       <Route path="/" element={<Wrapper />} />
       <Route path="/login" element={<Login onLogin={handleLogin} />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/class" element={<CourseClassSelection />} />
-      <Route path="/class/:classLink" element={<ClassDetails />} />
-
 
       {/* DIVIDER routes for course calendar */}
-      <Route path="/course-calender" element={<CourseCalendarPage />} />
+      <Route path="/course-calender" element={<CourseCalendarPage />}>
+        <Route path="quiz" element={<CourseCalendar />} />
+      </Route>
 
       {/* Protected Administration Route */}
       <Route
