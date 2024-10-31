@@ -1,0 +1,44 @@
+{
+  "questionAnswers": [
+    {
+      "question": "What is the tallest building in the world?",
+      "answer": "The Burj Khalifa in Dubai, United Arab Emirates, holds the record as the tallest building in the world. Standing at a height of 828 meters (2,717 feet) with 163 floors, it was completed in 2010 and has since been an architectural marvel. Its design was inspired by traditional Islamic architecture, and it includes residential spaces, offices, hotels, and an observation deck that offers stunning views of Dubai."
+    },
+    {
+      "question": "How does photosynthesis work in plants?",
+      "answer": "Photosynthesis is the process by which green plants convert sunlight, water, and carbon dioxide into oxygen and energy-rich organic compounds. In the chloroplasts of plant cells, chlorophyll absorbs sunlight, initiating a reaction that splits water molecules into hydrogen and oxygen. Carbon dioxide combines with hydrogen to form glucose, which plants use as energy, while oxygen is released as a byproduct."
+    },
+    {
+      "question": "What is the purpose of the Great Wall of China?",
+      "answer": "The Great Wall of China was built primarily as a defense system to protect against invasions from northern tribes, such as the Mongols. Construction began in the 7th century BC and continued through various dynasties. Stretching over 13,000 miles, it also served as a means to control trade and immigration along the Silk Road, as well as a symbol of power and unity for the Chinese empire."
+    },
+    {
+      "question": "Why do we experience seasons on Earth?",
+      "answer": "Seasons on Earth occur due to the planet's axial tilt of about 23.5 degrees as it orbits the sun. This tilt means that different parts of Earth receive varying amounts of sunlight throughout the year. When the Northern Hemisphere tilts toward the sun, it experiences summer, while the Southern Hemisphere has winter, and vice versa. The equinoxes and solstices mark key points in this seasonal cycle."
+    },
+    {
+      "question": "What causes earthquakes?",
+      "answer": "Earthquakes are caused by sudden movements in the Earth's crust due to tectonic plate interactions. When plates grind against or collide with each other, stress builds up and is eventually released as seismic waves, which cause the ground to shake. The point beneath the surface where the stress is released is called the focus, and the point directly above it on the surface is the epicenter."
+    },
+    {
+      "question": "What is the tallest building in the world?",
+      "answer": "The Burj Khalifa in Dubai, United Arab Emirates, holds the record as the tallest building in the world. Standing at a height of 828 meters (2,717 feet) with 163 floors, it was completed in 2010 and has since been an architectural marvel. Its design was inspired by traditional Islamic architecture, and it includes residential spaces, offices, hotels, and an observation deck that offers stunning views of Dubai."
+    },
+    {
+      "question": "How does photosynthesis work in plants?",
+      "answer": "Photosynthesis is the process by which green plants convert sunlight, water, and carbon dioxide into oxygen and energy-rich organic compounds. In the chloroplasts of plant cells, chlorophyll absorbs sunlight, initiating a reaction that splits water molecules into hydrogen and oxygen. Carbon dioxide combines with hydrogen to form glucose, which plants use as energy, while oxygen is released as a byproduct."
+    },
+    {
+      "question": "What is the purpose of the Great Wall of China?",
+      "answer": "The Great Wall of China was built primarily as a defense system to protect against invasions from northern tribes, such as the Mongols. Construction began in the 7th century BC and continued through various dynasties. Stretching over 13,000 miles, it also served as a means to control trade and immigration along the Silk Road, as well as a symbol of power and unity for the Chinese empire."
+    },
+    {
+      "question": "Why do we experience seasons on Earth?",
+      "answer": "Seasons on Earth occur due to the planet's axial tilt of about 23.5 degrees as it orbits the sun. This tilt means that different parts of Earth receive varying amounts of sunlight throughout the year. When the Northern Hemisphere tilts toward the sun, it experiences summer, while the Southern Hemisphere has winter, and vice versa. The equinoxes and solstices mark key points in this seasonal cycle."
+    },
+    {
+      "question": "What causes earthquakes?",
+      "answer": "Earthquakes are caused by sudden movements in the Earth's crust due to tectonic plate interactions. When plates grind against or collide with each other, stress builds up and is eventually released as seismic waves, which cause the ground to shake. The point beneath the surface where the stress is released is called the focus, and the point directly above it on the surface is the epicenter."
+    }
+  ]
+}
