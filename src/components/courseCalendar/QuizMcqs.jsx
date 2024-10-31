@@ -48,11 +48,16 @@ export default function QuizMcqs() {
       return newArr;
     });
 
-    if (dataMcqs[mcqsNumber]?.correctOption === optionClickedNumber) {
-      console.log("Correct option clicked");
-    } else {
-      console.log(`Wrong option clicked`);
-    }
+    // if (dataMcqs[mcqsNumber]?.correctOption === optionClickedNumber) {
+    //   console.log("Correct option clicked");
+    // } else {
+    //   console.log(`Wrong option clicked`);
+    // }
+  };
+
+  //    FUNCTION
+  const submitButtonClicked = () => {
+    console.log("submitButtonClicked");
   };
 
   // JSX
@@ -87,6 +92,16 @@ export default function QuizMcqs() {
                 />
               </div>
             ))}
+            <div className="min-h-[70px] flex justify-end items-center ">
+              <button
+                onClick={() => submitButtonClicked()}
+                style={{ border: "1px solid white" }}
+                className="bg-brand-color-cyan text-white font-semibold text-[20px] px-[10px] py-[5px] rounded-[8px] active:bg-brand-color-cyan/60
+            "
+              >
+                Submit
+              </button>
+            </div>
           </div>
         </ScrollableBody>
       </div>

@@ -17,6 +17,12 @@ import { brandColorCyan } from "../../constants/brandColors";
 //   }
 // }
 
+function getCorrectColor(infoObj, index) {
+  if (infoObj?.optionSelected === index) {
+    return "green";
+  } else return brandColorCyan;
+}
+
 // COMPONENT START
 export default function SingleQuizMcqsBody({
   questionNumber,
@@ -39,14 +45,16 @@ export default function SingleQuizMcqsBody({
 
       {/* div options */}
       <div className="flex flex-col gap-[5px]">
-        {optionsArr.map((val, i) => (
+        {optionsArr.map((val, index) => (
           <div
-            onClick={() => optionCLicked(questionNumber, i)}
-            key={i}
+            onClick={() => optionCLicked(questionNumber, index)}
+            key={index}
             className="rounded-[8px] min-h-[30px] flex items-center p-[5px] text-white"
             style={{
               cursor: "pointer",
-              backgroundColor: brandColorCyan,
+              backgroundColor: !attemptedMcqArray?.[questionNumber]?.attempted
+                ? brandColorCyan
+                : getCorrectColor(attemptedMcqArray?.[questionNumber], index),
             }}
           >{`${val}`}</div>
         ))}
