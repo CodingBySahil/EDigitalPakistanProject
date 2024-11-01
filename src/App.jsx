@@ -7,6 +7,7 @@ import {
   useLocation,
   Navigate,
 } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -78,28 +79,37 @@ function App() {
   };
 
   return (
-    <Routes>
-      <Route path="*" element={<NotFoundPage />} />
-      <Route path="/" element={<Wrapper />} />
-      <Route path="/login" element={<Login onLogin={handleLogin} />} />
-      <Route path="/register" element={<Register />} />
-      <Route path="/class" element={<CourseClassSelection />} />
-      <Route path="/class/:classLink" element={<ClassDetails />} />
+
+    <>
+      <Routes>
+        <Route path="*" element={<NotFoundPage />} />
+        <Route path="/" element={<Wrapper />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/register" element={<Register />} />
+
+        {/* DIVIDER routes for course calendar */}
+        <Route path="/course-calender" element={<CourseCalendarPage />}>
+          <Route path="quiz" element={<CourseCalendar />} />
+        </Route>
 
 
-      {/* DIVIDER routes for course calendar */}
-      <Route path="/course-calender" element={<CourseCalendarPage />} />
-
-      {/* Protected Administration Route */}
-      <Route
-        path="/administration"
-        element={
-          <PrivateRoute isAuthenticated={isAuthenticated}>
-            <SendDataPage onLogout={handleLogout} />
-          </PrivateRoute>
-        }
+        {/* Protected Administration Route */}
+        <Route
+          path="/administration"
+          element={
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+              <SendDataPage onLogout={handleLogout} />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        transition:Bounce
+        closeOnClick
       />
-    </Routes>
+    </>
   );
 }
 
