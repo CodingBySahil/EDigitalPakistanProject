@@ -47,17 +47,24 @@ export default function QuizMcqs() {
       // 3. Return the updated array
       return newArr;
     });
-
-    // if (dataMcqs[mcqsNumber]?.correctOption === optionClickedNumber) {
-    //   console.log("Correct option clicked");
-    // } else {
-    //   console.log(`Wrong option clicked`);
-    // }
   };
 
   //    FUNCTION
   const submitButtonClicked = () => {
-    console.log("submitButtonClicked");
+    let readyToSubmit = true;
+
+    attemptedMcqArray.forEach((val) => {
+      if (val.attempted === false) {
+        readyToSubmit = false;
+        return;
+      }
+    });
+
+    if (readyToSubmit) {
+      console.log("ready to submit");
+    } else {
+      console.log("not ready to submit");
+    }
   };
 
   // JSX
