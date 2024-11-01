@@ -86,6 +86,8 @@ function App() {
         <Route path="/" element={<Wrapper />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/class" element={<CourseClassSelection />} />
+        <Route path="/class/:classLink" element={<ClassDetails />} />
 
         {/* DIVIDER routes for course calendar */}
         <Route path="/course-calender" element={<CourseCalendarPage />}>
