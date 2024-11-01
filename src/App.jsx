@@ -20,7 +20,7 @@ import CourseClassSelection from "./pages/courses/CourseClassSelection";
 import ClassDetails from "./pages/courses/ClassDetails";
 import CourseCalendar from "./components/courseCalendar/CourseCalendar";
 
-// quizMcqs all done
+// quizMcqs all done 2
 
 function App() {
   const action = useNavigationType();
@@ -80,7 +80,6 @@ function App() {
   };
 
   return (
-
     <>
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
@@ -92,7 +91,6 @@ function App() {
         <Route path="/course-calender" element={<CourseCalendarPage />}>
           <Route path="quiz" element={<CourseCalendar />} />
         </Route>
-
 
         {/* Protected Administration Route */}
         <Route

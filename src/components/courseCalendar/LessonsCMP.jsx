@@ -1,12 +1,18 @@
 import PropTypes from "prop-types";
 import { IoBookSharp } from "react-icons/io5";
 
-export default function LessonCMP({ lessonData, chapterNo, bgColor = "pink" }) {
+export default function LessonCMP({
+  type,
+  lessonData,
+  chapterNo,
+  bgColor = "pink",
+  quizDetails,
+}) {
   // JSX
   return (
     <div
-      className="grid min-h-[40px] w-full grid-cols-[10%_70%_50px] gap-[5px] text-nowrap rounded-[5px] p-[5px] text-[10px] items-center"
-      style={{ backgroundColor: bgColor }} // Use inline style for dynamic background color
+      className="cursor-pointer grid min-h-[40px] w-full grid-cols-[10%_70%_50px] gap-[5px] text-nowrap rounded-[5px] p-[5px] text-[10px] items-center"
+      style={{ backgroundColor: bgColor }}
     >
       {/* Icon */}
       <div className="flex justify-center items-center">
@@ -15,9 +21,16 @@ export default function LessonCMP({ lessonData, chapterNo, bgColor = "pink" }) {
 
       {/* Lesson Title */}
       <div className="overflow-hidden">
-        <p className="truncate">
-          {`Lesson ${chapterNo} : ${lessonData?.name}`}
-        </p>
+        {type === "lessons" && (
+          <p className="truncate">
+            {`Lesson ${chapterNo} : ${lessonData?.name}`}
+          </p>
+        )}
+        {type === "quiz" && (
+          <p className="truncate">
+            {`Lesson ${quizDetails?.quizNumber} : ${quizDetails?.quizType}`}
+          </p>
+        )}
       </div>
 
       {/* Duration */}
