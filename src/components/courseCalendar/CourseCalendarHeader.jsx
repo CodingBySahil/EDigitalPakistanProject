@@ -1,10 +1,9 @@
 import PropTypes from "prop-types";
 import { FaRegClock } from "react-icons/fa";
+import { useGetScreenWidth } from "./useGetScreenWidth";
 import { FaArrowRightLong } from "react-icons/fa6";
-
-import CourseCalendarToggleButton from "./CourseCalendarToggleButton";
-import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 import { sideBarToggleFalse992 } from "../../constants/const";
+import CourseCalendarToggleButton from "./CourseCalendarToggleButton";
 
 // COMPONENT START
 export default function CourseCalendarHeader({ sideBarToggle }) {

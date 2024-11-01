@@ -16,7 +16,8 @@ import NotFoundPage from "./pages/NotFoundPage";
 import SendDataPage from "./pages/SendDataPage";
 import PrivateRoute from "./components/PrivateRoute";
 import CourseCalendarPage from "./pages/CourseCalendarPage";
-import CourseCalendar from "./components/courseCalendar/CourseCalendar";
+import CourseClassSelection from "./pages/courses/CourseClassSelection";
+import ClassDetails from "./pages/courses/ClassDetails";
 
 // mcqs server made
 
@@ -78,6 +79,7 @@ function App() {
   };
 
   return (
+
     <>
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
@@ -89,6 +91,7 @@ function App() {
         <Route path="/course-calender" element={<CourseCalendarPage />}>
           <Route path="quiz" element={<CourseCalendar />} />
         </Route>
+
 
         {/* Protected Administration Route */}
         <Route

@@ -7,37 +7,62 @@ const ClassDetails = () => {
   const { classLink } = useParams();
   return (
     <div className="bg-white text-gray-900">
-      <h2>Details for {classLink.replace('class', 'Class ')}</h2>
       {/* Header Section */}
-      <CourseNavbar/>
+      <CourseNavbar changeURL={"../"} />
+      {/* <h2>Details for {classLink.replace('class', 'Class ')}</h2> */}
 
       {/* Course Title */}
       <section className="text-center mt-8 mb-12">
         <h2 className="text-3xl font-bold">
-          Select the COURSE/CLASS you are intrusted in
+          All subjects of {classLink.replace("class", "Class ")} are listed
+          below, Select the subject you are intrusted in
         </h2>
       </section>
 
       {/* Book Cards Section */}
       <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 px-8">
         {[
-            // array from class 1st to class 8th
-          { title: "The New Science Of Curiosity" , author:"by Garden Gordan"},
-          {title: "Biology", author: "by Garden Gordan"},
-          {title: "Chemistry", author: "by Garden Gordan"},
-          {title: "Physics", author: "by Garden Gordan"},
-          {title: "Mathematics", author: "by Garden Gordan"},
-          {title: "English", author: "by Garden Gordan"},
+          {
+            title: "Molecular Biology of the Cell",
+            author: "Craig Hogan",
+            bookImg: "cell_biology.png",
+          },
+          // array from class 1st to class 8th
+          { title: "Biology", author: "Garen Gordon", bookImg: "Biology.jpg" },
+          {
+            title: "Physics Devotional",
+            author: "Craig Hogan",
+            bookImg: "physics_devotional.png",
+          },
+          {
+            title: "The New Science of Curiosity",
+            author: "Goren Gordon",
+            bookImg: "The New Science of Curiosity.jpg",
+          },
+
+          {
+            title: "Molecular Biology of the Cell",
+            author: "Craig Hogan",
+            bookImg: "cell_biology.png",
+          },
+          {
+            title: "The New Science of Curiosity",
+            author: "Goren Gordon",
+            bookImg: "The New Science of Curiosity.jpg",
+          },
+          { title: "Biology", author: "Garen Gordon", bookImg: "Biology.jpg" },
+          {
+            title: "Physics Devotional",
+            author: "Craig Hogan",
+            bookImg: "physics_devotional.png",
+          },
         ].map((subject, index) => (
           <Link to={`${subject.classLink}`} key={index}>
-            <div
-              
-              className="bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer"
-            >
+            <div className="bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer">
               <img
-                src={`eng8th.png`}
+                src={`../${subject.bookImg}`}
                 alt={subject.title}
-                className="w-full object-cover"
+                className="w-full  object-cover"
               />
               <div className="p-4">
                 <h3 className="text-lg font-semibold">{subject.title}</h3>

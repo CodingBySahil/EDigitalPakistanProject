@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import CircularProgress from "@mui/material/CircularProgress";
 
 // COMPONENT START
-export default function LoadingSpinner({ size = 30, thickness = 4 }) {
+export default function LoadingSpinner({ size, thickness = 4 }) {
   // VARIABLES
 
   // FUNCTIONS

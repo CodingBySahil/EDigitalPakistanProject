@@ -35,8 +35,7 @@ const ContentForm = () => {
     }
   };
 
- const API = `${mainURL}/api/ENG101CH3/content/data`;
-
+  const API = `${mainURL}/api/ENG101CH3/content/data`;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

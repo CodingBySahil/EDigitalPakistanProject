@@ -6,7 +6,7 @@ import CourseCalendarToggleButton from "./CourseCalendarToggleButton";
 import Lessons from "./Lessons";
 import PracticeQuiz from "./PracticeQuiz";
 import { sideBarToggleFalse992 } from "../../constants/const";
-import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
+import { useGetScreenWidth } from "./useGetScreenWidth";
 
 export default function CourseCalendarSideBar({ sideBarToggle }) {
   // VARIABLES
