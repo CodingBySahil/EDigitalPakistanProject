@@ -23,11 +23,24 @@ export default function QuizMcqs() {
 
   //    FUNCTION
   useEffect(() => {
-    const newArr = Array.from({ length: dataMcqs.length }, () => ({
-      attempted: false,
-      attemptedMcqNumber: null,
-      optionSelected: null,
-    }));
+    // const newArr = Array.from({ length: dataMcqs.length }, () => ({
+    //   attempted: false,
+    //   attemptedMcqNumber: null,
+    //   optionSelected: null,
+    // }));
+    // setAttemptedMcqArray(newArr);
+
+    const newArr = dataMcqs?.map((val) => {
+      const newObj = {
+        attempted: false,
+        attemptedMcqNumber: null,
+        optionSelected: null,
+        correctOption: val?.correctOption,
+      };
+
+      return newObj;
+    });
+
     setAttemptedMcqArray(newArr);
   }, [dataMcqs]);
 
@@ -42,6 +55,7 @@ export default function QuizMcqs() {
         attempted: true,
         attemptedMcqNumber: mcqsNumber,
         optionSelected: optionClickedNumber,
+        correctOption: dataMcqs?.[mcqsNumber]?.correctOption,
       };
 
       // 3. Return the updated array
