@@ -2,25 +2,37 @@ import PropTypes from "prop-types";
 
 import { brandColorCyan } from "../../constants/brandColors";
 
-// function getColorColor(attemptedMcqArray, questionNumber, clickedOptionNumber) {
-//   console.log(attemptedMcqArray, questionNumber, clickedOptionNumber);
-//   for (let i = 0; i < attemptedMcqArray?.length; i++) {
-//     if (attemptedMcqArray?.[i]?.attemptedMcqNumber === questionNumber) {
-//       if (attemptedMcqArray?.[i]?.optionSelected === clickedOptionNumber) {
-//         return "green";
-//       } else {
-//         return brandColorCyan;
-//       }
-//     } else {
-//       return brandColorCyan;
-//     }
-//   }
-// }
-
-function getCorrectColor(infoObj, index) {
-  if (infoObj?.optionSelected === index) {
-    return "green";
-  } else return brandColorCyan;
+function getCorrectColor(
+  infoObj,
+  index,
+  mcqsSubmit,
+  attemptedMcqArray,
+  questionNumber
+) {
+  if (!mcqsSubmit) {
+    if (infoObj?.optionSelected === index) {
+      return "#0e7490";
+    } else return brandColorCyan;
+  } else {
+    // if selected option is true
+    if (index === attemptedMcqArray?.[questionNumber]?.correctOption) {
+      return "green";
+    } else if (
+      index === attemptedMcqArray?.[questionNumber]?.optionSelected &&
+      attemptedMcqArray?.[questionNumber]?.optionSelected ===
+        attemptedMcqArray?.[questionNumber]?.correctOption
+    ) {
+      return "green";
+    } else if (
+      index === attemptedMcqArray?.[questionNumber]?.optionSelected &&
+      attemptedMcqArray?.[questionNumber]?.optionSelected !==
+        attemptedMcqArray?.[questionNumber]?.correctOption
+    ) {
+      return "red";
+    } else {
+      return brandColorCyan;
+    }
+  }
 }
 
 // COMPONENT START
@@ -30,6 +42,7 @@ export default function SingleQuizMcqsBody({
   optionsArr,
   optionCLicked,
   attemptedMcqArray,
+  mcqsSubmit,
 }) {
   // VARIABLES
 
@@ -51,10 +64,16 @@ export default function SingleQuizMcqsBody({
             key={index}
             className="rounded-[8px] min-h-[30px] flex items-center p-[5px] text-white"
             style={{
-              cursor: "pointer",
+              cursor: mcqsSubmit ? "not-allowed" : "pointer",
               backgroundColor: !attemptedMcqArray?.[questionNumber]?.attempted
                 ? brandColorCyan
-                : getCorrectColor(attemptedMcqArray?.[questionNumber], index),
+                : getCorrectColor(
+                    attemptedMcqArray?.[questionNumber],
+                    index,
+                    mcqsSubmit,
+                    attemptedMcqArray,
+                    questionNumber
+                  ),
             }}
           >{`${val}`}</div>
         ))}
@@ -69,20 +88,7 @@ SingleQuizMcqsBody.propTypes = {
   optionsArr: PropTypes.array,
   optionCLicked: PropTypes.func,
   attemptedMcqArray: PropTypes.array,
+  mcqsSubmit: PropTypes.bool,
 };
 //size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 // COMPONENT END
-
-// style={{
-//     cursor: optionSelected ? "not-allowed" : "pointer",
-//     backgroundColor:
-//       i === currentlySelectedOption &&
-//       currentlySelectedOption ===
-//         dataMcqs[currentQuestion]?.correctOption
-//         ? "green"
-//         : i === currentlySelectedOption &&
-//           currentlySelectedOption !==
-//             dataMcqs[currentQuestion]?.correctOption
-//         ? "red"
-//         : "#49BBBD",
-//   }}
