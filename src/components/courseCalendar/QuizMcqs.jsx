@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Slider } from "@mui/material";
 import { HiArrowSmallRight } from "react-icons/hi2";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
@@ -77,7 +79,18 @@ export default function QuizMcqs() {
     if (readyToSubmit) {
       console.log("ready to submit");
     } else {
-      console.log("not ready to submit");
+      toast.warn("Please attempt all MCQs", {
+        style: {
+          width: "250px", // Set the width of the toast
+          borderRadius: "8px", // Set the corner radius for rounded corners
+          margin: "0 auto", // Center the toast horizontally
+          position: "absolute",
+          top: "10px", // Position from the top
+          left: "50%", // Center the toast
+          transform: "translateX(-50%)", // Adjust positioning to center
+        },
+        duration: 5000, // Duration for which the toast is visible
+      });
     }
   };
 
@@ -90,12 +103,12 @@ export default function QuizMcqs() {
 
         {/* Quiz body */}
         <ScrollableBody>
-          <div className="overflow-x-hidden overflow-y-auto">
+          <div className="overflow-x-hidden overflow-y-auto  tabS:px-[60px] tabL:px-[100px] laptop14:grid laptop14:grid-cols-3 laptop14:gap-[20px]">
             {dataMcqs.map((val, i) => (
               <div
                 key={i}
                 style={{ border: "1px solid white" }}
-                className="w-[100%] py-[20px] grid grid-rows-[20px_1fr] px-[15px]  rounded-[8px] mt-[20px] bg-brand-color-cyan/30 tabS:w-[80%] laptop14:w-[40%]"
+                className="w-[100%] py-[20px] grid grid-rows-[20px_1fr] px-[15px]  rounded-[8px] mt-[20px] bg-brand-color-cyan/30 "
               >
                 {/* quiz header*/}
                 <QuizMcqsHeader
@@ -113,7 +126,7 @@ export default function QuizMcqs() {
                 />
               </div>
             ))}
-            <div className="min-h-[70px] flex justify-end items-center ">
+            <div className="min-h-[70px] flex justify-end items-center laptop14:justify-start ">
               <button
                 onClick={() => submitButtonClicked()}
                 style={{ border: "1px solid white" }}
