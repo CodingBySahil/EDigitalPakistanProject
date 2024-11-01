@@ -8,7 +8,7 @@ export default function QuizMcqsBody() {
   return (
     <div className="pt-[10px] grid grid-rows-[auto_1fr] gap-[10px]">
       {/* div question */}
-      <div className="text-[15px] text-white bg-brand-color-lightPink rounded-[8px] px-[5px] py-[3px] font-semibold">
+      <div className="text-[15px] text-white bg-brand-color-lightPink rounded-[8px] laptop14:text-[25px] px-[5px] py-[3px] font-semibold">
         {`Question : ${dataMcqs[currentQuestion]?.question} `}
       </div>
 

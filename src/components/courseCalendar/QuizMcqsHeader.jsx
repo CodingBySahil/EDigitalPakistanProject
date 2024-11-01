@@ -8,7 +8,7 @@ export default function QuizMcqsHeader({ currentQuestion, totalQuestions }) {
 
   // JSX
   return (
-    <div className="grid grid-rows-2  text-[12px]">
+    <div className="grid grid-rows-2  text-[12px] laptop14:text-[20px]">
       <div className="flex justify-between items-center">
         <div>
           <p>{`Question no : ${currentQuestion + 1}/${totalQuestions}`}</p>

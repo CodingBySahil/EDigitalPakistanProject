@@ -52,7 +52,7 @@ export default function SingleQuizMcqsBody({
   return (
     <div className="pt-[10px] grid grid-rows-[auto_1fr] gap-[10px]">
       {/* div question */}
-      <div className="text-[15px] text-white bg-brand-color-lightPink rounded-[8px] px-[5px] py-[3px] font-semibold">
+      <div className="text-[15px] laptop14:text-[25px] text-white bg-brand-color-lightPink rounded-[8px] px-[5px] py-[3px] font-semibold">
         {`Question : ${question} `}
       </div>
 

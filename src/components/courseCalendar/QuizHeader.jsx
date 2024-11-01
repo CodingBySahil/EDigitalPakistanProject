@@ -10,7 +10,7 @@ export default function QuizHeader() {
   // JSX
   return (
     <div className="pl-[10px]">
-      <p className="font-semibold">
+      <p className="font-semibold ">
         Practice quiz : {quizType.toLocaleLowerCase()}
       </p>
     </div>

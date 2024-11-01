@@ -98,7 +98,7 @@ export default function QuizMcqs() {
 
         {/* Quiz body */}
         <ScrollableBody>
-          <div className="overflow-x-hidden overflow-y-auto  tabS:px-[60px] tabL:px-[100px] laptop14:grid laptop14:grid-cols-3 laptop14:gap-[20px]">
+          <div className="overflow-x-hidden overflow-y-auto  tabS:px-[60px] tabL:px-[100px] laptop14:grid laptop14:grid-cols-1 laptop14:gap-[20px] laptop14:text-[25px]">
             {dataMcqs.map((val, i) => (
               <div
                 key={i}
