@@ -20,7 +20,7 @@ import CourseClassSelection from "./pages/courses/CourseClassSelection";
 import ClassDetails from "./pages/courses/ClassDetails";
 import CourseCalendar from "./components/courseCalendar/CourseCalendar";
 
-// mcqs server made
+// quizMcqs all done
 
 function App() {
   const action = useNavigationType();

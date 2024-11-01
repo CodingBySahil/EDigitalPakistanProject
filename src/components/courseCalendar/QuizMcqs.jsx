@@ -19,19 +19,12 @@ export default function QuizMcqs() {
   const quizType = useGetQuizType();
   const { statusMcqs = "idle", dataMcqs = [] } = useGetMcqs();
   const [attemptedMcqArray, setAttemptedMcqArray] = useState([]);
-  console.log(attemptedMcqArray);
+  const [mcqsSubmit, setMcqsSubmit] = useState(false);
 
   // FUNCTIONS
 
   //    FUNCTION
   useEffect(() => {
-    // const newArr = Array.from({ length: dataMcqs.length }, () => ({
-    //   attempted: false,
-    //   attemptedMcqNumber: null,
-    //   optionSelected: null,
-    // }));
-    // setAttemptedMcqArray(newArr);
-
     const newArr = dataMcqs?.map((val) => {
       const newObj = {
         attempted: false,
@@ -48,6 +41,7 @@ export default function QuizMcqs() {
 
   //    FUNCTION
   const optionCLicked = (mcqsNumber, optionClickedNumber) => {
+    if (mcqsSubmit) return;
     setAttemptedMcqArray((prevArr) => {
       // 1. Create a copy of prevArr
       const newArr = [...prevArr];
@@ -77,7 +71,8 @@ export default function QuizMcqs() {
     });
 
     if (readyToSubmit) {
-      console.log("ready to submit");
+      setMcqsSubmit(true);
+      console.log(attemptedMcqArray);
     } else {
       toast.warn("Please attempt all MCQs", {
         style: {
@@ -123,6 +118,7 @@ export default function QuizMcqs() {
                   optionsArr={val?.options}
                   optionCLicked={optionCLicked}
                   attemptedMcqArray={attemptedMcqArray}
+                  mcqsSubmit={mcqsSubmit}
                 />
               </div>
             ))}
@@ -130,7 +126,7 @@ export default function QuizMcqs() {
               <button
                 onClick={() => submitButtonClicked()}
                 style={{ border: "1px solid white" }}
-                className="bg-brand-color-cyan text-white font-semibold text-[20px] px-[10px] py-[5px] rounded-[8px] active:bg-brand-color-cyan/60
+                className="bg-brand-color-cyan cursor-pointer text-white font-semibold text-[20px] px-[10px] py-[5px] rounded-[8px] active:bg-brand-color-cyan/60
             "
               >
                 Submit
