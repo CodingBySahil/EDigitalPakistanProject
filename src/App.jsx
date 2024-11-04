@@ -20,7 +20,7 @@ import CourseClassSelection from "./pages/courses/CourseClassSelection";
 import ClassDetails from "./pages/courses/ClassDetails";
 import CourseCalendar from "./components/courseCalendar/CourseCalendar";
 
-// quizMcqs all done 2
+// subjects page created
 
 function App() {
   const action = useNavigationType();
@@ -86,6 +86,8 @@ function App() {
         <Route path="/" element={<Wrapper />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/class" element={<CourseClassSelection />} />
+        <Route path="/class/:classLink" element={<ClassDetails />} />
 
         {/* DIVIDER routes for course calendar */}
         <Route path="/course-calender" element={<CourseCalendarPage />}>
