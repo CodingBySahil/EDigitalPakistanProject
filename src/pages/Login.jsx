@@ -22,7 +22,8 @@ const Login = ({ className = "", onLogin }) => {
 
     if (username === "admin" && password === "admin") {
       onLogin();
-      navigate("/administration");
+      // navigate("/administration");
+      navigate("/subjectSelection");
     } else {
       setError("Invalid username or password");
     }
@@ -42,9 +43,9 @@ const Login = ({ className = "", onLogin }) => {
       </div>
 
       {/* Form Section */}
-      <div className="w-full lg:w-2/5 flex flex-col justify-center items-center p-6 lg:p-6">
-        <div className="w-full max-w-md">
-          <h1 className="text-black text-3xl lg:text-4xl font-bold mb-6 text-center lg:text-left">
+      <div className="w-full lg:w-2/5 flex flex-col justify-center items-center p-6 lg:p-6 ">
+        <div className="w-full max-w-md ">
+          <h1 className="text-black text-3xl lg:text-4xl font-bold mb-6 text-center lg:text-left ">
             Welcome to Digital Accelerated Learning Pathways
           </h1>
 
@@ -66,9 +67,7 @@ const Login = ({ className = "", onLogin }) => {
           </div>
 
           {error && (
-            <div className="mb-4 text-red-500 text-center">
-              {error}
-            </div>
+            <div className="mb-4 text-red-500 text-center">{error}</div>
           )}
 
           <form onSubmit={handleSubmit}>

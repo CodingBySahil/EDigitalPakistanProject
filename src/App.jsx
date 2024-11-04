@@ -19,6 +19,7 @@ import CourseCalendarPage from "./pages/CourseCalendarPage";
 import CourseClassSelection from "./pages/courses/CourseClassSelection";
 import ClassDetails from "./pages/courses/ClassDetails";
 import CourseCalendar from "./components/courseCalendar/CourseCalendar";
+import SubjectSelection from "./components/subjectSelection/SubjectSelection";
 
 // subjects page created
 
@@ -94,9 +95,12 @@ function App() {
           <Route path="quiz" element={<CourseCalendar />} />
         </Route>
 
+        {/* DIVIDER routes for subject selection page */}
+        <Route path="/subjectSelection" element={<SubjectSelection />} />
+
         {/* Protected Administration Route */}
         <Route
-          path="/administration"
+          path="/administration/:subjectCode"
           element={
             <PrivateRoute isAuthenticated={isAuthenticated}>
               <SendDataPage onLogout={handleLogout} />
