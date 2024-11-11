@@ -1,3 +1,6 @@
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
@@ -11,9 +14,10 @@ import QuizHeader from "./QuizHeader";
 import QuizMcqsHeader from "./QuizMcqsHeader";
 import ScrollableBody from "../ScrollableBody";
 import SingleQuizMcqsBody from "./SingleQuizMcqsBody";
+import AllQuizMcqs from "./AllQuizMcqs";
+import QuizMcqsModalBody from "./QuizMcqsModalBody";
 import { useGetMcqs } from "./useGetMcqs";
 import { useGetQuizType } from "./useGetQuizType";
-import AllQuizMcqs from "./AllQuizMcqs";
 
 // COMPONENT START
 export default function QuizMcqs() {
@@ -79,6 +83,7 @@ export default function QuizMcqs() {
 
     if (readyToSubmit) {
       setMcqsSubmit(true);
+      handleOpen();
       // console.log(attemptedMcqArray);
     } else {
       toast.warn("Please attempt all MCQs", {
@@ -100,6 +105,25 @@ export default function QuizMcqs() {
   if (statusMcqs === "success") {
     return (
       <div className="h-[100%]">
+        {/* Quiz modal */}
+        <div>
+          <Modal
+            sx={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+            open={open}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <>
+              <QuizMcqsModalBody attemptedMcqArray={attemptedMcqArray} />
+            </>
+          </Modal>
+        </div>
+
         {/* Quiz header */}
         <QuizHeader />
 
