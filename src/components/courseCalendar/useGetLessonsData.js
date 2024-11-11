@@ -13,10 +13,6 @@ export function useGetLessonsData() {
         setIsLoading(true);
         // step 1 : sending a get request
         const response = await fetch(`${mainURL}/api/ENG101/chapter/data`, {
-          headers: {
-            "ngrok-skip-browser-warning": "true",
-            "User-Agent": "Custom-Agent",
-          },
           method: "GET",
         });
 
@@ -55,26 +51,8 @@ export function useGetLessonsData() {
         setLessonsData(data);
         setIsLoading(false);
       } catch (error) {
-        setLessonsData([
-          { name: "name 1", chapterCode: "ENG101CH1" },
-          { name: "name 2", chapterCode: "ENG101CH2" },
-          { name: "name 3", chapterCode: "ENG101CH3" },
-          { name: "name 4", chapterCode: "ENG101CH4" },
-          { name: "name 5", chapterCode: "ENG101CH5" },
-          { name: "name 6", chapterCode: "ENG101CH6" },
-          { name: "name 7", chapterCode: "ENG101CH7" },
-          { name: "name 8", chapterCode: "ENG101CH8" },
-          { name: "name 9", chapterCode: "ENG101CH9" },
-          { name: "name 10", chapterCode: "ENG101CH10" },
-          { name: "name 11", chapterCode: "ENG101CH11" },
-          { name: "name 12", chapterCode: "ENG101CH12" },
-          { name: "name 13", chapterCode: "ENG101CH13" },
-          { name: "name 14", chapterCode: "ENG101CH14" },
-          { name: "name 15", chapterCode: "ENG101CH15" },
-          { name: "name 16", chapterCode: "ENG101CH16" },
-        ]);
         setIsLoading(false);
-        // throw new Error(`Unable to get lessons data ${error.message}`);
+        throw new Error(`Unable to get lessons data ${error.message}`);
       }
     }
 

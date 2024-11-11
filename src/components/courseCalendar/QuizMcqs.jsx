@@ -1,17 +1,19 @@
+import Modal from "@mui/material/Modal";
+import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import { Slider } from "@mui/material";
 import { HiArrowSmallRight } from "react-icons/hi2";
-import "react-toastify/dist/ReactToastify.css";
 import { toast } from "react-toastify";
 
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import QuizHeader from "./QuizHeader";
-import { useGetMcqs } from "./useGetMcqs";
-import { useGetQuizType } from "./useGetQuizType";
 import QuizMcqsHeader from "./QuizMcqsHeader";
 import ScrollableBody from "../ScrollableBody";
 import SingleQuizMcqsBody from "./SingleQuizMcqsBody";
+import { useGetMcqs } from "./useGetMcqs";
+import { useGetQuizType } from "./useGetQuizType";
+import AllQuizMcqs from "./AllQuizMcqs";
 
 // COMPONENT START
 export default function QuizMcqs() {
@@ -20,8 +22,13 @@ export default function QuizMcqs() {
   const { statusMcqs = "idle", dataMcqs = [] } = useGetMcqs();
   const [attemptedMcqArray, setAttemptedMcqArray] = useState([]);
   const [mcqsSubmit, setMcqsSubmit] = useState(false);
+  const [open, setOpen] = useState(false);
 
   // FUNCTIONS
+
+  //    FUNCTION handle open close modal
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   //    FUNCTION
   useEffect(() => {
@@ -72,7 +79,7 @@ export default function QuizMcqs() {
 
     if (readyToSubmit) {
       setMcqsSubmit(true);
-      console.log(attemptedMcqArray);
+      // console.log(attemptedMcqArray);
     } else {
       toast.warn("Please attempt all MCQs", {
         style: {
@@ -98,41 +105,13 @@ export default function QuizMcqs() {
 
         {/* Quiz body */}
         <ScrollableBody>
-          <div className="overflow-x-hidden overflow-y-auto  tabS:px-[60px] tabL:px-[100px] laptop14:grid laptop14:grid-cols-1 laptop14:gap-[20px] laptop14:text-[25px]">
-            {dataMcqs.map((val, i) => (
-              <div
-                key={i}
-                style={{ border: "1px solid white" }}
-                className="w-[100%] py-[20px] grid grid-rows-[20px_1fr] px-[15px]  rounded-[8px] mt-[20px] bg-brand-color-cyan/30 "
-              >
-                {/* quiz header*/}
-                <QuizMcqsHeader
-                  currentQuestion={i}
-                  totalQuestions={dataMcqs.length}
-                />
-
-                {/* quiz question and option */}
-                <SingleQuizMcqsBody
-                  questionNumber={i}
-                  question={val?.question}
-                  optionsArr={val?.options}
-                  optionCLicked={optionCLicked}
-                  attemptedMcqArray={attemptedMcqArray}
-                  mcqsSubmit={mcqsSubmit}
-                />
-              </div>
-            ))}
-            <div className="min-h-[70px] flex justify-end items-center laptop14:justify-start ">
-              <button
-                onClick={() => submitButtonClicked()}
-                style={{ border: "1px solid white" }}
-                className="bg-brand-color-cyan cursor-pointer text-white font-semibold text-[20px] px-[10px] py-[5px] rounded-[8px] active:bg-brand-color-cyan/60
-            "
-              >
-                Submit
-              </button>
-            </div>
-          </div>
+          <AllQuizMcqs
+            dataMcqs={dataMcqs}
+            submitButtonClicked={submitButtonClicked}
+            optionCLicked={optionCLicked}
+            attemptedMcqArray={attemptedMcqArray}
+            mcqsSubmit={mcqsSubmit}
+          />
         </ScrollableBody>
       </div>
     );
