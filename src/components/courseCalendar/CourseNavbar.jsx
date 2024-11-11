@@ -13,7 +13,7 @@ const CourseNavbar = () => {
           <Link to="/" className="hover:text-green-600 no-underline">
             Home
           </Link>
-          <Link to="/courses" className="hover:text-green-600 no-underline">
+          <Link to="/course-calender?chapterNumber=ENG101CH2" className="hover:text-green-600 no-underline">
             Courses
           </Link>
           <Link to="/instructors" className="hover:text-green-600 no-underline">

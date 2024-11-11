@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import SubjectCardDisplay from "../SubjectCardDisplay";
 import ScrollableBody from "../ScrollableBody";
+import CourseNavbar from "../courseCalendar/CourseNavbar";
 
 const allSubjectsArr = [
   {
@@ -51,7 +52,8 @@ export default function SubjectSelection() {
   return (
     <div className="grid grid-rows-[60px_1fr]">
       {/* DIVIDER Page header */}
-      <header className="bg-brand-color-cyan">Header</header>
+      {/* <header className="bg-brand-color-cyan">Header</header> */}
+      <CourseNavbar />
       <ScrollableBody>
         {/* DIVIDER message   */}
         <section className="min-h-[50px] flex items-center">
