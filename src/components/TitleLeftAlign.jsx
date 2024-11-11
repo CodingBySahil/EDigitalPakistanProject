@@ -1,7 +1,5 @@
 import PropTypes from "prop-types";
-import Course6th from "./Course6th";
-import Course7th from "./Course7th";
-import Course8th from "./Course8th";
+import ExploreCourses from "./ExploreCourses";
 
 const TitleLeftAlign = ({ className = "" }) => {
   return (
@@ -17,9 +15,9 @@ const TitleLeftAlign = ({ className = "" }) => {
           academic success and a love for learning.
         </div>
       </div>
-      <Course6th/>
-      <Course7th/>
-      <Course8th/>
+      {['6','7','8'].map((levelOfClass) => (
+        <ExploreCourses key={levelOfClass} levelOfClass={levelOfClass} />
+      ))}
     </div>
   );
 };
