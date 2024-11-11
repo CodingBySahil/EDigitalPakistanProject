@@ -7,8 +7,8 @@ export default function AllQuizMcqs({
   dataMcqs = [],
   submitButtonClicked,
   optionCLicked,
-  attemptedMcqArray = { attemptedMcqArray },
-  mcqsSubmit = { mcqsSubmit },
+  attemptedMcqArray,
+  mcqsSubmit,
 }) {
   // VARIABLES
 
@@ -42,6 +42,7 @@ export default function AllQuizMcqs({
       ))}
       <div className="min-h-[70px] flex justify-end items-center laptop14:justify-start ">
         <button
+          disabled={mcqsSubmit}
           onClick={() => submitButtonClicked()}
           style={{ border: "1px solid white" }}
           className="bg-brand-color-cyan cursor-pointer text-white font-semibold text-[20px] px-[10px] py-[5px] rounded-[8px] active:bg-brand-color-cyan/60
