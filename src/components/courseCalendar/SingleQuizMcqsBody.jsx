@@ -15,9 +15,7 @@ function getCorrectColor(
     } else return brandColorCyan;
   } else {
     // if selected option is true
-    if (index === attemptedMcqArray?.[questionNumber]?.correctOption) {
-      return "green";
-    } else if (
+    if (
       index === attemptedMcqArray?.[questionNumber]?.optionSelected &&
       attemptedMcqArray?.[questionNumber]?.optionSelected ===
         attemptedMcqArray?.[questionNumber]?.correctOption
