@@ -5,7 +5,6 @@ import ChapterForm from "../components/Forms/ChapterForm";
 import MCQsForm from "../components/Forms/MCQsForm";
 import SubjectForm from "../components/Forms/SubjectForm";
 import WordMeaningForm from "../components/Forms/WordMeaningForm";
-import BookList from "../components/Forms/BookList";
 
 import PropTypes from "prop-types";
 import { useNavigate, useLocation } from "react-router-dom";
@@ -53,7 +52,6 @@ const SendDataPage = ({ onLogout }) => {
       <WordMeaningForm subjectNameFromURL={subjectNameFromURL} />
       <QuestionAnswerForm subjectNameFromURL={subjectNameFromURL} />
       <FillInTheBlanksForm subjectNameFromURL={subjectNameFromURL} />
-      <BookList subjectNameFromURL={subjectNameFromURL} />
     </div>
   );
 };
