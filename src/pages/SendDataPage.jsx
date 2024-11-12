@@ -8,12 +8,21 @@ import WordMeaningForm from "../components/Forms/WordMeaningForm";
 import BookList from "../components/Forms/BookList";
 
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import QuestionAnswerForm from "../components/Forms/QuestionAnswerForm";
 import FillInTheBlanksForm from "../components/Forms/FillInTheBlanksForm";
 
 const SendDataPage = ({ onLogout }) => {
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Extract the subject name from the URL
+  const extractSubjectName = () => {
+    const pathSegments = location.pathname.split("/");
+    return pathSegments[pathSegments.length - 1]; // Gets the last segment
+  };
+
+  const subjectNameFromURL = extractSubjectName();
 
   const handleLogoutClick = () => {
     onLogout();
@@ -25,19 +34,26 @@ const SendDataPage = ({ onLogout }) => {
       <div className="flex justify-end mb-4">
         <button
           onClick={handleLogoutClick}
-          className="py-2 px-4 bg-red-500 text-white bg-[#4abd86] rounded hover:bg-red-600"
+          className="py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600"
         >
           Logout
         </button>
       </div>
-      <ContentForm />
-      <ChapterForm />
-      <MCQsForm />
-      <SubjectForm />
-      <WordMeaningForm />
-      <QuestionAnswerForm />
-      <FillInTheBlanksForm/>
-      <BookList />
+      
+      {/* Display the subject name */}
+      <div className="mb-4">
+        <h2 className="text-2xl font-semibold">Subject: {subjectNameFromURL}</h2>
+      </div>
+
+      {/* Pass subjectNameFromURL as a prop to each component */}
+      <ContentForm subjectNameFromURL={subjectNameFromURL} />
+      <ChapterForm subjectNameFromURL={subjectNameFromURL} />
+      <MCQsForm subjectNameFromURL={subjectNameFromURL} />
+      <SubjectForm subjectNameFromURL={subjectNameFromURL} />
+      <WordMeaningForm subjectNameFromURL={subjectNameFromURL} />
+      <QuestionAnswerForm subjectNameFromURL={subjectNameFromURL} />
+      <FillInTheBlanksForm subjectNameFromURL={subjectNameFromURL} />
+      <BookList subjectNameFromURL={subjectNameFromURL} />
     </div>
   );
 };

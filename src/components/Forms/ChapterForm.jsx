@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { mainURL } from "../../constants/const";
 
-const ChapterForm = () => {
+const ChapterForm = ({subjectNameFromURL}) => {
   const [chapName, setChapName] = useState("");
   const [className, setClassName] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
@@ -26,7 +26,7 @@ const ChapterForm = () => {
 
     try {
       const response = await fetch(
-        `${mainURL}/api/ENG101/chapter/data`,
+        `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
         {
           method: "POST",
           headers: {

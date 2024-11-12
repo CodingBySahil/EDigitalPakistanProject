@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { mainURL } from "../../constants/const";
 
-const QuestionAnswerForm = () => {
+const QuestionAnswerForm = ({subjectNameFromURL}) => {
   const [chapterID, setChapterID] = useState("");
   const [questions, setQuestions] = useState([{ question: "", answer: "" }]);
   const [isSubmitting, setIsSubmitting] = useState(false);

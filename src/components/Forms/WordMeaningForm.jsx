@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { mainURL } from "../../constants/const";
 
-const WordMeaningForm = () => {
+const WordMeaningForm = ({subjectNameFromURL}) => {
   const [chapterCode, setChapterCode] = useState("");
   const [word, setWord] = useState("");
   const [meaning, setMeaning] = useState("");
@@ -46,7 +46,7 @@ const WordMeaningForm = () => {
     };
 
     try {
-      const response = await fetch(`${mainURL}/api/${subjectCode}CH${chapterNumber}/wordMeaning/data`, {
+      const response = await fetch(`${mainURL}/api/${subjectNameFromURL}CH${chapterNumber}/wordMeaning/data`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

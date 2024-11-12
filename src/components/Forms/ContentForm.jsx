@@ -3,19 +3,20 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { mainURL } from "../../constants/const";
 
-const ContentForm = () => {
+const ContentForm = ({subjectNameFromURL}) => {
   const [text, setText] = useState("");
   const [chapterNumber, setChapterNumber] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
-  const [subjectName, setSubjectName] = useState("Eng");
+  
+  
 
   const handleChapterChange = (e) => {
     setChapterNumber(e.target.value);
   };
-
-  const API = `${mainURL}/api/${subjectName}101CH${chapterNumber}/content/data`;
+  
+  const API = `${mainURL}/api/${subjectNameFromURL}CH${chapterNumber}/content/data`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
