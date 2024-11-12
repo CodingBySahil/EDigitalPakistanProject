@@ -56,7 +56,6 @@ module.exports = {
           200: "#2f327d",
           300: "#171b41",
         },
-        red: "#f50b0b",
         firebrick: "#c80a0a",
         lightskyblue: "#9dccff",
         turquoise: "#00cbb8",
