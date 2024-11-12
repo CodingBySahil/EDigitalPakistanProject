@@ -6,8 +6,13 @@ export default function Payment() {
 
   // JSX
   return (
-    <div className="mb-[0px] ml-[0px] mr-[0px] mt-[0px] w-[100] p-[0] text-[10px]">
-      payment branch created
+    <div className="">
+      {/* DIVIDER payment page header */}
+      <header>Header</header>
+      {/* DIVIDER payment body */}
+      <main> payment body </main>
+      {/* DIVIDER payment footer */}
+      <footer>payment footer</footer>
     </div>
   );
   // JSX
