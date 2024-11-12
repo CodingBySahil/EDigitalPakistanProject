@@ -160,7 +160,7 @@ const ChapterForm = ({ subjectNameFromURL }) => {
           }`}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : "Save Chapter"}
+          {isSubmitting ? "Saving..." : "Save the Chapter"}
         </button>
       </form>
     </div>
