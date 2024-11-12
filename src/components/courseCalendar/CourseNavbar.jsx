@@ -5,24 +5,27 @@ const CourseNavbar = () => {
   return (
     <>
       {/* Header Section */}
-      <header className="flex justify-between items-center px-8 py-4 bg-white shadow">
+      <header className="flex items-center justify-between bg-white px-8 py-4 shadow">
         <h1 className="text-2xl font-semibold text-green-600">
           E-Digital Pakistan
         </h1>
         <nav className="space-x-6 text-gray-700">
-          <Link to="/" className="hover:text-green-600 no-underline">
+          <Link to="/" className="no-underline hover:text-green-600">
             Home
           </Link>
-          <Link to="/course-calender?chapterNumber=ENG101CH2" className="hover:text-green-600 no-underline">
+          <Link
+            to="/course-calender?chapterNumber=ENG101CH2"
+            className="no-underline hover:text-green-600"
+          >
             Courses
           </Link>
-          <Link to="/instructors" className="hover:text-green-600 no-underline">
+          <Link to="/instructors" className="no-underline hover:text-green-600">
             Instructors
           </Link>
-          <Link to="/blog" className="hover:text-green-600 no-underline">
+          <Link to="/blog" className="no-underline hover:text-green-600">
             Blog
           </Link>
-          <Link to="/about" className="hover:text-green-600 no-underline">
+          <Link to="/about" className="no-underline hover:text-green-600">
             About Us
           </Link>
         </nav>
@@ -31,7 +34,7 @@ const CourseNavbar = () => {
           <img
             src="group-88@2x.png"
             alt="User Profile"
-            className="w-8 h-8 rounded-full"
+            className="h-8 w-8 rounded-full"
           />
         </div>
       </header>

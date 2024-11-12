@@ -4,7 +4,7 @@
 @tailwind components;
 @tailwind utilities;
 body {
-  @apply leading-[normal] m-0;
+  @apply m-0 leading-[normal];
 }
 *,
 ::before,
@@ -16,13 +16,22 @@ body {
 }
 
 body {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
 }
 p {
   margin: 0px;
 }
-
 
 @keyframes fadeIn {
   from {
@@ -35,4 +44,13 @@ p {
 
 .animate-fadeIn {
   animation: fadeIn 0.5s forwards;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0px;
 }

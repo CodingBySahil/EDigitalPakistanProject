@@ -1,6 +1,7 @@
-const { sideBarToggleFalse992 } = require("./src/constants/const");
+import { sideBarToggleFalse992 } from "./src/constants/const";
 
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line no-undef
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
@@ -97,6 +98,9 @@ module.exports = {
         "17xl": "36px",
         "21xl": "40px",
         "14xl": "33px",
+      },
+      boxShadow: {
+        basicShadow: "0px 5px 10px 0px rgb(0 0 0 / 0.2)",
       },
     },
     fontSize: {
