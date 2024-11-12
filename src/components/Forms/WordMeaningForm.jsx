@@ -46,7 +46,7 @@ const WordMeaningForm = () => {
     };
 
     try {
-      const response = await fetch(`https://62d7-39-38-251-68.ngrok-free.app/api/ENG101CH1/wordMeaning/data`, {
+      const response = await fetch(`${mainURL}/api/${subjectCode}CH${chapterNumber}/wordMeaning/data`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
