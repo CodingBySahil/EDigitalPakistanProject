@@ -50,26 +50,4 @@ export default function SubjectCardDisplay({ cardsArr }) {
 }
 // COMPONENT END
 
-{
-  /* {cardsArr.map((val, index) => (
-        <Link to={`${val?.url}`} key={index}>
-          <div className="bg-white shadow-lg rounded-lg overflow-hidden cursor-pointer">
-            <img
-              src={`../${val?.bookImg}`}
-              alt={val?.title}
-              className="w-full object-cover"
-            />
-            <div className="p-4">
-              <h3 className="text-lg font-semibold">{val?.title}</h3>
-              <p className="text-gray-500">by {val?.author}</p>
-            </div>
-          </div>
-        </Link>
-      ))}
-                    <img
-              src={`../${val?.bookImg}`}
-              alt={val?.title}
-              className="w-full h-full object-cover object-top rounded-[5px]"
-        
-      */
-}
+
