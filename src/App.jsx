@@ -20,6 +20,7 @@ import CourseClassSelection from "./pages/courses/CourseClassSelection";
 import ClassDetails from "./pages/courses/ClassDetails";
 import CourseCalendar from "./components/courseCalendar/CourseCalendar";
 import SubjectSelection from "./components/subjectSelection/SubjectSelection";
+import PaymentPage from "./pages/PaymentPage";
 
 // subjects page created
 
@@ -91,12 +92,14 @@ function App() {
         <Route path="/class/:classLink" element={<ClassDetails />} />
 
         {/* DIVIDER routes for course calendar */}
-        <Route path="/course-calender" element={<CourseCalendarPage />}>
-          <Route path="quiz" element={<CourseCalendar />} />
-        </Route>
+        <Route path="/course-calender" element={<CourseCalendarPage />} />
+        <Route path="/course-calender/quiz" element={<CourseCalendar />} />
 
         {/* DIVIDER routes for subject selection page */}
         <Route path="/subjectSelection" element={<SubjectSelection />} />
+
+        {/* DIVIDER route for payment */}
+        <Route path="/payment" element={<PaymentPage />} />
 
         {/* Protected Administration Route */}
         <Route

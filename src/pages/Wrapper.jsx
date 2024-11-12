@@ -21,9 +21,9 @@ const Wrapper = () => {
 
       <SelfAssessments />
       <AlpCurriculum className="mt-48" />
-      <TitleLeftAlign/>
-      
-      <Footer/>
+      <TitleLeftAlign />
+
+      <Footer />
     </div>
   );
 };

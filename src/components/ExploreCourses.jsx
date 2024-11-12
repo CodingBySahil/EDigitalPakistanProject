@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const ExploreCourses = ({levelOfClass}) => {
+const ExploreCourses = ({ levelOfClass }) => {
   const [clickedSubject, setClickedSubject] = useState(null);
 
   const getBackgroundColor = (subject) => {
@@ -48,7 +48,7 @@ const ExploreCourses = ({levelOfClass}) => {
               <div
                 key={index}
                 className="flex justify-center items-center"
-                onMouseEnter={() => setClickedSubject(subject)}  // Show subject details on hover
+                onMouseEnter={() => setClickedSubject(subject)} // Show subject details on hover
                 // onMouseLeave={() => setClickedSubject(null)}    // Hide details when mouse leaves
               >
                 <div
@@ -74,9 +74,7 @@ const ExploreCourses = ({levelOfClass}) => {
 
           {/* Clicked Subject Book Design */}
           {clickedSubject && (
-            <div
-              className="transition-all duration-300 ease-in-out transform hover:scale-103 hover:shadow-2xl p-2 md:p-4 max-h-full absolute right-0"
-            >
+            <div className="transition-all duration-300 ease-in-out transform hover:scale-103 hover:shadow-2xl p-2 md:p-4 max-h-full absolute right-0">
               <div className="bg-white h-72 p-4 rounded-lg shadow-lg flex opacity-0 animate-fadeIn">
                 <img
                   src="/book-1@2x.png" // respective image path
