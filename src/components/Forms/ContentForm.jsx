@@ -1,22 +1,37 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { mainURL } from "../../constants/const";
 
-const ContentForm = ({subjectNameFromURL}) => {
+const ContentForm = ({ subjectNameFromURL }) => {
   const [text, setText] = useState("");
-  const [chapterNumber, setChapterNumber] = useState("");
+  const [subjectName, setSubjectName] = useState("");
+  const [chapters, setChapters] = useState([]); // State to store chapter data
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
-  
-  
+
+  // Fetch chapters from API when component mounts
+  useEffect(() => {
+    const fetchChapters = async () => {
+      try {
+        const response = await fetch(`${mainURL}/api/${subjectNameFromURL}/chapter/data`);
+        const data = await response.json();
+        console.log("Chapters fetched:", data); // Log the response
+        setChapters(data); // Set chapters in state
+      } catch (error) {
+        console.error("Error fetching chapters:", error);
+      }
+    };
+
+    fetchChapters();
+  }, []);
 
   const handleChapterChange = (e) => {
-    setChapterNumber(e.target.value);
+    setSubjectName(e.target.value);
   };
-  
-  const API = `${mainURL}/api/${subjectNameFromURL}CH${chapterNumber}/content/data`;
+
+  const API = `${mainURL}/api/${subjectName}/content/data`;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,7 +39,7 @@ const ContentForm = ({subjectNameFromURL}) => {
       setError("Content is required.");
       return;
     }
-    if (!chapterNumber) {
+    if (!subjectName) {
       setError("Please select a chapter.");
       return;
     }
@@ -39,7 +54,7 @@ const ContentForm = ({subjectNameFromURL}) => {
     const formData = new FormData();
     formData.append("text", text);
 
-    console.log("Sending data:", { chapterNumber, text });
+    console.log("Sending data:", { subjectName, text });
 
     try {
       const response = await fetch(API, {
@@ -53,7 +68,7 @@ const ContentForm = ({subjectNameFromURL}) => {
       if (response.ok) {
         alert("Book saved successfully via API!");
         setText("");
-        setChapterNumber("");
+        setSubjectName("");
       } else {
         alert(`Error: ${responseData.message || "An error occurred."}`);
       }
@@ -74,20 +89,18 @@ const ContentForm = ({subjectNameFromURL}) => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Dropdown for selecting chapter number */}
         <div className="mb-6">
-          <label className="block font-semibold text-lg mb-2 ">
-            Chapter Number
-          </label>
+          <label className="block font-semibold text-lg mb-2 ">Chapter</label>
           <select
-            value={chapterNumber}
+            value={subjectName}
             onChange={handleChapterChange}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-indigo-500 focus:border-indigo-500  bg-white shadow-lg transition duration-200 ease-in-out transform hover:scale-[1.01] hover:shadow-md"
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-indigo-500 focus:border-indigo-500 bg-white shadow-lg transition duration-200 ease-in-out transform hover:scale-[1.01] hover:shadow-md"
           >
             <option value="" disabled className="text-gray-500">
               Select a chapter
             </option>
-            {[...Array(20)].map((_, i) => (
-              <option key={i + 1} value={i + 1} >
-                Chapter {i + 1}
+            {chapters.map((chapter) => (
+              <option key={chapter.chapterCode} value={chapter.chapterCode}>
+                {chapter.chapterCode + " - " + chapter.name}
               </option>
             ))}
           </select>
@@ -158,24 +171,24 @@ const ContentForm = ({subjectNameFromURL}) => {
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
             <h3 className="text-xl font-semibold mb-4">Confirm Submission</h3>
             <p className="mb-4">
-              Are you sure you want to submit the following data?
+              Are you sure you want to submit the data to?
             </p>
             <p className="mb-2">
-              <strong>Chapter Number:</strong> {chapterNumber}
+              <strong>Subject :</strong> {subjectName}
             </p>
-            <p className="mb-4">
+            {/* <p className="mb-4">
               <strong>Content:</strong> {text || "(No content provided)"}
-            </p>
+            </p> */}
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400"
+                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 hover:text-white cursor-pointer"
               >
                 Cancel
               </button>
               <button
                 onClick={confirmSubmit}
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-900 cursor-pointer"
               >
                 Confirm
               </button>
