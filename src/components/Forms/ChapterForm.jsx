@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { mainURL } from "../../constants/const";
 
-const ChapterForm = () => {
+const ChapterForm = ({ subjectNameFromURL }) => {
   const [chapName, setChapName] = useState("");
   const [className, setClassName] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
   const [chapterCode, setChapterCode] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null); // To handle errors
-  const [success, setSuccess] = useState(false); // To handle success message
+  const [error, setError] = useState(null); 
+  const [success, setSuccess] = useState(false); 
+  const [chapters, setChapters] = useState([]);
+
+  // Fetch chapters from API when component mounts
+  useEffect(() => {
+    const fetchChapters = async () => {
+      try {
+        const response = await fetch(`${mainURL}/api/${subjectNameFromURL}/chapter/data`);
+        const data = await response.json();
+        console.log("Chapters fetched:", data); 
+        setChapters(data); 
+      } catch (error) {
+        console.error("Error fetching chapters:", error);
+      }
+    };
+
+    fetchChapters();
+  }, [subjectNameFromURL]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,7 +33,6 @@ const ChapterForm = () => {
     setError(null);
     setSuccess(false);
 
-    // Prepare form data
     const formData = {
       chapName,
       className,
@@ -26,28 +42,24 @@ const ChapterForm = () => {
 
     try {
       const response = await fetch(
-        `${mainURL}/api/ENG101/chapter/data`,
+        `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
         {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            // Include any other headers you need, such as Authorization
           },
           body: JSON.stringify(formData),
         }
       );
 
       if (!response.ok) {
-        // Handle HTTP errors
         const errorData = await response.json();
         throw new Error(errorData.message || "Something went wrong!");
       }
 
-      // Optionally, you can handle the response data
       const data = await response.json();
       console.log("Success:", data);
 
-      // Reset form after successful submission
       setChapName("");
       setClassName("");
       setSubjectCode("");
@@ -106,24 +118,22 @@ const ChapterForm = () => {
           />
         </div>
 
-        {/* Subject Code Dropdown */}
-        <div>
-          <label className="block font-semibold text-lg mb-2">
-            Subject Code
-          </label>
+        {/* Dropdown for selecting subject code */}
+        <div className="mb-6">
+          <label className="block font-semibold text-lg mb-2">Subject code</label>
           <select
             value={subjectCode}
-            onChange={(e) => setSubjectCode(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
-            required
+            onChange={(e) => setSubjectCode(e.target.value)}  
+            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-indigo-500 focus:border-indigo-500 bg-white shadow-lg transition duration-200 ease-in-out transform hover:scale-[1.01] hover:shadow-md"
           >
-            <option value="" disabled>
-              Select subject code
+            <option value="" disabled className="text-gray-500">
+              Select a subject code
             </option>
-            <option value="ENG101">ENG101</option>
-            <option value="MATH202">MATH202</option>
-            <option value="SCI303">SCI303</option>
-            {/* Add more subject options here */}
+            {chapters.map((chapter) => (
+              <option key={chapter.chapterCode} value={chapter.subjectCode}>
+                {chapter.subjectCode}
+              </option>
+            ))}
           </select>
         </div>
 
@@ -150,7 +160,7 @@ const ChapterForm = () => {
           }`}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : "Save Chapter"}
+          {isSubmitting ? "Saving..." : "Save the Chapter"}
         </button>
       </form>
     </div>

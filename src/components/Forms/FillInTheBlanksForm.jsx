@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import { mainURL } from "../../constants/const";
 
-const FillInTheBlanksForm = () => {
+const FillInTheBlanksForm = ({subjectNameFromURL}) => {
   const [answers, setAnswers] = useState(Array(4).fill("")); // Initialize four blanks with empty strings
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
   
   // URL for API submission
-  const API = `${mainURL}/api/ENG101CH1/mcq/data`;
+  const API = `${mainURL}/api/${subjectNameFromURL}CH1/mcq/data`;
 
   const handleChange = (index, value) => {
     const newAnswers = [...answers];

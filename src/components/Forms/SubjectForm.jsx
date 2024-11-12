@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { mainURL } from "../../constants/const";
 
-const SubjectForm = () => {
+const SubjectForm = ({subjectNameFromURL}) => {
   const [subjectName, setSubjectName] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [subjectCode, setSubjectCode] = useState("");

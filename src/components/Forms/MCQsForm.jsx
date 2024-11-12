@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { mainURL } from "../../constants/const";
 
-const MCQForm = () => {
+const MCQForm = ({subjectNameFromURL}) => {
   const [chapCode, setChapCode] = useState("");
   const [mcqs, setMcqs] = useState([
     { question: "", options: ["", "", "", ""], correctOption: "" },
