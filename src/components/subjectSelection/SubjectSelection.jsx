@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import SubjectCardDisplay from "../SubjectCardDisplay";
 import ScrollableBody from "../ScrollableBody";
 import CourseNavbar from "../courseCalendar/CourseNavbar";
@@ -30,8 +29,8 @@ export default function SubjectSelection() {
       <CourseNavbar />
       <ScrollableBody>
         {/* Message */}
-        <section className="min-h-[50px] flex items-center">
-          <p className="font-bold text-[18px]">Please select a course</p>
+        <section className="flex min-h-[50px] items-center">
+          <p className="text-[18px] font-bold">Please select a course</p>
         </section>
 
         {/* Subject cards display */}
