@@ -4,11 +4,17 @@ import FormRow from "../FormRow";
 import FormTextField from "../FormTextField";
 import { Checkbox } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
+import FormErrorDisplay from "../FormErrorDisplay";
 
 // COMPONENT START
 export default function CoursePaymentForm() {
   //
-  const { handleSubmit, register, control } = useForm();
+  const {
+    handleSubmit,
+    register,
+    control,
+    formState: { errors },
+  } = useForm();
 
   // FUNCTIONS
 
@@ -32,7 +38,21 @@ export default function CoursePaymentForm() {
           register={register}
           id={"nameOnCard"}
           placeholder={"Enter name on card"}
+          validationObj={{
+            required: "Name on card is required", // Optional: Add a message if required
+            pattern: {
+              value: /^[A-Za-z]+$/, // Allows only uppercase and lowercase letters
+              message: "Name on card should only contain letters and spaces",
+            },
+            maxLength: {
+              value: 50,
+              message: "Name on card should not exceed 50 characters",
+            },
+          }}
         />
+        {errors?.nameOnCard && (
+          <FormErrorDisplay>{errors?.nameOnCard?.message}</FormErrorDisplay>
+        )}
       </FormRow>
 
       <FormRow>
