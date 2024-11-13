@@ -1,4 +1,4 @@
-import { useGetScreenHeight } from "../../hooks/useGetScreenHeight";
+import Footer from "../Footer";
 import ScrollableBody from "../ScrollableBody";
 import CartSummary from "./CartSummary";
 import CoursesPayment from "./CoursesPayment";
@@ -7,8 +7,6 @@ import OtherCoursesBuying from "./OtherCoursesBuying";
 // COMPONENT START
 export default function Payment() {
   // VARIABLES
-
-  const screenHeight = useGetScreenHeight();
 
   // FUNCTIONS
 
@@ -20,7 +18,7 @@ export default function Payment() {
 
       <ScrollableBody>
         {/* DIVIDER payment body */}
-        <main className="flex flex-col gap-[20px] pt-[10px]">
+        <main className="flex flex-col gap-[20px] px-[10px] pt-[10px]">
           {/* cart summary */}
           <CartSummary />
 
@@ -30,8 +28,9 @@ export default function Payment() {
           {/* other course */}
           <OtherCoursesBuying />
         </main>
+
         {/* DIVIDER payment footer */}
-        <footer className="bg-blue-500">payment footer</footer>
+        <Footer />
       </ScrollableBody>
     </div>
   );
