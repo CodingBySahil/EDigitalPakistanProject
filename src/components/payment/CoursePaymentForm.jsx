@@ -3,65 +3,100 @@ import FormLabel from "../FormLabel";
 import FormRow from "../FormRow";
 import FormTextField from "../FormTextField";
 import { Checkbox } from "@mui/material";
+import { Controller, useForm } from "react-hook-form";
 
 // COMPONENT START
 export default function CoursePaymentForm() {
-  // VARIABLES
+  //
+  const { handleSubmit, register, control } = useForm();
 
   // FUNCTIONS
 
-  const coursePaymentFormSubmit = () => {
-    console.log("form submit");
+  const coursePaymentFormSubmit = (data) => {
+    console.log(data); // data will now contain the form values
+  };
+
+  const submitError = (errors) => {
+    console.log("error in submission", errors);
   };
 
   // JSX
   return (
-    <form className="flex flex-col gap-[10px]">
+    <form
+      className="flex flex-col gap-[10px]"
+      onSubmit={handleSubmit(coursePaymentFormSubmit, submitError)} // handleSubmit will trigger form submission
+    >
       <FormRow>
         <FormLabel htmlFor={"nameOnCard"} label={"Name on card"} />
-        <FormTextField id={"nameOnCard"} placeholder={"Enter name on card"} />
+        <FormTextField
+          register={register}
+          id={"nameOnCard"}
+          placeholder={"Enter name on card"}
+        />
       </FormRow>
+
       <FormRow>
         <FormLabel htmlFor={"cardNumber"} label={"Card number"} />
-        <FormTextField id={"cardNumber"} placeholder={"Enter card number"} />
+        <FormTextField
+          register={register}
+          id={"cardNumber"}
+          placeholder={"Enter card number"}
+        />
       </FormRow>
+
       <FormRow>
         <FormLabel
           htmlFor={"expirationDate"}
           label={"Expiration date (MM/YY)"}
         />
         <FormTextField
+          register={register}
           id={"expirationDate"}
           placeholder={"Enter expiration date"}
         />
       </FormRow>
+
       <FormRow>
         <FormLabel htmlFor={"cardCvc"} label={"CVC"} />
-        <FormTextField id={"cardCvc"} placeholder={"Enter cvc"} />
+        <FormTextField
+          register={register}
+          id={"cardCvc"}
+          placeholder={"Enter cvc"}
+        />
       </FormRow>
 
       <FormRow flexColType="row">
         <div className="flex justify-center">
-          <Checkbox
-            id={"fasterCheckOut"}
-            sx={{
-              margin: "0px",
-              color: "#49BBBD",
-              "&.Mui-checked": {
-                color: "#49BBBD",
-              },
-            }}
-          />
-          <FormLabel
-            htmlFor={"fasterCheckOut"}
-            label={"Save my information for faster checkout"}
+          <Controller
+            name="fasterCheckOut"
+            control={control}
+            render={({ field }) => (
+              <>
+                <Checkbox
+                  {...field}
+                  id={"fasterCheckOut"}
+                  sx={{
+                    margin: "0px",
+                    color: "#49BBBD",
+                    "&.Mui-checked": {
+                      color: "#49BBBD",
+                    },
+                  }}
+                />
+
+                <FormLabel
+                  htmlFor={"fasterCheckOut"}
+                  label={"Save my information for faster checkout"}
+                />
+              </>
+            )}
           />
         </div>
       </FormRow>
 
       <FormRow>
         <Button
-          onClick={() => coursePaymentFormSubmit()}
+          type="submit" // use the type "submit" to trigger form submission
           size="small"
           variant="contained"
           disableElevation
@@ -72,6 +107,4 @@ export default function CoursePaymentForm() {
       </FormRow>
     </form>
   );
-  // JSX
 }
-// COMPONENT END
