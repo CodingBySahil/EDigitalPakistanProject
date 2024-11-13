@@ -1,9 +1,10 @@
+import { PropTypes } from "prop-types";
 // src/components/SubjectForm.jsx
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { mainURL } from "../../constants/const";
 
-const SubjectForm = ({subjectNameFromURL}) => {
+const SubjectForm = ({ subjectNameFromURL }) => {
   const [subjectName, setSubjectName] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
@@ -67,15 +68,15 @@ const SubjectForm = ({subjectNameFromURL}) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-lg">
+      <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add New Subject
       </h2>
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Subject Name */}
         <div>
           <label
-            className="block font-semibold text-lg mb-2"
+            className="text-lg mb-2 block font-semibold"
             htmlFor="subjectName"
           >
             Subject Name
@@ -86,7 +87,7 @@ const SubjectForm = ({subjectNameFromURL}) => {
             value={subjectName}
             onChange={(e) => setSubjectName(e.target.value)}
             placeholder="Enter subject name"
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+            className="w-full rounded-md border border-gray-300 p-3 focus:ring-2 focus:ring-blue-400"
             required
             name="title"
           />
@@ -95,7 +96,7 @@ const SubjectForm = ({subjectNameFromURL}) => {
         {/* Class Selection */}
         <div>
           <label
-            className="block font-semibold text-lg mb-2"
+            className="text-lg mb-2 block font-semibold"
             htmlFor="classSelect"
           >
             Class
@@ -104,7 +105,7 @@ const SubjectForm = ({subjectNameFromURL}) => {
             id="classSelect"
             value={selectedClass}
             onChange={(e) => setSelectedClass(e.target.value)}
-            className="w-full p-3 border border-gray-300 rounded-md bg-white focus:ring-2 focus:ring-blue-400"
+            className="w-full rounded-md border border-gray-300 bg-white p-3 focus:ring-2 focus:ring-blue-400"
             required
             name="class"
           >
@@ -123,7 +124,7 @@ const SubjectForm = ({subjectNameFromURL}) => {
         {/* Subject Code */}
         <div>
           <label
-            className="block font-semibold text-lg mb-2"
+            className="text-lg mb-2 block font-semibold"
             htmlFor="subjectCode"
           >
             Subject Code
@@ -134,7 +135,7 @@ const SubjectForm = ({subjectNameFromURL}) => {
             value={subjectCode}
             onChange={(e) => setSubjectCode(e.target.value)}
             placeholder="Enter subject code"
-            className="w-full p-3 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+            className="w-full rounded-md border border-gray-300 p-3 focus:ring-2 focus:ring-blue-400"
             required
             name="code"
           />
@@ -143,8 +144,8 @@ const SubjectForm = ({subjectNameFromURL}) => {
         {/* Submit Button */}
         <button
           type="submit"
-          className={`w-full py-3 text-lg bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-all duration-200 ease-in-out ${
-            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          className={`text-lg w-full rounded-md bg-blue-500 py-3 text-white shadow-md transition-all duration-200 ease-in-out hover:bg-blue-600 ${
+            isSubmitting ? "cursor-not-allowed opacity-50" : ""
           }`}
           disabled={isSubmitting}
         >
@@ -155,4 +156,8 @@ const SubjectForm = ({subjectNameFromURL}) => {
   );
 };
 
+// adding prop type validation
+SubjectForm.propTypes = {
+  subjectNameFromURL: PropTypes.string.isRequired,
+};
 export default SubjectForm;

@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { PropTypes } from "prop-types";
+import { useState, useEffect } from "react";
 import { mainURL } from "../../constants/const";
 
 const ChapterForm = ({ subjectNameFromURL }) => {
@@ -7,18 +8,20 @@ const ChapterForm = ({ subjectNameFromURL }) => {
   const [subjectCode, setSubjectCode] = useState("");
   const [chapterCode, setChapterCode] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null); 
-  const [success, setSuccess] = useState(false); 
+  const [error, setError] = useState(null);
+  const [success, setSuccess] = useState(false);
   const [chapters, setChapters] = useState([]);
 
   // Fetch chapters from API when component mounts
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        const response = await fetch(`${mainURL}/api/${subjectNameFromURL}/chapter/data`);
+        const response = await fetch(
+          `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
+        );
         const data = await response.json();
-        console.log("Chapters fetched:", data); 
-        setChapters(data); 
+        // console.log("Chapters fetched:", data);
+        setChapters(data);
       } catch (error) {
         console.error("Error fetching chapters:", error);
       }
@@ -49,7 +52,7 @@ const ChapterForm = ({ subjectNameFromURL }) => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
-        }
+        },
       );
 
       if (!response.ok) {
@@ -74,17 +77,17 @@ const ChapterForm = ({ subjectNameFromURL }) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-lg">
+      <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add New Chapter
       </h2>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
+        <div className="mb-4 rounded bg-red-100 p-3 text-red-700">{error}</div>
       )}
 
       {success && (
-        <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
+        <div className="mb-4 rounded bg-green-100 p-3 text-green-700">
           Chapter saved successfully!
         </div>
       )}
@@ -92,7 +95,7 @@ const ChapterForm = ({ subjectNameFromURL }) => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Chapter Name */}
         <div>
-          <label className="block font-semibold text-lg mb-2">
+          <label className="text-lg mb-2 block font-semibold">
             Chapter Name
           </label>
           <input
@@ -100,31 +103,33 @@ const ChapterForm = ({ subjectNameFromURL }) => {
             value={chapName}
             onChange={(e) => setChapName(e.target.value)}
             placeholder="Enter chapter name"
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+            className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
             required
           />
         </div>
 
         {/* Class Name */}
         <div>
-          <label className="block font-semibold text-lg mb-2">Class</label>
+          <label className="text-lg mb-2 block font-semibold">Class</label>
           <input
             type="text"
             value={className}
             onChange={(e) => setClassName(e.target.value)}
             placeholder="Enter class"
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+            className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
             required
           />
         </div>
 
         {/* Dropdown for selecting subject code */}
         <div className="mb-6">
-          <label className="block font-semibold text-lg mb-2">Subject code</label>
+          <label className="text-lg mb-2 block font-semibold">
+            Subject code
+          </label>
           <select
             value={subjectCode}
-            onChange={(e) => setSubjectCode(e.target.value)}  
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-indigo-500 focus:border-indigo-500 bg-white shadow-lg transition duration-200 ease-in-out transform hover:scale-[1.01] hover:shadow-md"
+            onChange={(e) => setSubjectCode(e.target.value)}
+            className="w-full transform rounded-lg border border-gray-300 bg-white p-3 shadow-lg transition duration-200 ease-in-out hover:scale-[1.01] hover:shadow-md focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500"
           >
             <option value="" disabled className="text-gray-500">
               Select a subject code
@@ -139,7 +144,7 @@ const ChapterForm = ({ subjectNameFromURL }) => {
 
         {/* Chapter Code */}
         <div>
-          <label className="block font-semibold text-lg mb-2">
+          <label className="text-lg mb-2 block font-semibold">
             Chapter Code
           </label>
           <input
@@ -147,7 +152,7 @@ const ChapterForm = ({ subjectNameFromURL }) => {
             value={chapterCode}
             onChange={(e) => setChapterCode(e.target.value)}
             placeholder="Enter chapter code"
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+            className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
             required
           />
         </div>
@@ -155,8 +160,8 @@ const ChapterForm = ({ subjectNameFromURL }) => {
         {/* Submit Button */}
         <button
           type="submit"
-          className={`w-full py-3 text-lg bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-all duration-200 ease-in-out ${
-            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          className={`text-lg w-full rounded-md bg-blue-500 py-3 text-white shadow-md transition-all duration-200 ease-in-out hover:bg-blue-600 ${
+            isSubmitting ? "cursor-not-allowed opacity-50" : ""
           }`}
           disabled={isSubmitting}
         >
@@ -167,4 +172,8 @@ const ChapterForm = ({ subjectNameFromURL }) => {
   );
 };
 
+// adding prop type validation
+ChapterForm.propTypes = {
+  subjectNameFromURL: PropTypes.string.isRequired,
+};
 export default ChapterForm;

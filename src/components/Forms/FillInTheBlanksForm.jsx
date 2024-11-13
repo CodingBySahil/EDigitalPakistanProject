@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import { PropTypes } from "prop-types";
+import { useState } from "react";
 import { mainURL } from "../../constants/const";
 
-const FillInTheBlanksForm = ({subjectNameFromURL}) => {
+const FillInTheBlanksForm = ({ subjectNameFromURL }) => {
   const [answers, setAnswers] = useState(Array(4).fill("")); // Initialize four blanks with empty strings
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const options = ["Option 1", "Option 2", "Option 3", "Option 4"];
-  
+
   // URL for API submission
   const API = `${mainURL}/api/${subjectNameFromURL}CH1/mcq/data`;
 
@@ -49,7 +50,7 @@ const FillInTheBlanksForm = ({subjectNameFromURL}) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto mt-8 space-y-4"
+      className="mx-auto mt-8 max-w-4xl space-y-4 rounded-lg bg-white p-6 shadow-lg"
     >
       {/* Sentence 1 */}
       <div>
@@ -62,7 +63,7 @@ const FillInTheBlanksForm = ({subjectNameFromURL}) => {
             <button
               key={index}
               type="button"
-              className={`p-2 border rounded-md ${
+              className={`rounded-md border p-2 ${
                 answers[0] === option ? "bg-blue-500 text-white" : "bg-white"
               }`}
               onClick={() => handleChange(0, option)}
@@ -84,7 +85,7 @@ const FillInTheBlanksForm = ({subjectNameFromURL}) => {
             <button
               key={index}
               type="button"
-              className={`p-2 border rounded-md ${
+              className={`rounded-md border p-2 ${
                 answers[1] === option ? "bg-blue-500 text-white" : "bg-white"
               }`}
               onClick={() => handleChange(1, option)}
@@ -106,7 +107,7 @@ const FillInTheBlanksForm = ({subjectNameFromURL}) => {
             <button
               key={index}
               type="button"
-              className={`p-2 border rounded-md ${
+              className={`rounded-md border p-2 ${
                 answers[2] === option ? "bg-blue-500 text-white" : "bg-white"
               }`}
               onClick={() => handleChange(2, option)}
@@ -128,7 +129,7 @@ const FillInTheBlanksForm = ({subjectNameFromURL}) => {
             <button
               key={index}
               type="button"
-              className={`p-2 border rounded-md ${
+              className={`rounded-md border p-2 ${
                 answers[3] === option ? "bg-blue-500 text-white" : "bg-white"
               }`}
               onClick={() => handleChange(3, option)}
@@ -141,8 +142,8 @@ const FillInTheBlanksForm = ({subjectNameFromURL}) => {
 
       <button
         type="submit"
-        className={`mt-4 w-full py-2 px-4 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-all duration-200 ease-in-out ${
-          isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+        className={`mt-4 w-full rounded-md bg-blue-500 px-4 py-2 text-white shadow-md transition-all duration-200 ease-in-out hover:bg-blue-600 ${
+          isSubmitting ? "cursor-not-allowed opacity-50" : ""
         }`}
         disabled={isSubmitting}
       >
@@ -152,4 +153,8 @@ const FillInTheBlanksForm = ({subjectNameFromURL}) => {
   );
 };
 
+// adding prop type validation
+FillInTheBlanksForm.propTypes = {
+  subjectNameFromURL: PropTypes.string.isRequired,
+};
 export default FillInTheBlanksForm;

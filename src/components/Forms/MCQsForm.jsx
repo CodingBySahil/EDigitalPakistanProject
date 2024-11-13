@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import { PropTypes } from 'prop-types';
+import { useState, useEffect } from "react";
 import { mainURL } from "../../constants/const";
 
-const MCQForm = ({subjectNameFromURL}) => {
+const MCQForm = ({ subjectNameFromURL }) => {
   const [chapCode, setChapCode] = useState("");
   const [mcqs, setMcqs] = useState([
     { question: "", options: ["", "", "", ""], correctOption: "" },
@@ -9,28 +10,23 @@ const MCQForm = ({subjectNameFromURL}) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null); // To handle errors
   const [success, setSuccess] = useState(false); // To handle success message
-  const [availableChapters, setAvailableChapters] = useState([]); // For chapter codes dropdown
+  const [chapters, setChapters] = useState([]); // For chapter codes dropdown
 
-  // Fetch available chapters (you can replace this with your actual API call)
+  // Fetch chapters from API when component mounts
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        // Example static chapters; replace with API call if needed
-        const chapters = [
-          { code: "CHP001", name: "Introduction to Literature" },
-          { code: "CHP002", name: "Poetry and Prose" },
-          { code: "CHP003", name: "Drama and Plays" },
-          // Add more chapters as needed
-        ];
-        setAvailableChapters(chapters);
-      } catch (err) {
-        console.error("Failed to fetch chapters:", err);
-        setError("Failed to load chapters. Please try again later.");
+        const response = await fetch(`${mainURL}/api/${subjectNameFromURL}/chapter/data`);
+        const data = await response.json();
+        // console.log("Chapters fetched for mcqs form:", data); // Log the response
+        setChapters(data); // Set chapters in state
+      } catch (error) {
+        console.error("Error fetching chapters:", error);
       }
     };
 
     fetchChapters();
-  }, []);
+  }, [subjectNameFromURL]);
 
   // Handle changes in individual MCQ fields
   const handleMCQChange = (index, field, value) => {
@@ -109,7 +105,7 @@ const MCQForm = ({subjectNameFromURL}) => {
 
     try {
       const response = await fetch(
-        `${mainURL}/api/mcqs/batch`,
+        `${mainURL}/api/${chapCode}/exercise/data`,
         {
           method: "POST",
           headers: {
@@ -120,14 +116,18 @@ const MCQForm = ({subjectNameFromURL}) => {
         }
       );
 
+      // Handle unexpected response content type
+      const contentType = response.headers.get("content-type");
       if (!response.ok) {
-        // Handle HTTP errors
-        const errorData = await response.json();
+        const errorData = contentType.includes("application/json")
+          ? await response.json()
+          : { message: "Unexpected response from server" };
         throw new Error(errorData.message || "Something went wrong!");
       }
 
-      // Optionally, you can handle the response data
-      const data = await response.json();
+      const data = contentType.includes("application/json")
+        ? await response.json()
+        : { message: "MCQs saved successfully!" };
       console.log("Success:", data);
 
       // Reset form after successful submission
@@ -159,7 +159,6 @@ const MCQForm = ({subjectNameFromURL}) => {
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Chapter Code Dropdown */}
         <div>
           <label className="block font-semibold text-lg mb-2">
             Chapter Code (ChapCode)
@@ -173,15 +172,14 @@ const MCQForm = ({subjectNameFromURL}) => {
             <option value="" disabled>
               Select chapter code
             </option>
-            {availableChapters.map((chapter) => (
-              <option key={chapter.code} value={chapter.code}>
-                {chapter.code} - {chapter.name}
+            {chapters.map((chapter) => (
+              <option key={chapter.chapterCode} value={chapter.chapterCode}>
+                {chapter.chapterCode} - {chapter.name}
               </option>
             ))}
           </select>
         </div>
 
-        {/* Multiple MCQs */}
         {mcqs.map((mcq, index) => (
           <div key={index} className="border p-4 rounded-md mb-4">
             <div className="flex justify-between items-center mb-4">
@@ -197,7 +195,6 @@ const MCQForm = ({subjectNameFromURL}) => {
               )}
             </div>
 
-            {/* Question Input */}
             <div className="mb-4">
               <label className="block font-medium mb-1">Question</label>
               <input
@@ -212,7 +209,6 @@ const MCQForm = ({subjectNameFromURL}) => {
               />
             </div>
 
-            {/* Options Inputs */}
             <div className="mb-4">
               <label className="block font-medium mb-2">Options</label>
               <div className="space-y-2">
@@ -238,7 +234,6 @@ const MCQForm = ({subjectNameFromURL}) => {
               </div>
             </div>
 
-            {/* Correct Option Selector */}
             <div>
               <label className="block font-medium mb-1">Correct Option</label>
               <select
@@ -250,10 +245,10 @@ const MCQForm = ({subjectNameFromURL}) => {
                 required
               >
                 <option value="" disabled>
-                  Select the correct option
+                  Select correct option
                 </option>
-                {mcq.options.map((option, optIndex) => (
-                  <option key={optIndex} value={`option${optIndex + 1}`}>
+                {mcq.options.map((_, optIndex) => (
+                  <option key={optIndex} value={optIndex + 1}>
                     Option {optIndex + 1}
                   </option>
                 ))}
@@ -262,30 +257,31 @@ const MCQForm = ({subjectNameFromURL}) => {
           </div>
         ))}
 
-        {/* Add MCQ Button */}
-        <div>
+        <button
+          type="button"
+          onClick={addMCQ}
+          className="text-blue-600 hover:text-blue-800 font-semibold mt-2"
+        >
+          + Add Another MCQ
+        </button>
+
+        <div className="flex justify-center mt-6">
           <button
-            type="button"
-            onClick={addMCQ}
-            className="w-full py-2 px-4 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 transition-all duration-200 ease-in-out"
+            type="submit"
+            className="bg-blue-600 text-white py-2 px-4 rounded-md font-semibold hover:bg-blue-700"
+            disabled={isSubmitting}
           >
-            Add Another MCQ
+            {isSubmitting ? "Submitting..." : "Submit"}
           </button>
         </div>
-
-        {/* Submit Button */}
-        <button
-          type="submit"
-          className={`w-full py-3 text-lg bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-all duration-200 ease-in-out ${
-            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-          }`}
-          disabled={isSubmitting}
-        >
-          {isSubmitting ? "Saving..." : "Submit MCQs"}
-        </button>
       </form>
     </div>
   );
 };
 
+
+// adding props type validation
+MCQForm.propTypes = {
+  subjectNameFromURL: PropTypes.string.isRequired,
+};
 export default MCQForm;
