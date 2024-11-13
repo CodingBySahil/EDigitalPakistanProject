@@ -6,7 +6,7 @@ import { useGetScreenHeight } from "../hooks/useGetScreenHeight";
 export default function ScrollableBody({
   pageHeaderHeight = 60,
   children,
-  paddingX = 10,
+  paddingX = 0,
 }) {
   // VARIABLES
   const screenHeight = useGetScreenHeight();
@@ -21,7 +21,7 @@ export default function ScrollableBody({
         paddingLeft: `${paddingX}px`,
         paddingRight: `${paddingX}px`,
       }}
-      className="overflow-y-auto overflow-x-hidden pb-[50px]"
+      className="overflow-y-auto overflow-x-hidden pb-[0px]"
     >
       {children}
     </div>

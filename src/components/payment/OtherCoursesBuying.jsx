@@ -5,7 +5,11 @@ export default function OtherCoursesBuying() {
   // FUNCTIONS
 
   // JSX
-  return <section>Other courses buying</section>;
+  return (
+    <section className="h-[300px] rounded-[8px] bg-slate-300">
+      Other courses buying
+    </section>
+  );
   // JSX
 }
 // COMPONENT END

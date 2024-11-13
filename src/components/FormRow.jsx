@@ -7,7 +7,7 @@ export default function FormRow({ children }) {
   // FUNCTIONS
 
   // JSX
-  return <div className="">{children}</div>;
+  return <div className="flex flex-col justify-center">{children}</div>;
   // JSX
 }
 
