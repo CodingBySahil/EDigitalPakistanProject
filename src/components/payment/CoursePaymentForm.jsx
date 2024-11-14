@@ -1,8 +1,7 @@
 import Button from "@mui/material/Button";
-import FormLabel from "../FormLabel";
+import { useForm } from "react-hook-form";
+
 import FormRow from "../FormRow";
-import { Controller, useForm } from "react-hook-form";
-import FormErrorDisplay from "../FormErrorDisplay";
 import PaymentFormRowName from "./PaymentFormRowName";
 import PaymentFormRowCard from "./PaymentFormRowCard";
 import PaymentFormRowExpiration from "./PaymentFormRowExpiration";
@@ -22,13 +21,16 @@ export default function CoursePaymentForm() {
   // FUNCTIONS
 
   const coursePaymentFormSubmit = (data) => {
-    console.log({
-      ...data,
-      fasterCheckOut:
-        data?.fasterCheckOut === undefined || data?.fasterCheckOut === false
-          ? false
-          : true,
-    }); // data will now contain the form values
+    // const formData = new Object({
+    //   ...data,
+    //   fasterCheckOut:
+    //     data?.fasterCheckOut === undefined || data?.fasterCheckOut === false
+    //       ? false
+    //       : true,
+    // });
+    // console.log(formData);
+
+    console.log(data);
   };
 
   // JSX
