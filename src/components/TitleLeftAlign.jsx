@@ -15,9 +15,13 @@ const TitleLeftAlign = ({ className = "" }) => {
           academic success and a love for learning.
         </div>
       </div>
+      {/* hidden on sm and md  */}
+      <section className="hidden xl:block">
+
       {['6','7','8'].map((levelOfClass) => (
         <ExploreCourses key={levelOfClass} levelOfClass={levelOfClass} />
       ))}
+      </section>
     </div>
   );
 };
