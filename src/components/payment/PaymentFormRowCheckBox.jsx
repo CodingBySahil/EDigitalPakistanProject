@@ -5,6 +5,8 @@ import { Checkbox } from "@mui/material";
 import FormRow from "../FormRow";
 import FormLabel from "../FormLabel";
 
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
 // COMPONENT START
 export default function PaymentFormRowCheckBox({ control }) {
   // VARIABLES
@@ -16,11 +18,13 @@ export default function PaymentFormRowCheckBox({ control }) {
     <FormRow flexColType="row">
       <div className="flex justify-center">
         <Controller
+          defaultValue={false}
           name="fasterCheckOut"
           control={control}
           render={({ field }) => (
             <>
               <Checkbox
+                {...label}
                 {...field}
                 id={"fasterCheckOut"}
                 sx={{
@@ -30,6 +34,7 @@ export default function PaymentFormRowCheckBox({ control }) {
                     color: "#49BBBD",
                   },
                 }}
+                defaultChecked={false}
               />
 
               <FormLabel
@@ -46,7 +51,7 @@ export default function PaymentFormRowCheckBox({ control }) {
 }
 
 PaymentFormRowCheckBox.propTypes = {
-  control: PropTypes.func,
+  control: PropTypes.object,
 };
 //size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 // COMPONENT END
