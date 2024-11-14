@@ -94,7 +94,7 @@ const ExploreCourses = ({ levelOfClass }) => {
                                 </div>
                                 <div className="flex items-center gap-0.5">
                                   {[...Array(5)].map((_, i) => (
-                                    <FaStar key={i} className="h-5 w-5 text-yellow-400" />
+                                    <FaStar key={i} className="h-5 w-5 text-yellow-300 hover:text-yellow-500" />
                                   ))}
                                 </div>
                                 <button className="md:text-sm mt-2 rounded-md bg-blue-400 px-4 py-2 text-xs text-white transition-colors hover:bg-blue-600 lg:text-base cursor-pointer">
