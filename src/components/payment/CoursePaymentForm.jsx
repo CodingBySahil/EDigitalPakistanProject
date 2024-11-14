@@ -1,10 +1,13 @@
 import Button from "@mui/material/Button";
 import FormLabel from "../FormLabel";
 import FormRow from "../FormRow";
-import FormTextField from "../FormTextField";
-import { Checkbox } from "@mui/material";
 import { Controller, useForm } from "react-hook-form";
 import FormErrorDisplay from "../FormErrorDisplay";
+import PaymentFormRowName from "./PaymentFormRowName";
+import PaymentFormRowCard from "./PaymentFormRowCard";
+import PaymentFormRowExpiration from "./PaymentFormRowExpiration";
+import PaymentFormRowCVC from "./PaymentFormRowCVC";
+import PaymentFormRowCheckBox from "./PaymentFormRowCheckBox";
 
 // COMPONENT START
 export default function CoursePaymentForm() {
@@ -19,100 +22,30 @@ export default function CoursePaymentForm() {
   // FUNCTIONS
 
   const coursePaymentFormSubmit = (data) => {
-    console.log(data); // data will now contain the form values
-  };
-
-  const submitError = (errors) => {
-    console.log("error in submission", errors);
+    console.log({
+      ...data,
+      fasterCheckOut:
+        data?.fasterCheckOut === undefined || data?.fasterCheckOut === false
+          ? false
+          : true,
+    }); // data will now contain the form values
   };
 
   // JSX
   return (
     <form
       className="flex flex-col gap-[10px]"
-      onSubmit={handleSubmit(coursePaymentFormSubmit, submitError)} // handleSubmit will trigger form submission
+      onSubmit={handleSubmit(coursePaymentFormSubmit)} // handleSubmit will trigger form submission
     >
-      <FormRow>
-        <FormLabel htmlFor={"nameOnCard"} label={"Name on card"} />
-        <FormTextField
-          register={register}
-          id={"nameOnCard"}
-          placeholder={"Enter name on card"}
-          validationObj={{
-            required: "Name on card is required", // Optional: Add a message if required
-            pattern: {
-              value: /^[A-Za-z]+$/, // Allows only uppercase and lowercase letters
-              message: "Name on card should only contain letters and spaces",
-            },
-            maxLength: {
-              value: 50,
-              message: "Name on card should not exceed 50 characters",
-            },
-          }}
-        />
-        {errors?.nameOnCard && (
-          <FormErrorDisplay>{errors?.nameOnCard?.message}</FormErrorDisplay>
-        )}
-      </FormRow>
+      <PaymentFormRowName register={register} errors={errors} />
 
-      <FormRow>
-        <FormLabel htmlFor={"cardNumber"} label={"Card number"} />
-        <FormTextField
-          register={register}
-          id={"cardNumber"}
-          placeholder={"Enter card number"}
-        />
-      </FormRow>
+      <PaymentFormRowCard register={register} errors={errors} />
 
-      <FormRow>
-        <FormLabel
-          htmlFor={"expirationDate"}
-          label={"Expiration date (MM/YY)"}
-        />
-        <FormTextField
-          register={register}
-          id={"expirationDate"}
-          placeholder={"Enter expiration date"}
-        />
-      </FormRow>
+      <PaymentFormRowExpiration register={register} errors={errors} />
 
-      <FormRow>
-        <FormLabel htmlFor={"cardCvc"} label={"CVC"} />
-        <FormTextField
-          register={register}
-          id={"cardCvc"}
-          placeholder={"Enter cvc"}
-        />
-      </FormRow>
+      <PaymentFormRowCVC register={register} errors={errors} />
 
-      <FormRow flexColType="row">
-        <div className="flex justify-center">
-          <Controller
-            name="fasterCheckOut"
-            control={control}
-            render={({ field }) => (
-              <>
-                <Checkbox
-                  {...field}
-                  id={"fasterCheckOut"}
-                  sx={{
-                    margin: "0px",
-                    color: "#49BBBD",
-                    "&.Mui-checked": {
-                      color: "#49BBBD",
-                    },
-                  }}
-                />
-
-                <FormLabel
-                  htmlFor={"fasterCheckOut"}
-                  label={"Save my information for faster checkout"}
-                />
-              </>
-            )}
-          />
-        </div>
-      </FormRow>
+      <PaymentFormRowCheckBox control={control} />
 
       <FormRow>
         <Button
