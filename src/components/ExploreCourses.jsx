@@ -1,4 +1,4 @@
-import { PropTypes } from "prop-types";
+import PropTypes from "prop-types";
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
@@ -34,9 +34,9 @@ const ExploreCourses = ({ levelOfClass }) => {
         </div>
 
         {/* Container */}
-        <div className=" ">
+        <div className="relative">
           {/* Subject Cards Container */}
-          <div className="relative flex flex-wrap gap-2">
+          <div className="relative flex flex-wrap gap-4">
             {[
               "English",
               "General Science",
@@ -56,11 +56,13 @@ const ExploreCourses = ({ levelOfClass }) => {
                     onMouseLeave={() => setIsHovered(false)}
                   >
                     <div
-                      className={`flex h-[20rem] -rotate-[8deg] transform rounded-lg bg-white p-2 shadow-lg transition-all duration-300 ease-in-out ${isHovered ? "z-10 scale-105" : ""}`}
+                      className={`flex h-[20rem] -rotate-[2deg] transform rounded-lg bg-white p-2 shadow-lg transition-all duration-1000 ease-in-out ${
+                        isHovered ? "z-10 -rotate-[1deg]" : ""
+                      }`}
                     >
                       <div className="h-full max-w-20 rounded-lg bg-green-200 p-2 shadow-md">
                         <div
-                          className={`flex h-full flex-shrink-0 items-start justify-center rounded-md px-4 py-2 text-center text-white ${getBackgroundColor(
+                          className={`flex h-full flex-shrink-0 items-start justify-center rounded-md px-4 py-2 text-center text-white transition-transform duration-500 ${getBackgroundColor(
                             subject,
                           )}`}
                         >
@@ -72,8 +74,8 @@ const ExploreCourses = ({ levelOfClass }) => {
                       <div>
                         {/* Hovered Subject Book Design */}
                         {isHovered && (
-                          <div className="hover:scale-103 w-96 transform p-2 transition-all duration-300 ease-in-out hover:shadow-2xl md:p-4">
-                            <div className="animate-fadeIn flex h-72 rounded-lg bg-white p-4 opacity-0 shadow-lg">
+                          <div className="animate-fadeIn w-96 transform p-2 transition-all duration-500 ease-in-out hover:scale-105 md:p-4">
+                            <div className="flex h-72 rounded-lg bg-white p-4 shadow-lg">
                               <img
                                 src="/book-1@2x.png" // respective image path
                                 alt={`${subject} book`}
@@ -98,19 +100,12 @@ const ExploreCourses = ({ levelOfClass }) => {
                                     />
                                   ))}
                                 </div>
-                                <Link to={'/course-calender'}>
+                                <Link to={"/course-calender"}>
                                   <button className="md:text-sm mt-2 cursor-pointer rounded-md bg-blue-400 px-4 py-2 text-xs text-white transition-colors hover:bg-blue-600 lg:text-base">
                                     Explore
                                   </button>
                                 </Link>
                               </div>
-
-                              <button
-                                onClick={() => setIsHovered(false)}
-                                className="absolute right-2 top-2 cursor-pointer rounded-full bg-rose-500 p-1 text-white transition-all hover:bg-red-600"
-                              >
-                                X
-                              </button>
                             </div>
                           </div>
                         )}
