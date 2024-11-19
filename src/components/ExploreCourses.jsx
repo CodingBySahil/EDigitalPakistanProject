@@ -57,7 +57,7 @@ const ExploreCourses = ({ levelOfClass }) => {
                   >
                     <div
                       className={`flex h-[20rem] -rotate-[2deg] transform rounded-lg bg-white p-2 shadow-lg transition-all duration-1000 ease-in-out ${
-                        isHovered ? "z-10 -rotate-[1deg]" : ""
+                        isHovered ? "hidden" : "block"
                       }`}
                     >
                       <div className="h-full max-w-20 rounded-lg bg-green-200 p-2 shadow-md">
@@ -70,6 +70,7 @@ const ExploreCourses = ({ levelOfClass }) => {
                             {subject} - Class {levelOfClass}th
                           </p>
                         </div>
+                      </div>
                       </div>
                       <div>
                         {/* Hovered Subject Book Design */}
@@ -110,7 +111,7 @@ const ExploreCourses = ({ levelOfClass }) => {
                           </div>
                         )}
                       </div>
-                    </div>
+                    {/* </div> */}
                   </div>
                 </div>
               );
