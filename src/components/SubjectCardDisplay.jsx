@@ -18,7 +18,7 @@ export default function SubjectCardDisplay({ cardsArr }) {
           {/* Image Section */}
           <section className="bg-lightsteelblue-200 rounded-[5px]">
             <img
-              src={`../${val?.bookImg}`}
+              src={`book-1@2x.png`}
               alt={val?.title}
               className="w-full h-full object-cover object-top rounded-[5px]"
             />
