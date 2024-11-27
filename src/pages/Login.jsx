@@ -44,7 +44,9 @@ const Login = ({ className = "" }) => {
         localStorage.setItem("user", JSON.stringify(result.user));
         setMessage(result.Success);
         setLoginSuccess(true);
-        navigate("/subjectSelection");
+        // navigate("/subjectSelection");
+        // navigate and pass username
+        navigate(`/subjectSelection?username=${username}`);
       } else {
         setMessage(result.message || "Login failed.");
       }
