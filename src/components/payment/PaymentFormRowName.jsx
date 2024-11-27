@@ -22,7 +22,7 @@ export default function PaymentFormRowName({ register, errors }) {
         validationObj={{
           required: "Name on card is required", // Optional: Add a message if required
           pattern: {
-            value: /^[A-Za-z]+$/, // Allows only uppercase and lowercase letters
+            value: /^[A-Za-z\s]+$/, // Allows uppercase, lowercase letters, and spaces
             message: "Name on card should only contain letters and spaces",
           },
           maxLength: {

@@ -9,7 +9,7 @@ import {
 } from "@stripe/react-stripe-js";
 
 import FormRow from "../FormRow";
-// import PaymentFormRowName from "./PaymentFormRowName";
+import PaymentFormRowName from "./PaymentFormRowName";
 // import PaymentFormRowCard from "./PaymentFormRowCard";
 // import PaymentFormRowExpiration from "./PaymentFormRowExpiration";
 // import PaymentFormRowCVC from "./PaymentFormRowCVC";
@@ -32,11 +32,11 @@ export default function CoursePaymentForm() {
   // FUNCTIONS
 
   //    FUNCTION
-  const coursePaymentFormSubmit = async () => {
+  const coursePaymentFormSubmit = async (formData) => {
     if (!stripe || !elements) return;
 
     try {
-      // Make a request to the backend to get the client secret
+      // DIVIDER  Make a request to the backend to get the client secret_____________
       const response = await fetch(`${stripePaymentURL}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -50,44 +50,25 @@ export default function CoursePaymentForm() {
       }
 
       // Parse the JSON response
-      const { data } = await response.json();
+      const { data } = await response.json(); //____________________________
 
-      console.log(data.clientSecret);
-
-      // Confirm the payment using the client secret
+      //z Confirm the payment using the client secret_________________________
       const confirmPayment = await stripe.confirmCardPayment(
         data.clientSecret,
         {
           payment_method: {
             card: elements.getElement(CardNumberElement),
             billing_details: {
-              name: "Uzair", // Add the billing name if required
+              name: formData.nameOnCard, // Add the billing name if required
             },
           },
         },
       );
 
-      console.log(confirmPayment);
-
-      if (confirmPayment.error) {
-        // Handle error if the payment confirmation failed
-        console.error(
-          "Payment confirmation error:",
-          confirmPayment.error.message,
-        );
-        throw new Error(`Payment failed: ${confirmPayment.error.message}`);
-      }
-
       if (confirmPayment.paymentIntent.status === "succeeded") {
         console.log("Payment confirmed successfully!");
-      } else {
-        console.error(
-          "Payment failed: unexpected status",
-          confirmPayment.paymentIntent.status,
-        );
       }
     } catch (err) {
-      console.error("Payment error:", err.message);
       throw new Error(`Unable to make payment: ${err.message}`);
     }
   };
@@ -98,22 +79,33 @@ export default function CoursePaymentForm() {
       className="flex flex-col gap-[10px]"
       onSubmit={handleSubmit(coursePaymentFormSubmit)}
     >
-      {/* <PaymentFormRowName register={register} errors={errors} /> */}
+      <PaymentFormRowName register={register} errors={errors} />
 
       {/* <PaymentFormRowCard register={register} errors={errors} /> */}
       <FormRow>
         <FormLabel htmlFor={"cardNumber"} label={"Card number"} />
-        <CardNumberElement id={"cardNumber"} />
+        <CardNumberElement
+          id={"cardNumber"}
+          className="mt-[5px] rounded-[5px] bg-slate-100 p-[8px]"
+        />
       </FormRow>
 
       {/* <PaymentFormRowExpiration register={register} errors={errors} /> */}
       <FormRow>
-        <CardExpiryElement />
+        <FormLabel htmlFor={"cardExpiry"} label={"Card expiry"} />
+        <CardExpiryElement
+          id={"cardExpiry"}
+          className="mt-[5px] rounded-[5px] bg-slate-100 p-[8px]"
+        />
       </FormRow>
 
       {/* <PaymentFormRowCVC register={register} errors={errors} /> */}
       <FormRow>
-        <CardCvcElement />
+        <FormLabel htmlFor={"cardCvc"} label={"Card CVC"} />
+        <CardCvcElement
+          id={"cardCvc"}
+          className="mt-[5px] rounded-[5px] bg-slate-100 p-[8px]"
+        />
       </FormRow>
 
       <PaymentFormRowCheckBox control={control} />

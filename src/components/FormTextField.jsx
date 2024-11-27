@@ -18,7 +18,7 @@ export default function FormTextField({
       {...register(`${id}`, { ...validationObj })}
       type="text"
       placeholder={placeholder}
-      className="mt-[5px] h-[35px] w-full rounded-[5px] border border-solid border-slate-200 pl-[10px] text-[14px] focus:outline-none focus:ring-[1px] focus:ring-brand-color-cyan"
+      className="mt-[5px] rounded-[5px] bg-slate-100 p-[8px] text-[16px] focus:outline-none"
     />
   );
   // JSX
