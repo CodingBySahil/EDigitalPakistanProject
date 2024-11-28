@@ -1,29 +1,31 @@
-import React, { useState, useEffect } from "react";
+import { PropTypes } from "prop-types";
+import { useState, useEffect } from "react";
 import { mainURL } from "../../constants/const";
 
-const WordMeaningForm = ({subjectNameFromURL}) => {
+const WordMeaningForm = ({ subjectNameFromURL }) => {
   const [chapterCode, setChapterCode] = useState("");
   const [word, setWord] = useState("");
   const [meaning, setMeaning] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [availableChapters, setAvailableChapters] = useState([]);
+  const [chapters, setChapters] = useState([]);
 
+  // Fetch chapters from API when component mounts
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        const chapters = [
-          { code: "ENG101CH1", name: "Hazrat Muhammad (S.A.w) The Rasool Of Mercy" },
-          { code: "ENG101CH2", name: "New Boy in Class" },
-          { code: "ENG101CH3", name: "A Nation's Strength" },
-        ];
-        setAvailableChapters(chapters);
-      } catch (err) {
-        console.error("Failed to fetch chapters:", err);
-        setError("Failed to load chapters. Please try again later.");
+        const response = await fetch(
+          `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
+        );
+        const data = await response.json();
+        // console.log("Chapters fetched:", data); // Log the response
+        setChapters(data); // Set chapters in state
+      } catch (error) {
+        console.error("Error fetching chapters:", error);
       }
     };
+
     fetchChapters();
   }, []);
 
@@ -39,6 +41,12 @@ const WordMeaningForm = ({subjectNameFromURL}) => {
       return;
     }
 
+    if (!chapterCode) {
+      setError("Please select a chapter.");
+      setIsSubmitting(false);
+      return;
+    }
+
     const formData = {
       chapterCode,
       word,
@@ -46,13 +54,16 @@ const WordMeaningForm = ({subjectNameFromURL}) => {
     };
 
     try {
-      const response = await fetch(`${mainURL}/api/${subjectNameFromURL}CH${chapterNumber}/wordMeaning/data`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${mainURL}/api/${chapterCode}/wordMeaning/data`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
         },
-        body: JSON.stringify(formData),
-      });
+      );
 
       if (!response.ok) {
         const errorData = await response.json();
@@ -72,64 +83,65 @@ const WordMeaningForm = ({subjectNameFromURL}) => {
       setIsSubmitting(false);
     }
   };
-
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto mt-8">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-lgf">
+      <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add New Word
       </h2>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-100 text-red-700 rounded">{error}</div>
+        <div className="mb-4 rounded bg-red-100 p-3 text-red-700">{error}</div>
       )}
 
       {success && (
-        <div className="mb-4 p-3 bg-green-100 text-green-700 rounded">
+        <div className="mb-4 rounded bg-green-100 p-3 text-green-700">
           Word saved successfully!
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
         <div>
-          <label className="block font-semibold text-lg mb-2">Chapter Code</label>
+          <label className="text-lg mb-2 block font-semibold">
+            Chapter Code
+          </label>
           <select
             value={chapterCode}
             onChange={(e) => setChapterCode(e.target.value)}
-            className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+            className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
             required
           >
             <option value="" disabled>
               Select chapter code
             </option>
-            {availableChapters.map((chapter) => (
-              <option key={chapter.code} value={chapter.code}>
-                {chapter.code} - {chapter.name}
+            {chapters.map((chapter) => (
+              <option key={chapter.chapterCode} value={chapter.chapterCode}>
+                {chapter.chapterCode} - {chapter.name}
               </option>
             ))}
           </select>
         </div>
 
-        <div className="border p-4 rounded-md">
-          <h3 className="text-xl font-semibold mb-2">Word</h3>
+        <div className="rounded-md border p-4">
+          <h3 className="mb-2 text-xl font-semibold">Word</h3>
           <div className="mb-4">
-            <label className="block font-medium mb-1">Word</label>
+            <label className="mb-1 block font-medium">Word</label>
             <input
               type="text"
               value={word}
               onChange={(e) => setWord(e.target.value)}
               placeholder="Enter word"
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+              className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
               required
             />
           </div>
 
           <div className="mb-4">
-            <label className="block font-medium mb-1">Meaning</label>
+            <label className="mb-1 block font-medium">Meaning</label>
             <textarea
               value={meaning}
               onChange={(e) => setMeaning(e.target.value)}
               placeholder="Enter meaning"
-              className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+              className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
               rows="3"
               required
             ></textarea>
@@ -138,8 +150,8 @@ const WordMeaningForm = ({subjectNameFromURL}) => {
 
         <button
           type="submit"
-          className={`w-full py-3 text-lg bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-all duration-200 ease-in-out ${
-            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          className={`text-lg w-full rounded-md bg-blue-500 py-3 text-white shadow-md transition-all duration-200 ease-in-out hover:bg-blue-600 ${
+            isSubmitting ? "cursor-not-allowed opacity-50" : ""
           }`}
           disabled={isSubmitting}
         >
@@ -150,4 +162,8 @@ const WordMeaningForm = ({subjectNameFromURL}) => {
   );
 };
 
+// adding prop type validation
+WordMeaningForm.propTypes = {
+  subjectNameFromURL: PropTypes.string.isRequired,
+};
 export default WordMeaningForm;

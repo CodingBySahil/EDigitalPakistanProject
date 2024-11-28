@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const CourseNavbar = () => {
+  const urlParams = new URLSearchParams(window.location.search);
+  const username = urlParams.get("username");
   return (
     <>
       {/* Header Section */}
@@ -30,7 +32,7 @@ const CourseNavbar = () => {
           </Link>
         </nav>
         <div className="flex items-center">
-          <span className="mr-2">Lina</span>
+          <span className="mr-2"><b>{username.toUpperCase()}</b></span>
           <img
             src="group-88@2x.png"
             alt="User Profile"

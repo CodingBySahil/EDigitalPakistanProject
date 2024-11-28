@@ -1,10 +1,8 @@
-// src/components/PrivateRoute.jsx
-import React from "react";
 import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const PrivateRoute = ({ isAuthenticated, children }) => {
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
+  return !isAuthenticated ? children : <Navigate to="/login" replace />;
 };
 
 PrivateRoute.propTypes = {

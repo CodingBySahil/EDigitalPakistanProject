@@ -26,22 +26,11 @@ const TopNav = ({ className = "" }) => {
             <Link to={"/"} className="relative text-white no-underline">
               Home
             </Link>
-            {/* <Link to={'/course-calender'} className=" no-underline relative  text-white">Courses</Link> */}
-            <Link
-              to={"/classSelection"}
-              className="relative text-white no-underline"
-            >
-              Courses
-            </Link>
-            <Link to={"/class"} className="relative text-white no-underline">
-              Classes
-            </Link>
-            <Link to={"/blog"} className="relative text-white no-underline">
-              Blog
-            </Link>
-            <Link to={"/about-us"} className="relative text-white no-underline">
-              About&nbsp;Us
-            </Link>
+            <Link to={'/course-calender'} className=" no-underline relative  text-white">Courses</Link>
+            <Link to={'/class?username=Lina'} className=" no-underline relative  text-white">Classes</Link>
+            <Link to={'/blog'} className=" no-underline relative  text-white">Blog</Link>
+            <Link to={'/about-us'} className=" no-underline relative  text-white">About&nbsp;Us</Link>
+
           </div>
           <div className="hidden space-x-4 lg:flex">
             <Link
@@ -84,25 +73,10 @@ const TopNav = ({ className = "" }) => {
           <Link to={"/"} className="text-lg py-2 text-white no-underline">
             Home
           </Link>
-          {/* <Link to={'/course-calender'} className="py-2 text-white text-lg no-underline">Courses</Link> */}
-          <Link
-            to={"/classSelection"}
-            className="relative text-white no-underline"
-          >
-            Courses
-          </Link>
-          <Link to={"/class"} className="text-lg py-2 text-white no-underline">
-            classes
-          </Link>
-          <Link to={"/blog"} className="text-lg py-2 text-white no-underline">
-            Blog
-          </Link>
-          <Link
-            to={"/about-us"}
-            className="text-lg py-2 text-white no-underline"
-          >
-            About Us
-          </Link>
+          <Link to={'/course-calender'} className="py-2 text-white text-lg no-underline">Courses</Link>
+          <Link to={'/class?username=Lina'} className="py-2 text-white text-lg no-underline">classes</Link>
+          <Link to={'/blog'} className="py-2 text-white text-lg no-underline">Blog</Link>
+          <Link to={'/about-us'} className="py-2 text-white text-lg no-underline">About Us</Link>
           <Link
             to={"/login"}
             className="text-lg mt-4 w-full rounded-md bg-white py-2 text-center text-dimgray no-underline"

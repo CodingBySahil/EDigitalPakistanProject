@@ -1,10 +1,10 @@
-// src/App.jsx
 import { useEffect, useState } from "react";
 import {
   Routes,
   Route,
   useNavigationType,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -23,8 +23,6 @@ import PaymentPage from "./pages/PaymentPage";
 import ClassSelectionPage from "./pages/ClassSelectionPage";
 import SelectSubjectCourse from "./components/classSubjectSelection/SelectSubjectCourse";
 
-// subjects page created
-
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -33,7 +31,7 @@ function App() {
   // Authentication state
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
     const storedAuth = localStorage.getItem("isAuthenticated");
-    return storedAuth === "true" ? true : false;
+    return storedAuth === "true";
   });
 
   useEffect(() => {
@@ -86,7 +84,12 @@ function App() {
     <>
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
-        <Route path="/" element={<Wrapper />} />
+        <Route
+          path="/"
+          element={
+            isAuthenticated ? <Wrapper /> : <Navigate to="/login" replace />
+          }
+        />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/class" element={<CourseClassSelection />} />

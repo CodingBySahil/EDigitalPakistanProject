@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { PropTypes } from "prop-types";
+import { useState, useEffect } from "react";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { mainURL } from "../../constants/const";
@@ -15,9 +16,11 @@ const ContentForm = ({ subjectNameFromURL }) => {
   useEffect(() => {
     const fetchChapters = async () => {
       try {
-        const response = await fetch(`${mainURL}/api/${subjectNameFromURL}/chapter/data`);
+        const response = await fetch(
+          `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
+        );
         const data = await response.json();
-        console.log("Chapters fetched:", data); // Log the response
+        // console.log("Chapters fetched:", data); // Log the response
         setChapters(data); // Set chapters in state
       } catch (error) {
         console.error("Error fetching chapters:", error);
@@ -81,19 +84,19 @@ const ContentForm = ({ subjectNameFromURL }) => {
   };
 
   return (
-    <div className="p-6 bg-white rounded-lg shadow-lg max-w-4xl mx-auto mt-8 sm:w-full">
-      <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">
+    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-lg sm:w-full">
+      <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add New Content
       </h2>
 
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Dropdown for selecting chapter number */}
         <div className="mb-6">
-          <label className="block font-semibold text-lg mb-2 ">Chapter</label>
+          <label className="text-lg mb-2 block font-semibold">Chapter</label>
           <select
             value={subjectName}
             onChange={handleChapterChange}
-            className="w-full p-3 border border-gray-300 rounded-lg focus:ring-4 focus:ring-indigo-500 focus:border-indigo-500 bg-white shadow-lg transition duration-200 ease-in-out transform hover:scale-[1.01] hover:shadow-md"
+            className="w-full transform rounded-lg border border-gray-300 bg-white p-3 shadow-lg transition duration-200 ease-in-out hover:scale-[1.01] hover:shadow-md focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500"
           >
             <option value="" disabled className="text-gray-500">
               Select a chapter
@@ -108,11 +111,11 @@ const ContentForm = ({ subjectNameFromURL }) => {
 
         {/* Content Input */}
         <div>
-          <label className="block font-semibold text-lg mb-2">Content</label>
+          <label className="text-lg mb-2 block font-semibold">Content</label>
           <ReactQuill
             value={text}
             onChange={setText}
-            className="bg-white rounded-md"
+            className="rounded-md bg-white"
             modules={{
               toolbar: [
                 [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -150,14 +153,14 @@ const ContentForm = ({ subjectNameFromURL }) => {
             ]}
             placeholder="Write your content here..."
           />
-          {error && <p className="text-red-500 mt-2">{error}</p>}
+          {error && <p className="mt-2 text-red-500">{error}</p>}
         </div>
 
         {/* Submit Button */}
         <button
           type="submit"
-          className={`w-full py-3 text-lg bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600 transition-all duration-200 ease-in-out ${
-            isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+          className={`text-lg w-full rounded-md bg-blue-500 py-3 text-white shadow-md transition-all duration-200 ease-in-out hover:bg-blue-600 ${
+            isSubmitting ? "cursor-not-allowed opacity-50" : ""
           }`}
           disabled={isSubmitting}
         >
@@ -167,12 +170,10 @@ const ContentForm = ({ subjectNameFromURL }) => {
 
       {/* Confirmation Modal */}
       {showModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
-            <h3 className="text-xl font-semibold mb-4">Confirm Submission</h3>
-            <p className="mb-4">
-              Are you sure you want to submit the data to?
-            </p>
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-lg">
+            <h3 className="mb-4 text-xl font-semibold">Confirm Submission</h3>
+            <p className="mb-4">Are you sure you want to submit the data to?</p>
             <p className="mb-2">
               <strong>Subject :</strong> {subjectName}
             </p>
@@ -182,13 +183,13 @@ const ContentForm = ({ subjectNameFromURL }) => {
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setShowModal(false)}
-                className="px-4 py-2 bg-gray-300 text-gray-800 rounded-md hover:bg-gray-400 hover:text-white cursor-pointer"
+                className="cursor-pointer rounded-md bg-gray-300 px-4 py-2 text-gray-800 hover:bg-gray-400 hover:text-white"
               >
                 Cancel
               </button>
               <button
                 onClick={confirmSubmit}
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-900 cursor-pointer"
+                className="cursor-pointer rounded-md bg-blue-500 px-4 py-2 text-white hover:bg-blue-900"
               >
                 Confirm
               </button>
@@ -200,4 +201,8 @@ const ContentForm = ({ subjectNameFromURL }) => {
   );
 };
 
+// adding prop type validation
+ContentForm.propTypes = {
+  subjectNameFromURL: PropTypes.string.isRequired,
+};
 export default ContentForm;
