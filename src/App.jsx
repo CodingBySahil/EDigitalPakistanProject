@@ -20,6 +20,8 @@ import ClassDetails from "./pages/courses/ClassDetails";
 import CourseCalendar from "./components/courseCalendar/CourseCalendar";
 import SubjectSelection from "./components/subjectSelection/SubjectSelection";
 import PaymentPage from "./pages/PaymentPage";
+import ClassSelectionPage from "./pages/ClassSelectionPage";
+import SelectSubjectCourse from "./components/classSubjectSelection/SelectSubjectCourse";
 
 function App() {
   const action = useNavigationType();
@@ -92,6 +94,13 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/class" element={<CourseClassSelection />} />
         <Route path="/class/:classLink" element={<ClassDetails />} />
+
+        {/* DIVIDER route to select a class */}
+        <Route path="/classSelection" element={<ClassSelectionPage />} />
+        <Route
+          path="/classSelection/subjectSelection"
+          element={<SelectSubjectCourse />}
+        />
 
         {/* DIVIDER routes for course calendar */}
         <Route path="/course-calender" element={<CourseCalendarPage />} />
