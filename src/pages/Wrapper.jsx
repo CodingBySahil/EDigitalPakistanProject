@@ -11,7 +11,7 @@ import TitleLeftAlign from "../components/TitleLeftAlign";
 
 const Wrapper = () => {
   return (
-    <div className="max-w-screen-xl mx-auto px-4">
+    <div className="mx-auto max-w-screen-xl px-4">
       <Header />
       <AllInOne />
       <WhatIsTOTC />

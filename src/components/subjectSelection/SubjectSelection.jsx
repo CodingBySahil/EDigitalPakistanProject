@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+
 import SubjectCardDisplay from "../SubjectCardDisplay";
 import ScrollableBody from "../ScrollableBody";
-import CourseNavbar from "../courseCalendar/CourseNavbar";
 import { mainURL } from "../../constants/const";
 
 export default function SubjectSelection() {
@@ -26,15 +26,18 @@ export default function SubjectSelection() {
   return (
     <div className="grid grid-rows-[60px_1fr]">
       {/* Page header */}
-      <CourseNavbar />
-      <ScrollableBody>
-        {/* Message */}
-        <section className="flex min-h-[50px] items-center">
-          <p className="text-[18px] font-bold">Please select a course</p>
-        </section>
+      <header className="bg-brand-color-cyan">header</header>
 
-        {/* Subject cards display */}
-        <SubjectCardDisplay cardsArr={allSubjectsArray} />
+      <ScrollableBody pageHeaderHeight={60}>
+        <div className="p-[10px]">
+          {/* Message */}
+          <section className="flex min-h-[50px] items-center">
+            <p className="text-[18px] font-bold">Please select a course</p>
+          </section>
+
+          {/* Subject cards display */}
+          <SubjectCardDisplay cardsArr={allSubjectsArray} />
+        </div>
       </ScrollableBody>
     </div>
   );

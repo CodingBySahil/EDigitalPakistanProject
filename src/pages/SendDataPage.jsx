@@ -30,18 +30,20 @@ const SendDataPage = ({ onLogout }) => {
 
   return (
     <div className="p-6">
-      <div className="flex justify-end mb-4">
+      <div className="mb-4 flex justify-end">
         <button
           onClick={handleLogoutClick}
-          className="py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600"
+          className="rounded bg-red-500 px-4 py-2 text-white hover:bg-red-600"
         >
           Logout
         </button>
       </div>
-      
+
       {/* Display the subject name */}
       <div className="mb-4">
-        <h2 className="text-2xl font-semibold">Subject: {subjectNameFromURL}</h2>
+        <h2 className="text-2xl font-semibold">
+          Subject: {subjectNameFromURL}
+        </h2>
       </div>
 
       {/* Pass subjectNameFromURL as a prop to each component */}
