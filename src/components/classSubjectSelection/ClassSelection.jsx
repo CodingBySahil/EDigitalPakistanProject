@@ -29,10 +29,7 @@ export default function ClassSelection() {
         <Heading>Select class to view courses</Heading>
       </header>
 
-      <main
-        style={{ height: `calc(${screenHeight}px - 60px)` }}
-        className="flex flex-col gap-[10px] overflow-y-auto overflow-x-hidden"
-      >
+      <main className="grid grid-cols-1 gap-[10px] overflow-x-hidden tabS:grid-cols-2 laptop14:grid-cols-4">
         {classesArr.map((val, i) => (
           <ClassSelectionCard key={i} classNumber={val?.class} url={val?.url} />
         ))}
