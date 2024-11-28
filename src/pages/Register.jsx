@@ -2,7 +2,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import registerImg from "../assets/RegisterImg.jpg";
 import { mainURL } from "../../src/constants/const";
 
 const Register = ({ className = "" }) => {
@@ -57,7 +56,7 @@ const Register = ({ className = "" }) => {
   return (
     <div className={`mx-auto flex min-h-screen w-full flex-col items-center justify-center bg-white font-poppins lg:flex-row ${className}`}>
       <div className="w-full md:w-1/2 lg:w-2/5">
-        <img className="h-auto max-h-[400px] w-full rounded-[28px] object-cover md:max-h-[500px] md:rounded-[20px] lg:max-h-[600px] lg:rounded-[28px]" src={registerImg} alt="Register" />
+        <img className="h-auto max-h-[400px] w-full rounded-[28px] object-cover md:max-h-[500px] md:rounded-[20px] lg:max-h-[600px] lg:rounded-[28px]" src="RegisterImg.jpg" alt="Register" />
       </div>
 
       <div className="flex w-full flex-col items-center justify-center p-6 lg:w-2/5 lg:p-6">

@@ -2,7 +2,6 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import loginImg from "../assets/LoginImg.jpg";
 import { mainURL } from "../../src/constants/const";
 
 const Login = ({ className = "" }) => {
@@ -65,7 +64,7 @@ const Login = ({ className = "" }) => {
       <div className="w-full md:w-1/2 lg:w-2/5">
         <img
           className="h-auto max-h-[400px] w-full rounded-[28px] object-cover md:max-h-[500px] md:rounded-[20px] lg:max-h-[600px] lg:rounded-[28px]"
-          src={loginImg}
+          src="LoginImg.jpg"
           alt="Login"
         />
       </div>
