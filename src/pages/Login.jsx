@@ -22,7 +22,6 @@ const Login = ({ className = "" }) => {
     e.preventDefault();
 
     const loginData = { username, password };
-    console.log("Sent Data:", loginData); // Log the sent data
 
     setLoading(true);
     setMessage("");
