@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const PrivateRoute = ({ isAuthenticated, children }) => {
-  return isAuthenticated ? children : <Navigate to="/login" replace />;
+  return isAuthenticated ? <Navigate to="/login" replace /> : children;
 };
 
 PrivateRoute.propTypes = {
