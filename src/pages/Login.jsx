@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import { mainURL } from "../../src/constants/const";
 
-const Login = ({ className = "" }) => {
+const Login = ({ className = "", onLogin }) => {
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -38,13 +38,15 @@ const Login = ({ className = "" }) => {
 
       if (response.ok && result.Success) {
         localStorage.setItem("user", JSON.stringify(result.user));
+        localStorage.setItem("isAuthenticated", "true");
+        onLogin(); // Update App state
         setMessage("Login successful!");
 
         if (username === "admin" && password === "admin") {
           navigate(`/subjectSelection?username=${username}`);
         } else {
           alert("Login successful!");
-          navigate(`/course-calender?chapterNumber=ENG101CH2`);
+          navigate(`/`);
         }
       } else {
         setMessage(result.message || "Login failed.");
@@ -79,7 +81,7 @@ const Login = ({ className = "" }) => {
             <div className="flex justify-between">
               <Link
                 to="/login"
-                className="text-lg cursor-pointer rounded-14xl px-6 py-2 text-white no-underline bg-lightseagreen-200 hover:bg-lightseagreen-100"
+                className="text-lg cursor-pointer rounded-14xl bg-lightseagreen-200 px-6 py-2 text-white no-underline hover:bg-lightseagreen-100"
               >
                 Login
               </Link>
@@ -129,7 +131,9 @@ const Login = ({ className = "" }) => {
           {message && (
             <p
               className={`text-lg mt-4 text-center ${
-                message === "Login successful!" ? "text-green-600" : "text-red-600"
+                message === "Login successful!"
+                  ? "text-green-600"
+                  : "text-red-600"
               }`}
             >
               {message}
@@ -141,29 +145,23 @@ const Login = ({ className = "" }) => {
   );
 };
 
-const InputField = ({ label, type, placeholder, value, onChange }) => (
+const InputField = ({ label, ...props }) => (
   <div className="mb-4">
     <label className="mb-2 block text-black">{label}</label>
     <input
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
       className="w-full rounded-xl border border-lightseagreen-100 p-3"
+      {...props}
     />
   </div>
 );
 
 InputField.propTypes = {
   label: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
-  placeholder: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
 };
 
 Login.propTypes = {
   className: PropTypes.string,
+  onLogin: PropTypes.func.isRequired,
 };
 
 export default Login;
