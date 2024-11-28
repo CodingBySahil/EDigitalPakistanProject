@@ -12,7 +12,6 @@ export default function ClassSelectionCard({ classNumber = 0, url = "" }) {
 
   // FUNCTIONS
   const viewCourseClicked = () => {
-    console.log("Hello");
     navigate(url);
   };
 
