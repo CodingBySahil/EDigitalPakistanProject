@@ -9,11 +9,13 @@ const Footer = ({ className = "" }) => {
         <div className="flex flex-col items-center justify-between">
           {/* Left Section - Logo and Tagline */}
           <div className="flex items-center space-x-4">
-            <img
-              className="w-[130px] tabS:w-[130px]"
-              alt="logo"
-              src="/edp-logo-2@2x.png"
-            />
+            <Link to={"/"}>
+              <img
+                className="w-[130px] tabS:w-[130px]"
+                alt="logo"
+                src="/edp-logo-2@2x.png"
+              />
+            </Link>
             <p className="text-[13px]">Learning with flexibility</p>
           </div>
 
