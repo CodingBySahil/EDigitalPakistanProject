@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 
 import CourseCalendarHeader from "./CourseCalendarHeader";
 import CourseCalendarSideBar from "./CourseCalendarSideBar";
@@ -6,7 +6,7 @@ import LoadingSpinner from "../LoadingSpinner";
 import CourseCalendarBody from "./CourseCalendarBody";
 import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
-import { mainURL, sideBarToggleFalse992 } from "../../constants/const";
+import { sideBarToggleFalse992 } from "../../constants/const";
 import { useGetLessonsData } from "./useGetLessonsData";
 
 export const courseCalendarContext = createContext();
@@ -26,8 +26,6 @@ export default function CourseCalendar() {
       setIsShowing((isShowing) => !isShowing);
     }
   }
-
-  //FUNCTION gets the lessons names
 
   // JSX
   if (isLoading === false) {
@@ -80,7 +78,7 @@ export default function CourseCalendar() {
                 />
 
                 {/* page body */}
-                <div className="bg-brand-color-lightBlue/30">
+                <div className="bg-brand-color-lightBlue/30 px-[10px] pb-[10px]">
                   <CourseCalendarBody />
                 </div>
 
@@ -97,7 +95,7 @@ export default function CourseCalendar() {
   } else {
     return (
       <LoadingSpinnerContainer>
-        <LoadingSpinner size={30} />
+        <LoadingSpinner />
       </LoadingSpinnerContainer>
     );
   }

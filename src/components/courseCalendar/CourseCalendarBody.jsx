@@ -55,7 +55,7 @@ export default function CourseCalendarBody() {
     if (status === "pending") {
       return (
         <LoadingSpinnerContainer>
-          <LoadingSpinner size={30} />
+          <LoadingSpinner />
         </LoadingSpinnerContainer>
       );
     }

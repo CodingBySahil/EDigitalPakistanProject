@@ -1,55 +1,53 @@
-import { useGetScreenHeight } from "../../hooks/useGetScreenHeight";
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import TableHeader from "../TableHeader";
 import TableRow from "../TableRow";
 import QuizHeader from "./QuizHeader";
-import { useGetQuizType } from "./useGetQuizType";
 import { useGetWordMeanings } from "./useGetWordMeanings";
+import ScrollableBody from "../ScrollableBody";
 
 // COMPONENT START
 export default function QuizWordMeaning() {
   // VARIABLES
 
-  const { statusWordMeanings, dataWordMeanings } = useGetWordMeanings();
-  const screenHeight = useGetScreenHeight();
+  const { statusWordMeanings, dataWordMeanings = [] } = useGetWordMeanings();
 
   // FUNCTIONS
 
   // JSX
   if (statusWordMeanings === "success") {
     return (
-      <div className="pt-[10px]">
+      <div className="flex flex-col gap-[10px]">
         {/* Quiz header */}
         <QuizHeader />
 
         {/* Quiz body */}
-        <div
-          className="w-[100%] mt-[10px] pb-[80px] overflow-y-auto overflow-x-hidden flex justify-center tabS:px-[60px] laptop14:pl-[60px] laptop14:pr-[200px] laptop14:w-[70%]"
-          style={{ height: `calc(${screenHeight}px - 60px)` }}
-        >
-          <div className="w-[90%] bg-white self-start rounded-[8px]">
-            {/* Table header */}
-            <TableHeader />
 
-            {/* Table header */}
-            <div className="bg-black/10 flex flex-col gap-[1px] rounded-[8px]">
-              {dataWordMeanings.map((val, i) => (
-                <TableRow
-                  key={i}
-                  type={"wordMeaning"}
-                  word={val.word}
-                  meaning={val.meaning}
-                  last={
-                    Number(i) === Number(dataWordMeanings?.length - 1)
-                      ? true
-                      : false
-                  }
-                />
-              ))}
+        <ScrollableBody>
+          <div className="pb-[60px] tabS:px-[10%]">
+            <div className="self-start rounded-[8px] bg-white tabS:text-[23px] tabL:text-[26px]">
+              {/* Table header */}
+              <TableHeader />
+
+              {/* Table header */}
+              <div className="flex flex-col gap-[2px] rounded-[8px] bg-black/10 tabS:text-[22px] tabL:text-[25px]">
+                {dataWordMeanings?.map((val, i) => (
+                  <TableRow
+                    key={i}
+                    type={"wordMeaning"}
+                    word={val.word}
+                    meaning={val.meaning}
+                    last={
+                      Number(i) === Number(dataWordMeanings?.length - 1)
+                        ? true
+                        : false
+                    }
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollableBody>
       </div>
     );
   }
@@ -58,6 +56,13 @@ export default function QuizWordMeaning() {
       <LoadingSpinnerContainer>
         <LoadingSpinner />
       </LoadingSpinnerContainer>
+    );
+  }
+  if (statusWordMeanings === "error") {
+    return (
+      <div className="flex items-center justify-center">
+        <p>An error occured</p>
+      </div>
     );
   }
 

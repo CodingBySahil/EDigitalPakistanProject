@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 import LessonCMP from "./LessonsCMP";
 import { useCourseCalendarContext } from "./useCourseCalendarContext";
@@ -8,13 +8,15 @@ export default function PracticeQuiz() {
   // VARIABLES
   const navigate = useNavigate();
   const { setIsShowing } = useCourseCalendarContext();
+  const [searchParams] = useSearchParams();
+  const chapterNumber = searchParams.get("chapterNumber");
 
   // FUNCTIONS
 
   //    FUNCTION
   function quizComponentClicked(quizType) {
     setIsShowing(false);
-    navigate(`/course-calender/quiz?quizType=${quizType}`);
+    navigate(`/course-calender/${chapterNumber}/quiz?quizType=${quizType}`);
   }
 
   // JSX
@@ -26,7 +28,7 @@ export default function PracticeQuiz() {
       </div>
 
       {/* Body */}
-      <div className="h-[250px] flex flex-col gap-[5px] overflow-x-hidden overflow-y-auto">
+      <div className="flex h-[250px] flex-col gap-[5px] overflow-y-auto overflow-x-hidden">
         <div onClick={() => quizComponentClicked("Word/Meanings")}>
           <LessonCMP
             type={"quiz"}

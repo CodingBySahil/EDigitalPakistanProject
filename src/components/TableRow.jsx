@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 // COMPONENT START
 export default function TableRow({ type, word, meaning, last = false }) {
   // VARIABLES
@@ -8,20 +10,28 @@ export default function TableRow({ type, word, meaning, last = false }) {
   if (type === "wordMeaning") {
     return (
       <div
-        className="grid grid-cols-[1fr_1fr] min-h-[30px] bg-white"
+        className="grid min-h-[30px] grid-cols-[1fr_1fr] bg-white py-[5px]"
         style={{
           borderBottomLeftRadius: last ? "8px" : "0px",
           borderBottomRightRadius: last ? "8px" : "0px",
         }}
       >
-        <div className="flex justify-center items-center font-semibold text-black/50">
-          {word}
+        <div className="flex items-center justify-center font-semibold text-black/50">
+          {`${word?.at(0)?.toUpperCase()}${word?.slice(1)}`}
         </div>
-        <div className="flex justify-center items-center">{meaning}</div>
+        <div className="flex items-center justify-center">{`${meaning?.at(0)?.toUpperCase()}${meaning?.slice(1)}`}</div>
       </div>
     );
   }
 
   // JSX
 }
+
+TableRow.propTypes = {
+  type: PropTypes.string,
+  word: PropTypes.string,
+  meaning: PropTypes.string,
+  last: PropTypes.bool,
+};
+//size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 // COMPONENT END
