@@ -11,10 +11,10 @@ const TopNav = ({ className = "" }) => {
   };
 
   // Authentication state
-  const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    const storedAuth = localStorage.getItem("isAuthenticated");
-    return storedAuth === "true";
-  });
+  // const [isAuthenticated, setIsAuthenticated] = useState(() => {
+  //   const storedAuth = localStorage.getItem("isAuthenticated");
+  //   return storedAuth === "true";
+  // });
 
   let username = localStorage.getItem("user");
   username = JSON.parse(username)
@@ -55,7 +55,7 @@ const TopNav = ({ className = "" }) => {
               About&nbsp;Us
             </Link>
           </div>
-          {!isAuthenticated ? (
+          {!username ? (
             <div className="hidden space-x-4 lg:flex">
             <Link
               to={"/login"}
