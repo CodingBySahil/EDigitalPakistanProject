@@ -55,16 +55,16 @@ const Footer = ({ className = "" }) => {
             <li>
               <Link
                 className="text-[#ADB0C9] no-underline hover:text-white"
-                to="#"
+                to="/faq"
               >
-                Careers
+                FAQs
               </Link>
             </li>
             <li>|</li>
             <li>
               <Link
                 className="text-[#ADB0C9] no-underline hover:text-white"
-                to="#"
+                to="/privacy-policy"
               >
                 Privacy Policy
               </Link>
@@ -73,7 +73,7 @@ const Footer = ({ className = "" }) => {
             <li>
               <Link
                 className="text-[#ADB0C9] no-underline hover:text-white"
-                to="#"
+                to="/terms-condition"
               >
                 Terms & Conditions
               </Link>
