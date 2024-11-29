@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaStar } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -26,7 +26,13 @@ const ExploreCourses = ({ levelOfClass }) => {
   };
 
   // State to track which card is hovered
-  const [hoveredCardIndex, setHoveredCardIndex] = useState(levelOfClass-3); // Default to the first card being open
+  const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
+
+  useEffect(() => {
+    // Set a random index for the first card on mount
+    const randomIndex = Math.floor(Math.random() * 7); // Random number between 0 and 6
+    setHoveredCardIndex(randomIndex);
+  }, []); // Empty dependency array ensures this runs once on mount
 
   return (
     <div className="overflow-y-hidden bg-[#ebf5ff] py-8">
