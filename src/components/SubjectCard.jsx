@@ -32,8 +32,8 @@ export default function SubjectCard({
       {/* Title Section */}
       <section className="mt-[5px] min-h-[50px] w-[150px]">
         <p className="break-words text-[17px] font-bold">
-          {subjectName.charAt(0).toUpperCase() +
-            subjectName.slice(1).toLowerCase()}
+          {subjectName.charAt(0)?.toUpperCase() +
+            subjectName.slice(1)?.toLowerCase()}
         </p>
       </section>
 

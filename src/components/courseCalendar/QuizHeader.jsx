@@ -1,3 +1,4 @@
+import Heading from "../Heading";
 import { useGetQuizType } from "./useGetQuizType";
 
 // COMPONENT START
@@ -10,9 +11,7 @@ export default function QuizHeader() {
   // JSX
   return (
     <div className="pl-[10px]">
-      <p className="font-semibold ">
-        Practice quiz : {quizType.toLocaleLowerCase()}
-      </p>
+      <Heading>Practice quiz : {quizType.toLocaleLowerCase()}</Heading>
     </div>
   );
   // JSX
