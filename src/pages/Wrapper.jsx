@@ -1,3 +1,4 @@
+import { PropTypes } from 'prop-types';
 import AllInOne from "../components/AllInOne";
 import Footer from "../components/Footer";
 import GroupComponent1 from "../components/GroupComponent1";
@@ -9,10 +10,10 @@ import SelfAssessments from "../components/SelfAssessments";
 import AlpCurriculum from "../components/AlpCurriculum";
 import TitleLeftAlign from "../components/TitleLeftAlign";
 
-const Wrapper = () => {
+const Wrapper = ({ onLogout}) => {
   return (
     <div className="mx-auto max-w-screen-xl px-4">
-      <Header />
+      <Header onLogout={onLogout}/>
       <AllInOne />
       <WhatIsTOTC />
       <YouCanDoWithTOTC />
@@ -28,4 +29,8 @@ const Wrapper = () => {
   );
 };
 
+// adding props validation
+Wrapper.propTypes = {
+  onLogout: PropTypes.func.isRequired,
+};
 export default Wrapper;

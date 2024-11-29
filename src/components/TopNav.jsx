@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaUser } from "react-icons/fa";
 
-const TopNav = ({ className = "" }) => {
+const TopNav = ({ className = "", onLogout }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -13,6 +13,13 @@ const TopNav = ({ className = "" }) => {
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  const navigate = useNavigate();
+
+  const handleLogoutClick = () => {
+    onLogout();
+    navigate("/login");
   };
 
   // Get username from localStorage
@@ -25,16 +32,18 @@ const TopNav = ({ className = "" }) => {
 
   return (
     <div
-      className={`bg-darkgray font-poppins text-xl text-white ${className} absolute left-0 right-0 top-0 z-50 mx-auto box-border max-w-screen-2xl px-8 py-3`}
+      className={` font-poppins text-xl text-white ${className} absolute left-0 right-0 top-0 z-50 mx-auto box-border max-w-screen-2xl px-8 py-3`}
     >
       {/* Main Navbar */}
       {!menuOpen && (
         <div className="flex items-center justify-between">
-          <img
-            className="h-[4.125rem] w-56 sm:w-[16.125rem] md:w-[16.125rem] lg:w-[16.125rem] xl:w-[18.125rem]"
-            alt="EDP Logo"
-            src="/edp-logo@2x.png"
-          />
+          <Link to={"/"}>
+            <img
+              className="h-[4.125rem] w-56 sm:w-[16.125rem] md:w-[16.125rem] lg:w-[16.125rem] xl:w-[18.125rem]"
+              alt="EDP Logo"
+              src="/edp-logo@2x.png"
+            />
+          </Link>
           <div className="hidden space-x-3 md:space-x-6 lg:flex lg:space-x-8">
             <Link to={"/"} className="relative text-white no-underline">
               Home
@@ -45,7 +54,7 @@ const TopNav = ({ className = "" }) => {
             >
               Courses
             </Link>
-            <Link
+            {/* <Link
               to={"/class?username=Lina"}
               className="relative text-white no-underline"
             >
@@ -53,7 +62,7 @@ const TopNav = ({ className = "" }) => {
             </Link>
             <Link to={"/blog"} className="relative text-white no-underline">
               Blog
-            </Link>
+            </Link> */}
             <Link to={"/about-us"} className="relative text-white no-underline">
               About&nbsp;Us
             </Link>
@@ -85,11 +94,13 @@ const TopNav = ({ className = "" }) => {
                 >
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">Open user menu</span>
-                  <img
+                  {/* <img
                     alt="User avatar"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                     className="h-8 w-8 rounded-full"
-                  />
+                  /> */}
+                  {/* user icon from react icon */}
+                  <FaUser size={28} className="text-white" />
                 </button>
 
                 {dropdownOpen && (
@@ -114,11 +125,12 @@ const TopNav = ({ className = "" }) => {
                       </Link>
                     )}
                     <a
-                      href="#"
+                      onClick={() => handleLogoutClick()}
+                      href="/"
                       className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                       role="menuitem"
                     >
-                      Sign out
+                      Log out
                     </a>
                   </div>
                 )}
@@ -151,7 +163,7 @@ const TopNav = ({ className = "" }) => {
               </button>
             </div>
             {/* profile div */}
-            <div className="absolute right-10 top-72">
+            <div className="absolute right-10 top-20">
               {!userData ? (
                 <div className="hidden space-x-4 lg:flex">
                   <Link
@@ -177,11 +189,12 @@ const TopNav = ({ className = "" }) => {
                   >
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
-                    <img
+                    {/* <img
                       alt="User avatar"
                       src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       className="h-8 w-8 rounded-full"
-                    />
+                    /> */}
+                    <FaUser size={28} className="text-white" />
                   </button>
 
                   {dropdownOpen && (
@@ -206,11 +219,12 @@ const TopNav = ({ className = "" }) => {
                         </Link>
                       )}
                       <a
-                        href="#"
+                        onClick={() => handleLogoutClick()}
+                        href="/"
                         className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                         role="menuitem"
                       >
-                        Sign out
+                        Log out
                       </a>
                     </div>
                   )}
@@ -226,7 +240,7 @@ const TopNav = ({ className = "" }) => {
             >
               Courses
             </Link>
-            <Link
+            {/* <Link
               to={"/class?username=Lina"}
               className="text-lg py-2 text-white no-underline"
             >
@@ -234,7 +248,7 @@ const TopNav = ({ className = "" }) => {
             </Link>
             <Link to={"/blog"} className="text-lg py-2 text-white no-underline">
               Blog
-            </Link>
+            </Link> */}
             <Link
               to={"/about-us"}
               className="text-lg py-2 text-white no-underline"
@@ -250,6 +264,7 @@ const TopNav = ({ className = "" }) => {
 
 TopNav.propTypes = {
   className: PropTypes.string,
+  onLogout: PropTypes.func,
 };
 
 export default TopNav;

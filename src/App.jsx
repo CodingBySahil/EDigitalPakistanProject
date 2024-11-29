@@ -22,6 +22,9 @@ import SubjectSelection from "./components/subjectSelection/SubjectSelection";
 import PaymentPage from "./pages/PaymentPage";
 import ClassSelectionPage from "./pages/ClassSelectionPage";
 import SelectSubjectCourse from "./components/classSubjectSelection/SelectSubjectCourse";
+import FAQPage from "./pages/FAQPage";
+import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 function App() {
   const action = useNavigationType();
@@ -87,7 +90,11 @@ function App() {
         <Route
           path="/"
           element={
-            isAuthenticated ? <Wrapper /> : <Navigate to="/login" replace />
+            isAuthenticated ? (
+              <Wrapper onLogout={handleLogout} />
+            ) : (
+              <Navigate to="/login" replace />
+            )
           }
         />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
@@ -124,6 +131,13 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        {/* FAQ route */}
+        <Route path="/faq" element={<FAQPage />} />
+        {/* term and condition */}
+        <Route path="/terms-condition" element={<TermsAndConditionsPage />} />
+        {/* privacy policy */}
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
       </Routes>
       <ToastContainer
         position="top-center"
