@@ -42,12 +42,12 @@ const Login = ({ className = "", onLogin }) => {
         onLogin(); // Update App state
         setMessage("Login successful!");
 
-        if (username === "admin" && password === "admin") {
-          navigate(`/subjectSelection?username=${username}`);
-        } else {
-          alert("Login successful!");
+        // if (username === "admin" && password === "admin") {
+        //   navigate(`/subjectSelection?username=${username}`);
+        // } else {
+        //   alert("Login successful!");
           navigate(`/`);
-        }
+        // }
       } else {
         setMessage(result.message || "Login failed.");
       }
