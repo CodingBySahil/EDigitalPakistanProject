@@ -104,7 +104,10 @@ function App() {
 
         {/* DIVIDER routes for course calendar */}
         <Route path="/course-calender" element={<CourseCalendarPage />} />
-        <Route path="/course-calender/quiz" element={<CourseCalendar />} />
+        <Route
+          path="/course-calender/:chapterNumber/quiz"
+          element={<CourseCalendar />}
+        />
 
         {/* DIVIDER routes for subject selection page */}
         <Route path="/subjectSelection" element={<SubjectSelection />} />

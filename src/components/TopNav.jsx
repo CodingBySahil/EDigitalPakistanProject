@@ -17,9 +17,8 @@ const TopNav = ({ className = "" }) => {
   });
 
   let username = localStorage.getItem("user");
-  username = JSON.parse(username)
- 
-  
+  username = JSON.parse(username);
+
   return (
     <div
       className={`bg-darkgray font-poppins text-xl text-white ${className} absolute left-0 right-0 top-0 z-50 mx-auto box-border max-w-screen-2xl px-8 py-3`}
@@ -57,32 +56,32 @@ const TopNav = ({ className = "" }) => {
           </div>
           {!isAuthenticated ? (
             <div className="hidden space-x-4 lg:flex">
-            <Link
-              to={"/login"}
-              className="rounded-2xl bg-white px-4 py-2 font-medium tracking-[0.02em] text-dimgray no-underline shadow-lg"
-            >
-              Login
-            </Link>
-            <Link
-              to={"/register"}
-              className="rounded-2xl bg-gray-300 px-4 py-2 font-medium tracking-[0.02em] text-white no-underline shadow-lg md:text-xl lg:text-3xl"
-            >
-              Sign&nbsp;Up
-            </Link>
-          </div>
-          ):
-          // <h1 className="">{username.username}</h1>
-          // profile with username and icons
-          <div className="hidden space-x-4 lg:flex">
-            <Link 
-              to={"/profile"}
-              className="rounded-2xl  px-4 py-2 font-medium tracking-[0.02em] text-white no-underline shadow-lg"
-            >
-              {username.username}
-            </Link>
-          </div>
-          }
-          
+              <Link
+                to={"/login"}
+                className="rounded-2xl bg-white px-4 py-2 font-medium tracking-[0.02em] text-dimgray no-underline shadow-lg"
+              >
+                Login
+              </Link>
+              <Link
+                to={"/register"}
+                className="rounded-2xl bg-gray-300 px-4 py-2 font-medium tracking-[0.02em] text-white no-underline shadow-lg md:text-xl lg:text-3xl"
+              >
+                Sign&nbsp;Up
+              </Link>
+            </div>
+          ) : (
+            // <h1 className="">{username.username}</h1>
+            // profile with username and icons
+            <div className="hidden space-x-4 lg:flex">
+              <Link
+                to={"/profile"}
+                className="rounded-2xl px-4 py-2 font-medium tracking-[0.02em] text-white no-underline shadow-lg"
+              >
+                {username?.username}
+              </Link>
+            </div>
+          )}
+
           {/* Hamburger menu for smaller screens */}
           <div className="relative lg:hidden">
             <button

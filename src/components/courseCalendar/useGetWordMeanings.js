@@ -34,6 +34,7 @@ export const useGetWordMeanings = () => {
           };
         });
 
+        // setDataWordMeanings(data)
         setDataWordMeanings(correctedData);
         setStatusWordMeanings("success");
       } catch (error) {
