@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { json, Link } from "react-router-dom";
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -10,6 +10,16 @@ const TopNav = ({ className = "" }) => {
     setMenuOpen(!menuOpen);
   };
 
+  // Authentication state
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    const storedAuth = localStorage.getItem("isAuthenticated");
+    return storedAuth === "true";
+  });
+
+  let username = localStorage.getItem("user");
+  username = JSON.parse(username)
+ 
+  
   return (
     <div
       className={`bg-darkgray font-poppins text-xl text-white ${className} absolute left-0 right-0 top-0 z-50 mx-auto box-border max-w-screen-2xl px-8 py-3`}
@@ -45,7 +55,8 @@ const TopNav = ({ className = "" }) => {
               About&nbsp;Us
             </Link>
           </div>
-          <div className="hidden space-x-4 lg:flex">
+          {!isAuthenticated ? (
+            <div className="hidden space-x-4 lg:flex">
             <Link
               to={"/login"}
               className="rounded-2xl bg-white px-4 py-2 font-medium tracking-[0.02em] text-dimgray no-underline shadow-lg"
@@ -59,6 +70,19 @@ const TopNav = ({ className = "" }) => {
               Sign&nbsp;Up
             </Link>
           </div>
+          ):
+          // <h1 className="">{username.username}</h1>
+          // profile with username and icons
+          <div className="hidden space-x-4 lg:flex">
+            <Link 
+              to={"/profile"}
+              className="rounded-2xl  px-4 py-2 font-medium tracking-[0.02em] text-white no-underline shadow-lg"
+            >
+              {username.username}
+            </Link>
+          </div>
+          }
+          
           {/* Hamburger menu for smaller screens */}
           <div className="relative lg:hidden">
             <button
