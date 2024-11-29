@@ -24,13 +24,13 @@ export default function QuizWordMeaning() {
         {/* Quiz body */}
 
         <ScrollableBody>
-          <div className="pb-[60px] tabS:px-[10%] laptop14:px-[150px]">
+          <div className="pb-[60px] tabS:px-[10%]">
             <div className="self-start rounded-[8px] bg-white tabS:text-[23px] tabL:text-[26px]">
               {/* Table header */}
               <TableHeader />
 
               {/* Table header */}
-              <div className="flex flex-col gap-[1px] rounded-[8px] bg-black/10 tabS:text-[22px] tabL:text-[25px]">
+              <div className="flex flex-col gap-[2px] rounded-[8px] bg-black/10 tabS:text-[22px] tabL:text-[25px]">
                 {dataWordMeanings?.map((val, i) => (
                   <TableRow
                     key={i}
