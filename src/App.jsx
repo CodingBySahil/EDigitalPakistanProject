@@ -88,27 +88,19 @@ function App() {
     <>
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
-        <Route
-          path="/"
-          element={
-            isAuthenticated ? (
-              <Wrapper onLogout={handleLogout} />
-            ) : (
-              <Navigate to="/login" replace />
-            )
-          }
-        />
+
+        <Route path="/" element={<Wrapper onLogout={handleLogout} />} />
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
         <Route path="/register" element={<Register />} />
         <Route path="/class" element={<CourseClassSelection />} />
         <Route path="/class/:classLink" element={<ClassDetails />} />
 
         {/* DIVIDER route to select a class */}
-        <Route path="/classSelection" element={<ClassSelectionPage />} />
+        {/* <Route path="/classSelection" element={<ClassSelectionPage />} />
         <Route
           path="/classSelection/subjectSelection"
           element={<SelectSubjectCourse />}
-        />
+        /> */}
 
         {/* DIVIDER routes for course calendar */}
         <Route path="/course-calender" element={<CourseCalendarPage />} />
@@ -132,6 +124,25 @@ function App() {
             </PrivateRoute>
           }
         />
+
+        {/* Protected Routes */}
+      <Route
+        path="/classSelection"
+        element={
+          <PrivateRoute isAuthenticated={isAuthenticated}>
+            <ClassSelectionPage />
+          </PrivateRoute>
+        }
+      />
+      <Route
+        path="/classSelection/subjectSelection"
+        element={
+          <PrivateRoute isAuthenticated={isAuthenticated}>
+            <SelectSubjectCourse />
+          </PrivateRoute>
+        }
+      />
+
         {/* about us route */}
         <Route path="/about-us" element={<AboutUs />} />
         {/* FAQ route */}

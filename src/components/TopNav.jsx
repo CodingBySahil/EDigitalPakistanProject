@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
 
-const TopNav = ({ className = "", onLogout }) => {
+const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -19,7 +19,7 @@ const TopNav = ({ className = "", onLogout }) => {
 
   const handleLogoutClick = () => {
     onLogout();
-    navigate("/login");
+    // navigate("/login");
   };
 
   // Get username from localStorage
@@ -69,7 +69,7 @@ const TopNav = ({ className = "", onLogout }) => {
           </div>
           {/* profile div */}
           <div className="hidden lg:block">
-            {!userData ? (
+            {!isAuthenticated ? (
               <div className="hidden space-x-4 lg:flex">
                 <Link
                   to={"/login"}
@@ -164,7 +164,7 @@ const TopNav = ({ className = "", onLogout }) => {
             </div>
             {/* profile div */}
             <div className="absolute right-10 top-20">
-              {!userData ? (
+              {!isAuthenticated ? (
                 <div className="hidden space-x-4 lg:flex">
                   <Link
                     to={"/login"}
@@ -265,6 +265,7 @@ const TopNav = ({ className = "", onLogout }) => {
 TopNav.propTypes = {
   className: PropTypes.string,
   onLogout: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
 };
 
 export default TopNav;

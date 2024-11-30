@@ -11,9 +11,10 @@ import AlpCurriculum from "../components/AlpCurriculum";
 import TitleLeftAlign from "../components/TitleLeftAlign";
 
 const Wrapper = ({ onLogout}) => {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   return (
     <div className="mx-auto max-w-screen-xl px-4">
-      <Header onLogout={onLogout}/>
+      <Header onLogout={onLogout} isAuthenticated={isAuthenticated} />
       <AllInOne />
       <WhatIsTOTC />
       <YouCanDoWithTOTC />

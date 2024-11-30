@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import { FaRegCalendarAlt, FaUser } from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
 
-const Header = ({ className = "", onLogout }) => {
+const Header = ({ className = "", onLogout, isAuthenticated }) => {
   return (
     <>
       <div className={`overflow-hidden ${className}`}>
-        <TopNav onLogout={onLogout} />
+      <TopNav onLogout={onLogout} isAuthenticated={isAuthenticated} />
         <img
           className="absolute left-0 top-0 -mt-16 min-h-[60vh] w-full object-cover md:min-h-[45vh] lg:-mt-4"
           alt=""
@@ -154,5 +154,6 @@ const Header = ({ className = "", onLogout }) => {
 Header.propTypes = {
   className: PropTypes.string,
   onLogout: PropTypes.func,
+  isAuthenticated: PropTypes.bool,
 };
 export default Header;
