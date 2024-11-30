@@ -25,6 +25,7 @@ import SelectSubjectCourse from "./components/classSubjectSelection/SelectSubjec
 import FAQPage from "./pages/FAQPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import AboutUs from "./pages/aboutus";
 
 function App() {
   const action = useNavigationType();
@@ -131,7 +132,8 @@ function App() {
             </PrivateRoute>
           }
         />
-
+        {/* about us route */}
+        <Route path="/about-us" element={<AboutUs />} />
         {/* FAQ route */}
         <Route path="/faq" element={<FAQPage />} />
         {/* term and condition */}
