@@ -14,7 +14,10 @@ export default function Heading({
 
   if (headingType === "primary") {
     return (
-      <p style={{ color: headingColor }} className="text-[18px] font-bold">
+      <p
+        style={{ color: headingColor }}
+        className="text-[18px] font-bold laptop14:text-[22px]"
+      >
         {children}
       </p>
     );

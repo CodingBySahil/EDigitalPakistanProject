@@ -6,7 +6,11 @@ import AppButton from "./AppButton";
 import { useNavigate } from "react-router-dom";
 
 // COMPONENT START
-export default function ClassSelectionCard({ classNumber = 0, url = "" }) {
+export default function ClassSelectionCard({
+  classNumber = 0,
+  url = "",
+  imgPath = "",
+}) {
   // VARIABLES
   const navigate = useNavigate();
 
@@ -19,22 +23,32 @@ export default function ClassSelectionCard({ classNumber = 0, url = "" }) {
   return (
     <div
       style={{ border: `1px solid ${brandColorCyan}` }}
-      className="grid min-h-[80px] grid-cols-[1fr_50%] rounded-[5px] bg-brand-color-cyan/30 p-[10px]"
+      className="flex flex-col gap-[10px] rounded-[5px] bg-brand-color-cyan/30 p-[10px] laptop14:h-[850px]"
     >
-      <Heading headingColor={brandColorCyan}>
-        Class {classNumber}
-        {classNumber === 1
-          ? "st"
-          : classNumber === 2
-            ? "nd"
-            : classNumber === 3
-              ? "rd"
-              : "th"}
-      </Heading>
-      <div className="flex items-end justify-end">
-        <AppButton onClick={() => viewCourseClicked(url)}>
-          View courses
-        </AppButton>
+      <div className="h-[400px] rounded-[3px] bg-stone-100 laptop14:h-[700px]">
+        <img
+          className="h-full w-full rounded-[3px] object-cover"
+          src={imgPath}
+        />
+      </div>
+      <div className="flex flex-col justify-between laptop14:h-[180px]">
+        <div>
+          <Heading headingColor={brandColorCyan}>
+            Class {classNumber}
+            {classNumber === 1
+              ? "st"
+              : classNumber === 2
+                ? "nd"
+                : classNumber === 3
+                  ? "rd"
+                  : "th"}
+          </Heading>
+        </div>
+        <div className="flex items-end justify-end">
+          <AppButton buttonSize="large" onClick={() => viewCourseClicked(url)}>
+            View courses
+          </AppButton>
+        </div>
       </div>
     </div>
   );
@@ -44,6 +58,7 @@ export default function ClassSelectionCard({ classNumber = 0, url = "" }) {
 ClassSelectionCard.propTypes = {
   classNumber: PropTypes.number,
   url: PropTypes.string,
+  imgPath: PropTypes.string,
 };
 //size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 

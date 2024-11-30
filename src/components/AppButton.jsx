@@ -7,6 +7,7 @@ export default function AppButton({
   children,
   buttonType = "primary",
   onClick = () => {},
+  buttonSize = "small",
 }) {
   // VARIABLES
 
@@ -22,7 +23,7 @@ export default function AppButton({
         }}
         variant="contained"
         disableElevation={true}
-        size="small"
+        size={buttonSize}
       >
         {children}
       </Button>
@@ -36,6 +37,7 @@ AppButton.propTypes = {
   children: PropTypes.oneOfType([PropTypes.node, PropTypes.element]),
   buttonType: PropTypes.string,
   onClick: PropTypes.func,
+  buttonSize: PropTypes.string,
 };
 //size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 // COMPONENT END
