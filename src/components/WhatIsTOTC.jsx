@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const WhatIsTOTC = ({ className = "" }) => {
   return (
@@ -30,9 +31,11 @@ const WhatIsTOTC = ({ className = "" }) => {
             <div className=" transform -translate-x-1/2  py-2 px-4 my-7  text-white font-semibold text-lg">
               For students
             </div>
+            <Link to={'classSelection'} className="no-underline">
             <div className=" transform -translate-x-1/2 bg-deepskyblue-200 py-2 px-4 rounded-full text-white font-semibold text-lg">
               Enter classroom 
             </div>
+            </Link>
           </div>
         </div>
       </div>
