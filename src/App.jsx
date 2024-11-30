@@ -94,6 +94,8 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/class" element={<CourseClassSelection />} />
         <Route path="/class/:classLink" element={<ClassDetails />} />
+        {/* about us route */}
+        <Route path="/about-us" element={<AboutUs />} />
 
         {/* DIVIDER route to select a class */}
         {/* <Route path="/classSelection" element={<ClassSelectionPage />} />
@@ -143,8 +145,7 @@ function App() {
         }
       />
 
-        {/* about us route */}
-        <Route path="/about-us" element={<AboutUs />} />
+        
         {/* FAQ route */}
         <Route path="/faq" element={<FAQPage />} />
         {/* term and condition */}
