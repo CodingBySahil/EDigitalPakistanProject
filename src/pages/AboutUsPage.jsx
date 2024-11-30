@@ -3,7 +3,7 @@ import Footer from "../components/Footer";
 import TopNav from "../components/TopNav";
 import { Link } from "react-router-dom";
 
-const AboutUs = () => {
+const AboutUsPage = () => {
   return (
     <div>
       <TopNav className="bg-[#4abd86]" />
@@ -86,4 +86,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUsPage;

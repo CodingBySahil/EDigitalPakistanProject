@@ -63,7 +63,7 @@ const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
             <Link to={"/blog"} className="relative text-white no-underline">
               Blog
             </Link> */}
-            <Link to={"/about-us"} className="relative text-white no-underline">
+            <Link to={"/aboutus"} className="relative text-white no-underline">
               About&nbsp;Us
             </Link>
           </div>
@@ -250,7 +250,7 @@ const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
               Blog
             </Link> */}
             <Link
-              to={"/about-us"}
+              to={"/aboutus"}
               className="text-lg py-2 text-white no-underline"
             >
               About Us

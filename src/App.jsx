@@ -4,7 +4,7 @@ import {
   Route,
   useNavigationType,
   useLocation,
-  Navigate,
+  // Navigate,
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
@@ -25,7 +25,8 @@ import SelectSubjectCourse from "./components/classSubjectSelection/SelectSubjec
 import FAQPage from "./pages/FAQPage";
 import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
-import AboutUs from "./pages/aboutus";
+
+import AboutUsPage from "./pages/AboutUsPage";
 
 function App() {
   const action = useNavigationType();
@@ -95,7 +96,7 @@ function App() {
         <Route path="/class" element={<CourseClassSelection />} />
         <Route path="/class/:classLink" element={<ClassDetails />} />
         {/* about us route */}
-        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="aboutus" element={<AboutUsPage />} />
 
         {/* DIVIDER route to select a class */}
         {/* <Route path="/classSelection" element={<ClassSelectionPage />} />
