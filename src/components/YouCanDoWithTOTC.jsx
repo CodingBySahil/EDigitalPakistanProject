@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import VideoWithPlayButton from "./Vedio/VideoWithPlayButton";
 
 const YouCanDoWithTOTC = ({ className = "" }) => {
   return (
@@ -32,11 +33,12 @@ const YouCanDoWithTOTC = ({ className = "" }) => {
           <div className="absolute -bottom-0 -right-4 rounded-xl bg-deepskyblue-100 w-32 h-32 -z-10 " />
 
           {/* Image */}
-          <img
+          {/* <img
             className="w-full max-w-lg lg:max-w-xl h-auto rounded-xl object-cover"
             alt="Classroom"
             src="/group-17.svg"
-          />
+          /> */}
+          <VideoWithPlayButton/>
         </div>
       </div>
     </div>
