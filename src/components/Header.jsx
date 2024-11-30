@@ -15,9 +15,9 @@ const Header = ({ className = "", onLogout, isAuthenticated }) => {
           src="/headerbg.svg"
         />
         <div className="container absolute left-0 right-0 z-10 mx-auto my-12">
-          <div className="flex flex-col items-center rounded-lg border p-6 pt-10 lg:flex-row lg:items-start lg:pt-[11rem]">
+          <div className="flex flex-col items-center rounded-lg border p-6 pt-10 lg:flex-row lg:items-start lg:pt-[6rem]">
             {/* Text Section */}
-            <div className="flex flex-col items-center lg:w-7/12 lg:items-start lg:px-10 lg:py-2">
+            <div className="flex flex-col items-center lg:-mt-6 sm:-mt-7 -mt-0 lg:w-7/12 lg:items-start lg:px-10 lg:py-2">
               <div className="mb-2 text-center lg:text-left">
                 <h2 className="md:text-6xl mb-6 text-3xl font-semibold leading-tight text-white sm:text-5xl md:mb-4 lg:text-[3rem] xl:text-[3.5rem]">
                   <span className="font-extrabold text-black">Learning</span>
