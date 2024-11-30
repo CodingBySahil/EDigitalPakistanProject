@@ -27,12 +27,22 @@ const ExploreCourses = ({ levelOfClass }) => {
 
   // State to track which card is hovered
   const [hoveredCardIndex, setHoveredCardIndex] = useState(null);
+  const [lastHoveredCardIndex, setLastHoveredCardIndex] = useState(6); // Always hover the last card initially (index 6)
 
   useEffect(() => {
-    // Set a random index for the first card on mount
-    const randomIndex = Math.floor(Math.random() * 7); // Random number between 0 and 6
-    setHoveredCardIndex(randomIndex);
-  }, []); // Empty dependency array ensures this runs once on mount
+    // Set the last card to be hovered automatically when the component mounts
+    setHoveredCardIndex(lastHoveredCardIndex);
+  }, [lastHoveredCardIndex]); // Run on mount or when lastHoveredCardIndex changes
+
+  // Handling mouse enter for each card
+  const handleMouseEnter = (index) => {
+    setHoveredCardIndex(index);
+  };
+
+  // Handling mouse leave for each card
+  const handleMouseLeave = () => {
+    setHoveredCardIndex(lastHoveredCardIndex); // Keep the last card hovered
+  };
 
   return (
     <div className="overflow-y-hidden bg-[#ebf5ff] py-8">
@@ -57,8 +67,8 @@ const ExploreCourses = ({ levelOfClass }) => {
             <div key={index} className="flex">
               <div
                 className="flex items-center justify-center"
-                onMouseEnter={() => setHoveredCardIndex(index)}
-                onMouseLeave={() => setHoveredCardIndex(null)}
+                onMouseEnter={() => handleMouseEnter(index)} // Set the current card as hovered
+                onMouseLeave={handleMouseLeave} // Reset hovered card when mouse leaves
               >
                 {/* Default (collapsed) Subject Card */}
                 <div
@@ -80,7 +90,7 @@ const ExploreCourses = ({ levelOfClass }) => {
                 </div>
 
                 {/* Expanded (hovered) Subject Card */}
-                {hoveredCardIndex === index && (
+                {(hoveredCardIndex === index || hoveredCardIndex === null) && (
                   <div className="animate-fadeIn w-96 transform p-2 transition-all duration-500 ease-in-out hover:scale-105 md:p-4">
                     <div className="flex h-72 rounded-lg bg-white p-4 shadow-lg">
                       <img
