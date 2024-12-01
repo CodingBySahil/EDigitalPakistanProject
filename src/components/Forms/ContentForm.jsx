@@ -11,6 +11,7 @@ const ContentForm = ({ subjectNameFromURL }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState("");
   const [showModal, setShowModal] = useState(false);
+  const [image, setImage] = useState(null); // New state for storing uploaded image
 
   // Fetch chapters from API when component mounts
   useEffect(() => {
@@ -20,7 +21,6 @@ const ContentForm = ({ subjectNameFromURL }) => {
           `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
         );
         const data = await response.json();
-        // console.log("Chapters fetched:", data); // Log the response
         setChapters(data); // Set chapters in state
       } catch (error) {
         console.error("Error fetching chapters:", error);
@@ -56,8 +56,9 @@ const ContentForm = ({ subjectNameFromURL }) => {
 
     const formData = new FormData();
     formData.append("text", text);
-
-    console.log("Sending data:", { subjectName, text });
+    if (image) {
+      formData.append("image", image); // Append image to FormData
+    }
 
     try {
       const response = await fetch(API, {
@@ -66,12 +67,11 @@ const ContentForm = ({ subjectNameFromURL }) => {
       });
 
       const responseData = await response.json();
-      console.log("Response received:", responseData);
-
       if (response.ok) {
         alert("Book saved successfully via API!");
         setText("");
         setSubjectName("");
+        setImage(null); // Reset the image state
       } else {
         alert(`Error: ${responseData.message || "An error occurred."}`);
       }
@@ -156,6 +156,19 @@ const ContentForm = ({ subjectNameFromURL }) => {
           {error && <p className="mt-2 text-red-500">{error}</p>}
         </div>
 
+        {/* Image Upload */}
+        <div>
+          <label className="text-lg mb-2 block font-semibold">
+            Upload Image
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImage(e.target.files[0])}
+            className="w-full transform rounded-lg border border-gray-300 bg-white p-3 shadow-lg transition duration-200 ease-in-out hover:scale-[1.01] hover:shadow-md focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500"
+          />
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
@@ -177,9 +190,6 @@ const ContentForm = ({ subjectNameFromURL }) => {
             <p className="mb-2">
               <strong>Subject :</strong> {subjectName}
             </p>
-            {/* <p className="mb-4">
-              <strong>Content:</strong> {text || "(No content provided)"}
-            </p> */}
             <div className="flex justify-end space-x-4">
               <button
                 onClick={() => setShowModal(false)}

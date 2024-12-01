@@ -1,6 +1,4 @@
 import { PropTypes } from "prop-types";
-// src/components/SubjectForm.jsx
-
 import { useState } from "react";
 import { mainURL } from "../../constants/const";
 
@@ -8,53 +6,51 @@ const SubjectForm = ({ subjectNameFromURL }) => {
   const [subjectName, setSubjectName] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
+  const [image, setImage] = useState(null); // State to hold the uploaded image
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Example class options. Modify these based on your actual classes.
   const classOptions = [
     { value: "", label: "Select Class" },
     { value: "class1", label: "Class 1" },
     { value: "class2", label: "Class 2" },
     { value: "class3", label: "Class 3" },
-    // Add more classes as needed
   ];
 
-  // API endpoint - Update this to your actual endpoint
   const API = `${mainURL}/api/subject/data`;
 
-  // Handle form submission to post data to API
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setImage(file);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Create a payload object
-    const payload = {
-      title: subjectName, // Use 'title' instead of 'subjectName'
-      class: selectedClass,
-      code: subjectCode, // Use 'code' instead of 'subjectCode'
-    };
-
-    // Log the payload to check what is being sent
-    console.log("Submitting payload:", payload);
+    const formData = new FormData();
+    formData.append("title", subjectName);
+    formData.append("class", selectedClass);
+    formData.append("code", subjectCode);
+    if (image) {
+      formData.append("image", image); // Append image to form data
+    }
 
     try {
       const response = await fetch(API, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(payload),
+        body: formData,
       });
 
       if (response.ok) {
         const data = await response.json();
         alert("Subject saved successfully!");
-        console.log("Response data:", data); // Log the response data
+        console.log("Response data:", data);
 
         // Reset form after successful submission
         setSubjectName("");
         setSelectedClass("");
         setSubjectCode("");
+        setImage(null);
       } else {
         const errorData = await response.json();
         alert(`Error: ${errorData.message || "An error occurred."}`);
@@ -141,6 +137,26 @@ const SubjectForm = ({ subjectNameFromURL }) => {
           />
         </div>
 
+        {/* Image Upload */}
+        <div>
+          <label
+            className="text-lg mb-2 block font-semibold"
+            htmlFor="imageUpload"
+          >
+            Upload Image
+          </label>
+          <input
+            type="file"
+            id="imageUpload"
+            onChange={handleImageChange}
+            accept="image/*"
+            className="w-full rounded-md border border-gray-300 p-3"
+          />
+          {image && (
+            <p className="mt-2 text-green-500">Image selected: {image.name}</p>
+          )}
+        </div>
+
         {/* Submit Button */}
         <button
           type="submit"
@@ -156,8 +172,8 @@ const SubjectForm = ({ subjectNameFromURL }) => {
   );
 };
 
-// adding prop type validation
 SubjectForm.propTypes = {
   subjectNameFromURL: PropTypes.string.isRequired,
 };
+
 export default SubjectForm;

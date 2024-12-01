@@ -21,6 +21,7 @@ export default function SubjectSelection() {
             Authorization: `Bearer ${userData.accessToken}`, // Include the access token in the headers
             "Content-Type": "application/json",
           },
+          credentials: "include", // Include cookies in the request if needed
         });
 
         if (!response.ok) {
