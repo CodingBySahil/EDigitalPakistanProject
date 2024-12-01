@@ -36,18 +36,29 @@ const Login = ({ className = "", onLogin }) => {
       const result = await response.json();
       console.log("Received Data:", result);
 
-      if (response.ok && result.Success) {
-        localStorage.setItem("user", JSON.stringify(result.user));
-        localStorage.setItem("isAuthenticated", "true");
-        onLogin(); // Update App state
-        setMessage("Login successful!");
+      // if (response.ok && result.Success) {
+      //   localStorage.setItem("user", JSON.stringify(result.user));
+      //   localStorage.setItem("isAuthenticated", "true");
+      //   onLogin(); // Update App state
+      //   setMessage("Login successful!");
 
-        // if (username === "admin" && password === "admin") {
-        //   navigate(`/subjectSelection?username=${username}`);
-        // } else {
-        //   alert("Login successful!");
-          navigate(`/`);
-        // }
+      //   // if (username === "admin" && password === "admin") {
+      //   //   navigate(`/subjectSelection?username=${username}`);
+      //   // } else {
+      //   //   alert("Login successful!");
+      //     navigate(`/`);
+      //   // }
+      if (response.ok && result.Success) {
+        localStorage.setItem("user", JSON.stringify(result)); // Save the entire result object
+        localStorage.setItem("isAuthenticated", "true");
+        onLogin();
+        setMessage("Login successful!");
+        navigate(`/`);
+        // const data = JSON.parse(localStorage.getItem("user"));
+        // console.log(data.accessToken);
+        
+
+      
       } else {
         setMessage(result.message || "Login failed.");
       }

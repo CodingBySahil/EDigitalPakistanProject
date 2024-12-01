@@ -7,20 +7,35 @@ import { mainURL } from "../../constants/const";
 export default function SubjectSelection() {
   // VARIABLES
   const [allSubjectsArray, setAllSubjectsArray] = useState([]);
+  // Retrieve access token from localStorage or a similar storage method
+  let userData = localStorage.getItem("user");
+  userData = JSON.parse(userData);
+  console.log(userData.accessToken);
 
   // FUNCTIONS
   useEffect(() => {
     async function fetchSubjects() {
       try {
-        const response = await fetch(`${mainURL}/api/subject/data`);
+        const response = await fetch(`${mainURL}/api/subject/data`, {
+          headers: {
+            Authorization: `Bearer ${userData.accessToken}`, // Include the access token in the headers
+            "Content-Type": "application/json",
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`Error: ${response.status} - ${response.statusText}`);
+        }
+
         const result = await response.json();
         setAllSubjectsArray(result.data); // Access the array inside the "data" property
       } catch (error) {
         console.error("Failed to fetch subjects:", error);
       }
     }
+
     fetchSubjects();
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []);
 
   // JSX
   return (

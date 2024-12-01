@@ -26,7 +26,9 @@ const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
   let userData = localStorage.getItem("user");
   // console.log(userData);
   userData = userData ? JSON.parse(userData) : null;
-  // console.log(userData.username);
+  // console.log(userData.user.username);
+  
+  // console.log(userData.user.username);
 
   // const username = "admin"
 
@@ -109,15 +111,15 @@ const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
                     role="menu"
                   >
                     <Link
-                      to={`/profile?username=${userData.username}`}
+                      to={`/profile?username=${userData.user.username}`}
                       className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                       role="menuitem"
                     >
-                      {userData.username}
+                      {userData.user.username}
                     </Link>
-                    {userData.username === "admin" && (
+                    {userData.user.username === "admin" && (
                       <Link
-                        to={`/subjectSelection?username=${userData.username}`}
+                        to={`/subjectSelection?username=${userData.user.username}`}
                         className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                         role="menuitem"
                       >
@@ -203,15 +205,15 @@ const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
                       role="menu"
                     >
                       <Link
-                        to={`/profile?username=${userData.username}`}
+                        to={`/profile?username=${userData.user.username}`}
                         className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                         role="menuitem"
                       >
-                        {userData.username}
+                        {userData.user.username}
                       </Link>
-                      {userData.username === "admin" && (
+                      {userData.user.username === "admin" && (
                         <Link
-                          to={`/subjectSelection?username=${userData.username}`}
+                          to={`/subjectSelection?username=${userData.user.username}`}
                           className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                           role="menuitem"
                         >
