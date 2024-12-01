@@ -1,4 +1,3 @@
-import { useGetScreenHeight } from "../../hooks/useGetScreenHeight";
 import ClassSelectionCard from "../ClassSelectionCard";
 import Heading from "../Heading";
 
@@ -6,17 +5,17 @@ const classesArr = [
   {
     class: 6,
     url: "/classSelection/subjectSelection?class=6",
-    imgPath: "../../../public/classRoomPics/classRoom1.jpg",
+    imgPath: "/classRoomPics/classRoom1.jpg",
   },
   {
     class: 7,
     url: "/classSelection/subjectSelection?class=7",
-    imgPath: "../../../public/classRoomPics/classRoom2.jpg",
+    imgPath: "/classRoomPics/classRoom2.jpg",
   },
   {
     class: 8,
     url: "/classSelection/subjectSelection?class=8",
-    imgPath: "../../../public/classRoomPics/classRoom3.jpg",
+    imgPath: "/classRoomPics/classRoom3.jpg",
   },
 ];
 
