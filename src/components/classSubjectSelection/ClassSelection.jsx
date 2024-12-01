@@ -1,21 +1,39 @@
 import ClassSelectionCard from "../ClassSelectionCard";
 import Heading from "../Heading";
 
+// const classesArr = [
+//   {
+//     class: 6,
+//     url: "/classSelection/subjectSelection?class=6",
+//     imgPath: "/classRoomPics/classRoom1.jpg",
+//   },
+//   {
+//     class: 7,
+//     url: "/classSelection/subjectSelection?class=7",
+//     imgPath: "/classRoomPics/classRoom2.jpg",
+//   },
+//   {
+//     class: 8,
+//     url: "/classSelection/subjectSelection?class=8",
+//     imgPath: "/classRoomPics/classRoom3.jpg",
+//   },
+// ];
+
 const classesArr = [
   {
     class: 6,
     url: "/classSelection/subjectSelection?class=6",
-    imgPath: "/classRoomPics/classRoom1.jpg",
+    imgPath: "/Biology.jpg",
   },
   {
     class: 7,
     url: "/classSelection/subjectSelection?class=7",
-    imgPath: "/classRoomPics/classRoom2.jpg",
+    imgPath: "/Biology.jpg",
   },
   {
     class: 8,
     url: "/classSelection/subjectSelection?class=8",
-    imgPath: "/classRoomPics/classRoom3.jpg",
+    imgPath: "/Biology.jpg",
   },
 ];
 
@@ -32,7 +50,7 @@ export default function ClassSelection() {
         <Heading>Select class to view courses</Heading>
       </header>
 
-      <main className="grid grid-cols-1 gap-[10px] overflow-x-hidden tabS:grid-cols-2 laptop14:grid-cols-3">
+      <main className="grid grid-cols-1 gap-[10px] overflow-x-hidden tabS:grid-cols-2 laptop14:grid-cols-3 laptop14:gap-[30px] laptop14:px-[20px]">
         {classesArr.map((val, i) => (
           <ClassSelectionCard
             key={i}

@@ -23,9 +23,9 @@ export default function ClassSelectionCard({
   return (
     <div
       style={{ border: `1px solid ${brandColorCyan}` }}
-      className="flex flex-col gap-[10px] rounded-[5px] bg-brand-color-cyan/30 p-[10px] laptop14:h-[850px]"
+      className="flex flex-col gap-[10px] rounded-[5px] bg-brand-color-cyan/30 p-[10px] laptop14:h-[800px]"
     >
-      <div className="h-[400px] rounded-[3px] bg-stone-100 laptop14:h-[700px]">
+      <div className="h-[400px] rounded-[3px] bg-stone-100 laptop14:h-[620px]">
         <img
           className="h-full w-full rounded-[3px] object-cover"
           src={imgPath}
