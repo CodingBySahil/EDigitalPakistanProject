@@ -146,6 +146,7 @@ const SubjectForm = ({ subjectNameFromURL }) => {
             Upload Image
           </label>
           <input
+            name="subject"
             type="file"
             id="imageUpload"
             onChange={handleImageChange}
