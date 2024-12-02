@@ -1,7 +1,6 @@
 import Footer from "../Footer";
 import Heading from "../Heading";
 import InAppHeader from "../InAppHeader";
-import ScrollableBody from "../ScrollableBody";
 import SubjectCard from "../SubjectCard";
 
 const subjectsArr = [
