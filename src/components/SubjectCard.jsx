@@ -18,7 +18,7 @@ export default function SubjectCard({
   return (
     <div
       style={{ border: `1px solid ${brandColorCyan}` }}
-      className="grid min-h-[400px] w-[full] min-w-[300px] grid-rows-[300px_1fr_50px] rounded-[8px] bg-brand-color-cyan/40 p-[8px]"
+      className="grid w-[full] min-w-[300px] grid-rows-[300px_40px_40px] rounded-[8px] bg-brand-color-cyan/40 p-[8px] laptop14:grid-rows-[500px_50px_50px]"
     >
       {/* Image Section */}
       <section className="rounded-[5px] bg-stone-200">
@@ -30,7 +30,7 @@ export default function SubjectCard({
       </section>
 
       {/* Title Section */}
-      <section className="mt-[5px] min-h-[50px] w-[150px]">
+      <section className="mt-[5px] w-[150px]">
         <p className="break-words text-[17px] font-bold">
           {subjectName.charAt(0)?.toUpperCase() +
             subjectName.slice(1)?.toLowerCase()}

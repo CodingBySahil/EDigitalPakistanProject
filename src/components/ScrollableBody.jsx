@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { useGetScreenHeight } from "../hooks/useGetScreenHeight";
 
 // COMPONENT START
-export default function ScrollableBody({ pageHeaderHeight = 60, children }) {
+export default function ScrollableBody({ pageHeaderHeight = 50, children }) {
   // VARIABLES
   const screenHeight = useGetScreenHeight();
 

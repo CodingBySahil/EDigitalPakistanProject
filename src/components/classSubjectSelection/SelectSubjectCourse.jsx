@@ -1,5 +1,6 @@
 import Footer from "../Footer";
 import Heading from "../Heading";
+import InAppHeader from "../InAppHeader";
 import ScrollableBody from "../ScrollableBody";
 import SubjectCard from "../SubjectCard";
 
@@ -23,30 +24,34 @@ export default function SelectSubjectCourse() {
 
   // JSX
   return (
-    <div className="grid h-[100vh] grid-rows-[60px_1fr_auto] gap-[10px]">
-      <header className="bg-brand-color-cyan">header</header>
-      <ScrollableBody>
-        <main className="grid grid-rows-[auto_1fr] gap-[10px] px-[10px]">
-          <div>
-            <Heading>Select subject</Heading>
-          </div>
+    <div className="grid h-[100vh] grid-rows-[50px_1fr] gap-[10px] overflow-x-hidden overflow-y-hidden">
+      <InAppHeader />
 
-          <div>
-            <div className="grid grid-cols-1 gap-[10px] tabS:grid-cols-2 tabS:gap-[20px] laptop14:grid-cols-4">
-              {subjectsArr.map((val, i) => (
-                <SubjectCard
-                  key={i}
-                  subjectName={val?.subjectName}
-                  buttonText={"view details"}
-                  buttonUrl={"/course-calender"}
-                  imgPath={""}
-                />
-              ))}
-            </div>
+      <main className="over grid grid-rows-[auto_1fr_auto_auto] gap-[10px] overflow-y-auto">
+        <div className="px-[10px] laptop14:px-[20px]">
+          <Heading>Select subject</Heading>
+        </div>
+
+        <div>
+          <div className="grid grid-cols-1 gap-[10px] px-[10px] tabS:grid-cols-2 tabS:gap-[20px] laptop14:grid-cols-3 laptop14:gap-[30px] laptop14:px-[20px]">
+            {subjectsArr.map((val, i) => (
+              <SubjectCard
+                key={i}
+                subjectName={val?.subjectName}
+                buttonText={"view details"}
+                buttonUrl={"/course-calender"}
+                imgPath={""}
+              />
+            ))}
           </div>
-        </main>
-        <Footer />
-      </ScrollableBody>
+        </div>
+
+        <div>x</div>
+
+        <div>
+          <Footer />
+        </div>
+      </main>
     </div>
   );
   // JSX

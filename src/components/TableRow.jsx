@@ -19,7 +19,7 @@ export default function TableRow({ type, word, meaning, last = false }) {
         <div className="flex items-center justify-center font-semibold text-black/50">
           {`${word?.at(0)?.toUpperCase()}${word?.slice(1)}`}
         </div>
-        <div className="flex items-center justify-center">{`${meaning?.at(0)?.toUpperCase()}${meaning?.slice(1)}`}</div>
+        <div className="flex items-center justify-start pl-[20px]">{`${meaning?.at(0)?.toUpperCase()}${meaning?.slice(1)}`}</div>
       </div>
     );
   }

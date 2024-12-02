@@ -13,7 +13,7 @@ const Footer = ({ className = "" }) => {
               <img
                 className="w-[130px] tabS:w-[130px]"
                 alt="logo"
-                src="/edp-logo-2@2x.png"
+                src="/edpLogos/edp-logo-2@2x.png"
               />
             </Link>
             <p className="text-[13px]">Learning with flexibility</p>

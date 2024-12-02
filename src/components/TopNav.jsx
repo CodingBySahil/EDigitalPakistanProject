@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
 
-const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
+const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -27,14 +27,14 @@ const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
   // console.log(userData);
   userData = userData ? JSON.parse(userData) : null;
   // console.log(userData.user.username);
-  
+
   // console.log(userData.user.username);
 
   // const username = "admin"
 
   return (
     <div
-      className={` font-poppins text-xl text-white ${className} absolute left-0 right-0 top-0 z-50 mx-auto box-border max-w-screen-2xl px-8 py-3`}
+      className={`font-poppins text-xl text-white ${className} absolute left-0 right-0 top-0 z-50 mx-auto box-border max-w-screen-2xl px-8 py-3`}
     >
       {/* Main Navbar */}
       {!menuOpen && (
@@ -43,7 +43,7 @@ const TopNav = ({ className = "", onLogout ,isAuthenticated}) => {
             <img
               className="h-[4.125rem] w-56 sm:w-[16.125rem] md:w-[16.125rem] lg:w-[16.125rem] xl:w-[18.125rem]"
               alt="EDP Logo"
-              src="/edp-logo@2x.png"
+              src="/edpLogos/edp-logo@2x.png"
             />
           </Link>
           <div className="hidden space-x-3 md:space-x-6 lg:flex lg:space-x-8">
