@@ -23,7 +23,7 @@ const VideoWithPlayButton = () => {
         className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
           isPlaying ? "z-50 h-auto w-auto max-w-full" : ""
         }`}
-        src="naturevedio.mp4"
+        src="EducationVedio.mp4"
         muted={!isPlaying} // Unmute when playing
         loop={!isPlaying} // Disable looping in full player mode
         playsInline

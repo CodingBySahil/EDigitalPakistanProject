@@ -162,6 +162,7 @@ const ContentForm = ({ subjectNameFromURL }) => {
             Upload Image
           </label>
           <input
+            name="image"
             type="file"
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
