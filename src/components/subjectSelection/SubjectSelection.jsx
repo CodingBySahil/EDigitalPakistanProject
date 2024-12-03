@@ -10,7 +10,7 @@ export default function SubjectSelection() {
   // Retrieve access token from localStorage or a similar storage method
   let userData = localStorage.getItem("user");
   userData = JSON.parse(userData);
-  console.log(userData.accessToken);
+  // console.log(userData.accessToken);
 
   // FUNCTIONS
   useEffect(() => {
