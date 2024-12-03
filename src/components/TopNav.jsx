@@ -164,13 +164,39 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
                 {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
               </button>
             </div>
+            
+            
+            <Link to={"/"} className="text-lg py-2 text-white no-underline">
+              Home
+            </Link>
+            <Link
+              to={"/classSelection"}
+              className="text-lg py-2 text-white no-underline"
+            >
+              Courses
+            </Link>
+            {/* <Link
+              to={"/class?username=Lina"}
+              className="text-lg py-2 text-white no-underline"
+            >
+              Classes
+            </Link>
+            <Link to={"/blog"} className="text-lg py-2 text-white no-underline">
+              Blog
+            </Link> */}
+            <Link
+              to={"/aboutus"}
+              className="text-lg py-2 text-white no-underline"
+            >
+              About Us
+            </Link>
             {/* profile div */}
-            <div className="absolute right-10 top-20">
+            <div className="">
               {!isAuthenticated ? (
-                <div className="hidden space-x-4 lg:flex">
+                <div className=" mt-4 ">
                   <Link
                     to={"/login"}
-                    className="rounded-2xl px-4 py-2 font-medium tracking-[0.02em] text-dimgray no-underline shadow-lg"
+                    className="rounded-2xl px-4 py-2 font-medium tracking-[0.02em] text-white no-underline shadow-lg"
                   >
                     Login
                   </Link>
@@ -182,7 +208,7 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
                   </Link>
                 </div>
               ) : (
-                <div className="relative ml-3">
+                <div className=" ml-3 absolute right-10 top-20">
                   {/* User Profile Dropdown */}
                   <button
                     className="text-sm relative flex rounded-full bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -233,30 +259,6 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
                 </div>
               )}
             </div>
-            <Link to={"/"} className="text-lg py-2 text-white no-underline">
-              Home
-            </Link>
-            <Link
-              to={"/classSelection"}
-              className="text-lg py-2 text-white no-underline"
-            >
-              Courses
-            </Link>
-            {/* <Link
-              to={"/class?username=Lina"}
-              className="text-lg py-2 text-white no-underline"
-            >
-              Classes
-            </Link>
-            <Link to={"/blog"} className="text-lg py-2 text-white no-underline">
-              Blog
-            </Link> */}
-            <Link
-              to={"/aboutus"}
-              className="text-lg py-2 text-white no-underline"
-            >
-              About Us
-            </Link>
           </div>
         </>
       )}
