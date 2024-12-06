@@ -1,13 +1,12 @@
-import React from "react";
 import Footer from "../components/Footer";
-import TopNav from "../components/TopNav";
 import { Link } from "react-router-dom";
+import InAppHeader from "../components/InAppHeader";
 
 const AboutUsPage = () => {
   return (
-    <div>
-      <TopNav className="bg-[#4abd86]" />
-      <section className="relative mt-16 py-24">
+    <div className="flex flex-col gap-[10px]">
+      <InAppHeader />
+      <section className="relative py-24">
         <div className="mx-auto w-full max-w-7xl px-4 md:px-5 lg:px-5">
           <div className="grid w-full grid-cols-1 items-center justify-start gap-12 lg:grid-cols-2">
             {/* Images Section */}
