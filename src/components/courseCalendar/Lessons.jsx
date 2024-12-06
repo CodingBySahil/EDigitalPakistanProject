@@ -34,6 +34,7 @@ function getBgColor(index) {
 export default function Lessons() {
   // VARIABLES
   const { lessonsData, setIsShowing } = useCourseCalendarContext();
+  console.log(lessonsData);
   const navigate = useNavigate();
 
   //FUNCTION
@@ -61,8 +62,8 @@ export default function Lessons() {
       </div>
 
       {/* Body */}
-      <div className="flex flex-col gap-[5px] overflow-x-hidden overflow-y-auto">
-        {lessonsData.map((val, index) => (
+      <div className="flex flex-col gap-[5px] overflow-y-auto overflow-x-hidden">
+        {lessonsData?.map((val, index) => (
           <div key={index} onClick={() => lessonClicked(val)}>
             <LessonCMP
               type={"lessons"}
