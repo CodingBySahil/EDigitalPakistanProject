@@ -3,7 +3,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FaBars, FaTimes, FaUser } from "react-icons/fa";
 
-const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
+const TopNav = ({ className = "", onLogout }) => {
+  const isAuthenticated = localStorage.getItem("isAuthenticated") === "true";
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
@@ -19,7 +20,7 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
 
   const handleLogoutClick = () => {
     onLogout();
-    // navigate("/login");
+    navigate("/login");
   };
 
   // Get username from localStorage
@@ -34,7 +35,7 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
 
   return (
     <div
-      className={`font-poppins text-xl text-white ${className} absolute left-0 right-0 top-0 z-50 mx-auto box-border max-w-screen-2xl px-8 py-3`}
+      className={`font-poppins text-xl text-white ${className} absolute left-0 right-0 top-0 z-50 mx-auto box-border max-w-screen-2xl bg-[#4abd86] px-8 py-3`}
     >
       {/* Main Navbar */}
       {!menuOpen && (
@@ -94,8 +95,8 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
                   onClick={toggleDropdown}
                   aria-expanded={dropdownOpen}
                 >
-                  <span className="absolute -inset-1.5"></span>
-                  <span className="sr-only">Open user menu</span>
+                  {/* <span className="absolute -inset-1.5"></span>
+                  <span className="sr-only">Open user menu</span> */}
                   {/* <img
                     alt="User avatar"
                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -107,7 +108,7 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
 
                 {dropdownOpen && (
                   <div
-                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md py-1 shadow-lg ring-1 ring-black/5 focus:outline-none"
+                    className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-[#4abd86] py-1 shadow-lg ring-1 ring-black/5 focus:outline-none"
                     role="menu"
                   >
                     <Link
@@ -119,7 +120,7 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
                     </Link>
                     {userData.user.username === "admin" && (
                       <Link
-                        to={`/subjectSelection?username=${userData.user.username}`}
+                        to={`/admin-panel?username=${userData.user.username}`}
                         className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                         role="menuitem"
                       >
@@ -164,8 +165,7 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
                 {menuOpen ? <FaTimes size={28} /> : <FaBars size={28} />}
               </button>
             </div>
-            
-            
+
             <Link to={"/"} className="text-lg py-2 text-white no-underline">
               Home
             </Link>
@@ -193,7 +193,7 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
             {/* profile div */}
             <div className="">
               {!isAuthenticated ? (
-                <div className=" mt-4 ">
+                <div className="mt-4">
                   <Link
                     to={"/login"}
                     className="rounded-2xl px-4 py-2 font-medium tracking-[0.02em] text-white no-underline shadow-lg"
@@ -208,7 +208,7 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
                   </Link>
                 </div>
               ) : (
-                <div className=" ml-3 absolute right-10 top-20">
+                <div className="absolute right-10 top-20 ml-3">
                   {/* User Profile Dropdown */}
                   <button
                     className="text-sm relative flex rounded-full bg-gray-800 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
@@ -239,21 +239,21 @@ const TopNav = ({ className = "", onLogout, isAuthenticated }) => {
                       </Link>
                       {userData.user.username === "admin" && (
                         <Link
-                          to={`/subjectSelection?username=${userData.user.username}`}
+                          to={`/admin-panel?username=${userData.user.username}`}
                           className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                           role="menuitem"
                         >
                           Admin Panel
                         </Link>
                       )}
-                      <a
+                      <Link
                         onClick={() => handleLogoutClick()}
-                        href="/"
+                        to="/"
                         className="text-sm block px-4 py-2 text-gray-700 no-underline hover:bg-white/30"
                         role="menuitem"
                       >
                         Log out
-                      </a>
+                      </Link>
                     </div>
                   )}
                 </div>

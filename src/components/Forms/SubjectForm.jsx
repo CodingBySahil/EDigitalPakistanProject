@@ -1,8 +1,10 @@
 import { PropTypes } from "prop-types";
 import { useState } from "react";
 import { mainURL } from "../../constants/const";
+import TopNav from "../TopNav";
+import Footer from "../Footer";
 
-const SubjectForm = ({ subjectNameFromURL }) => {
+const SubjectForm = () => {
   const [subjectName, setSubjectName] = useState("");
   const [selectedClass, setSelectedClass] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
@@ -23,48 +25,105 @@ const SubjectForm = ({ subjectNameFromURL }) => {
     setImage(file);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+
+  //   const formData = new FormData();
+  //   formData.append("title", subjectName);
+  //   formData.append("class", selectedClass);
+  //   formData.append("code", subjectCode);
+  //   if (image) {
+  //     formData.append("image", image); // Append image to form data
+  //   }
+
+  //   try {
+  //     const response = await fetch(API, {
+  //       method: "POST",
+  //       body: formData,
+  //     });
+
+  //     if (response.ok) {
+  //       const data = await response.json();
+  //       alert("Subject saved successfully!");
+  //       console.log("Response data:", data);
+
+  //       // Reset form after successful submission
+  //       setSubjectName("");
+  //       setSelectedClass("");
+  //       setSubjectCode("");
+  //       setImage(null);
+  //     } else {
+  //       const errorData = await response.json();
+  //       alert(`Error: ${errorData.message || "An error occurred."}`);
+  //     }
+  //   } catch (error) {
+  //     console.error(error);
+  //     alert("An unexpected error occurred. Please try again.");
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
+  
     const formData = new FormData();
     formData.append("title", subjectName);
     formData.append("class", selectedClass);
     formData.append("code", subjectCode);
     if (image) {
-      formData.append("image", image); // Append image to form data
+      formData.append("image", image);
     }
-
+  
     try {
+      console.log("Sending form data:");
+      for (let pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+      }
+  
       const response = await fetch(API, {
         method: "POST",
         body: formData,
       });
-
+  
       if (response.ok) {
         const data = await response.json();
         alert("Subject saved successfully!");
         console.log("Response data:", data);
-
-        // Reset form after successful submission
+  
+        // Reset the form
         setSubjectName("");
         setSelectedClass("");
         setSubjectCode("");
         setImage(null);
       } else {
-        const errorData = await response.json();
-        alert(`Error: ${errorData.message || "An error occurred."}`);
+        // Check if the response is JSON or not
+        const contentType = response.headers.get("content-type");
+        if (contentType && contentType.includes("application/json")) {
+          const errorData = await response.json();
+          alert(`Error: ${errorData.message || "An error occurred."}`);
+        } else {
+          const errorText = await response.text();
+          console.error("Server response (not JSON):", errorText);
+          alert("Unexpected server response. Please check the server.");
+        }
       }
     } catch (error) {
-      console.error(error);
+      console.error("Unexpected error:", error);
       alert("An unexpected error occurred. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
-
+  
   return (
-    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-lg">
+    <>
+    <TopNav/>
+    
+    <div className="mx-auto mt-28 max-w-4xl rounded-lg bg-white p-6 shadow-lg ">
       <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add New Subject
       </h2>
@@ -170,11 +229,14 @@ const SubjectForm = ({ subjectNameFromURL }) => {
         </button>
       </form>
     </div>
+
+    <Footer/>
+    </>
   );
 };
 
-SubjectForm.propTypes = {
-  subjectNameFromURL: PropTypes.string.isRequired,
-};
+// SubjectForm.propTypes = {
+//   subjectNameFromURL: PropTypes.string.isRequired,
+// };
 
 export default SubjectForm;

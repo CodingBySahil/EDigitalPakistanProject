@@ -27,6 +27,8 @@ import TermsAndConditionsPage from "./pages/TermsAndConditionsPage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 
 import AboutUsPage from "./pages/AboutUsPage";
+import AdminPanel from "./pages/AdminPanel";
+import SubjectForm from "./components/Forms/SubjectForm";
 
 function App() {
   const action = useNavigationType();
@@ -114,6 +116,8 @@ function App() {
 
         {/* DIVIDER routes for subject selection page */}
         <Route path="/subjectSelection" element={<SubjectSelection />} />
+        <Route path="/admin-panel" element={<AdminPanel onLogout={handleLogout}/>} />
+        <Route path="/admin-panel/upload-subjects" element={<SubjectForm onLogout={handleLogout}/>} />
 
         {/* DIVIDER route for payment */}
         <Route path="/payment" element={<PaymentPage />} />
