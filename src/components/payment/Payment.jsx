@@ -1,10 +1,10 @@
 import { createContext } from "react";
 import Footer from "../Footer";
-import ScrollableBody from "../ScrollableBody";
 import CartSummary from "./CartSummary";
 import CoursesPayment from "./CoursesPayment";
 import OtherCoursesBuying from "./OtherCoursesBuying";
 import { useGetClientSecret } from "./useGetClientSecret";
+import InAppHeader from "../InAppHeader";
 
 export const PaymentContext = createContext();
 
@@ -18,26 +18,24 @@ export default function Payment() {
   // JSX
   return (
     <PaymentContext.Provider value={{ clientSecret, statusClientSecret }}>
-      <div className="grid grid-rows-[60px_1fr]">
+      <div className="grid grid-rows-[auto_1fr_auto]">
         {/* DIVIDER payment page header */}
-        <header className="bg-brand-color-cyan">Header</header>
+        <InAppHeader />
 
-        <ScrollableBody>
-          {/* DIVIDER payment body */}
-          <main className="flex flex-col gap-[20px] px-[10px] pt-[10px]">
-            {/* cart summary */}
-            <CartSummary />
+        {/* DIVIDER payment body */}
+        <main className="flex flex-col gap-[20px] px-[10px] pt-[10px]">
+          {/* cart summary */}
+          <CartSummary />
 
-            {/* payment gateway */}
-            <CoursesPayment />
+          {/* payment gateway */}
+          <CoursesPayment />
 
-            {/* other course */}
-            <OtherCoursesBuying />
-          </main>
+          {/* other course */}
+          <OtherCoursesBuying />
+        </main>
 
-          {/* DIVIDER payment footer */}
-          <Footer />
-        </ScrollableBody>
+        {/* DIVIDER payment footer */}
+        <Footer />
       </div>
     </PaymentContext.Provider>
   );

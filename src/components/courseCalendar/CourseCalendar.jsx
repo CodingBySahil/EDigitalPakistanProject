@@ -16,7 +16,7 @@ export default function CourseCalendar() {
   // VARIABLES
   const [isShowing, setIsShowing] = useState(false);
   const { screenWidth } = useGetScreenWidth();
-  const { isLoading, lessonsData, setLessonsData } = useGetLessonsData();
+  const { isLoading, lessonsData = [], setLessonsData } = useGetLessonsData();
 
   // FUNCTION
   function sideBarToggle() {

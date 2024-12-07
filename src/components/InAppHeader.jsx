@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
 import { GoHomeFill } from "react-icons/go";
 import { FaBookReader } from "react-icons/fa";
@@ -26,10 +26,12 @@ export default function InAppHeader() {
   return (
     <header className="grid h-[50px] max-h-[50px] grid-cols-[50px_1fr_90px] bg-brand-color-cyan">
       <section className="flex h-[50px] max-h-[50px] items-center justify-center">
-        <img
-          className="h-[35px] w-[35px]"
-          src="/edpLogos/edp-logo-small-white.png"
-        />
+        <Link to={"/"}>
+          <img
+            className="h-[35px] w-[35px]"
+            src="/edpLogos/edp-logo-small-white.png"
+          />
+        </Link>
       </section>
 
       <nav className="flex h-[50px] max-h-[50px] items-center justify-center px-[10px]">

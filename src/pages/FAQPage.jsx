@@ -1,6 +1,7 @@
 import { useState } from "react";
 import TopNav from "../components/TopNav";
 import Footer from "../components/Footer";
+import InAppHeader from "../components/InAppHeader";
 
 const FAQPage = () => {
   const [activeIndex, setActiveIndex] = useState(null);
@@ -33,9 +34,9 @@ const FAQPage = () => {
   };
 
   return (
-    <div>
-      <TopNav className="bg-[#4abd86]" />
-      <section className="bg-gray-300 py-24 mt-7">
+    <div className="flex flex-col gap-[10px]">
+      <InAppHeader />
+      <section className="mt-7 bg-gray-300 py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mx-auto flex max-w-full flex-col items-center justify-center gap-x-16 gap-y-5 max-lg:max-w-2xl lg:flex-row lg:justify-between xl:gap-28">
             <div className="w-full lg:w-1/2">
@@ -105,7 +106,7 @@ const FAQPage = () => {
           </div>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
