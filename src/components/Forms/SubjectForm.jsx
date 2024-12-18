@@ -1,5 +1,5 @@
 import { PropTypes } from "prop-types";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { mainURL } from "../../constants/const";
 import TopNav from "../TopNav";
 import Footer from "../Footer";
@@ -10,6 +10,7 @@ const SubjectForm = () => {
   const [subjectCode, setSubjectCode] = useState("");
   const [image, setImage] = useState(null); // State to hold the uploaded image
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const fileInputRef = useRef(null); // Ref for clearing file input
 
   const classOptions = [
     { value: "", label: "Select Class" },
@@ -115,15 +116,10 @@ const SubjectForm = () => {
     formData.append("class", selectedClass);
     formData.append("code", subjectCode);
     if (image) {
-      formData.append("image", image);
+      formData.append("subject", image);
     }
 
     try {
-      console.log("Sending form data:");
-      for (let pair of formData.entries()) {
-        console.log(`${pair[0]}: ${pair[1]}`);
-      }
-
       const response = await fetch(API, {
         method: "POST",
         body: formData,
@@ -139,8 +135,10 @@ const SubjectForm = () => {
         setSelectedClass("");
         setSubjectCode("");
         setImage(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = ""; // Clear the file input
+        }
       } else {
-        // Check if the response is JSON or not
         const contentType = response.headers.get("content-type");
         if (contentType && contentType.includes("application/json")) {
           const errorData = await response.json();
@@ -250,6 +248,7 @@ const SubjectForm = () => {
               id="imageUpload"
               onChange={handleImageChange}
               accept="image/*"
+              ref={fileInputRef} // Reference for resetting input
               className="w-full rounded-md border border-gray-300 p-3"
             />
             {image && (
