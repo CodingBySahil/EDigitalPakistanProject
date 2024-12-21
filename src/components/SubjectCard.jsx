@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { brandColorCyan } from "../constants/brandColors";
 import { Link } from "react-router-dom";
 import AppButton from "./AppButton";
+import { mainURL } from "../constants/const";
 
 // COMPONENT START
 export default function SubjectCard({
@@ -13,6 +14,8 @@ export default function SubjectCard({
   // VARIABLES
 
   // FUNCTIONS
+  console.log(imgPath);
+  console.log(`${mainURL}/${imgPath.replace(/\\/g, "/")}`);
 
   // JSX
   return (
@@ -23,7 +26,7 @@ export default function SubjectCard({
       {/* Image Section */}
       <section className="rounded-[5px] bg-stone-200">
         <img
-          src={imgPath}
+          src={`${mainURL}/${imgPath.replace(/\\/g, "/")}`}
           alt={subjectName}
           className="h-full w-full rounded-[5px] object-cover object-top"
         />
