@@ -150,9 +150,9 @@ function App() {
         <Route
           path="/classSelection/subjectSelection"
           element={
-            <PrivateRoute isAuthenticated={isAuthenticated}>
+            // <PrivateRoute isAuthenticated={isAuthenticated}>
               <SelectSubjectCourse />
-            </PrivateRoute>
+            // </PrivateRoute>
           }
         />
 
