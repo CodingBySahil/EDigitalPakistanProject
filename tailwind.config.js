@@ -18,6 +18,7 @@ module.exports = {
         "brand-color-cyan": "#49BBBD",
         "brand-color-lightBlue": "#9DCCFF",
         "brand-color-lightPink": "#EE645B",
+        "brand-color-darkblue": "#252641",
 
         white: "#fff",
         lightseagreen: {
