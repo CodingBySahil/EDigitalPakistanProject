@@ -116,8 +116,14 @@ function App() {
 
         {/* DIVIDER routes for subject selection page */}
         <Route path="/subjectSelection" element={<SubjectSelection />} />
-        <Route path="/admin-panel" element={<AdminPanel onLogout={handleLogout}/>} />
-        <Route path="/admin-panel/upload-subjects" element={<SubjectForm onLogout={handleLogout}/>} />
+        <Route
+          path="/admin-panel"
+          element={<AdminPanel onLogout={handleLogout} />}
+        />
+        <Route
+          path="/admin-panel/upload-subjects"
+          element={<SubjectForm onLogout={handleLogout} />}
+        />
 
         {/* DIVIDER route for payment */}
         <Route path="/payment" element={<PaymentPage />} />
@@ -133,24 +139,23 @@ function App() {
         />
 
         {/* Protected Routes */}
-      <Route
-        path="/classSelection"
-        element={
-          <PrivateRoute isAuthenticated={isAuthenticated}>
+        <Route
+          path="/classSelection"
+          element={
+            // <PrivateRoute isAuthenticated={isAuthenticated}>
             <ClassSelectionPage />
-          </PrivateRoute>
-        }
-      />
-      <Route
-        path="/classSelection/subjectSelection"
-        element={
-          <PrivateRoute isAuthenticated={isAuthenticated}>
-            <SelectSubjectCourse />
-          </PrivateRoute>
-        }
-      />
+            // </PrivateRoute>
+          }
+        />
+        <Route
+          path="/classSelection/subjectSelection"
+          element={
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+              <SelectSubjectCourse />
+            </PrivateRoute>
+          }
+        />
 
-        
         {/* FAQ route */}
         <Route path="/faq" element={<FAQPage />} />
         {/* term and condition */}
