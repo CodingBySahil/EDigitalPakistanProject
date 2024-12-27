@@ -30,6 +30,8 @@ import AboutUsPage from "./pages/AboutUsPage";
 import AdminPanel from "./pages/AdminPanel";
 import SubjectForm from "./components/Forms/SubjectForm";
 
+// Online coaching
+
 function App() {
   const action = useNavigationType();
   const location = useLocation();
@@ -151,7 +153,7 @@ function App() {
           path="/classSelection/subjectSelection"
           element={
             // <PrivateRoute isAuthenticated={isAuthenticated}>
-              <SelectSubjectCourse />
+            <SelectSubjectCourse />
             // </PrivateRoute>
           }
         />

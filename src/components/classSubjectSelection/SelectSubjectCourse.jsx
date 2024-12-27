@@ -7,6 +7,8 @@ import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import SubjectCard from "../SubjectCard";
 import { useGetAllSubjectClass } from "./useGetAllSubjectClass";
 import { useGetClassNumberQuery } from "../../hooks/useGetClassNumberQuery";
+import AppButton from "../AppButton";
+import OnlineCoaching from "../OnlineCoaching";
 
 // COMPONENT START
 export default function SelectSubjectCourse() {
@@ -59,7 +61,9 @@ export default function SelectSubjectCourse() {
             )}
           </div>
 
-          <div>x</div>
+          <div className="flex w-[100%] items-center justify-center py-[80px]">
+            <OnlineCoaching />
+          </div>
 
           <div>
             <Footer />

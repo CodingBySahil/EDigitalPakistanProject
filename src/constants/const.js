@@ -1,4 +1,3 @@
-// export const mainURL = "https://new-lms.onrender.com";
 export const mainURL = "https://lms.digipakistan.com";
 
 export const sideBarToggleFalse992 = 992;
