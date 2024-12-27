@@ -16,16 +16,16 @@ const VideoWithPlayButton = () => {
   };
 
   return (
-    <div className="relative h-[400px] w-full max-w-lg rounded-xl overflow-hidden">
+    <div className="relative h-[400px] w-full max-w-lg overflow-hidden rounded-xl">
       {/* Video element */}
       <video
         ref={videoRef}
-        className={`absolute top-0 left-0 h-full w-full object-cover transition-transform duration-500 ${
+        className={`absolute left-0 top-0 h-full w-full object-cover transition-transform duration-500 ${
           isPlaying ? "z-50 h-auto w-auto max-w-full" : ""
         }`}
         src="EducationVedio.mp4"
         muted={!isPlaying} // Unmute when playing
-        loop={!isPlaying} // Disable looping in full player mode
+        loop={isPlaying} // Disable looping in full player mode
         playsInline
       >
         Your browser does not support the video tag.
@@ -33,15 +33,14 @@ const VideoWithPlayButton = () => {
 
       {/* Conditional Play Button Overlay */}
       {!isPlaying && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/20 flex items-center justify-center">
-        <button
-          onClick={handlePlayVideo}
-          className="bg-white/70 text-black rounded-full p-6 shadow-2xl hover:scale-110 hover:bg-white transition-all duration-300 ease-in-out flex items-center justify-center"
-        >
-          <FaPlay className="text-black cursor-pointer" size={32} />
-        </button>
-      </div>
-      
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-t from-black/60 via-black/40 to-black/20">
+          <button
+            onClick={handlePlayVideo}
+            className="flex items-center justify-center rounded-full bg-white/70 p-6 text-black shadow-2xl transition-all duration-300 ease-in-out hover:scale-110 hover:bg-white"
+          >
+            <FaPlay className="cursor-pointer text-black" size={32} />
+          </button>
+        </div>
       )}
     </div>
   );
