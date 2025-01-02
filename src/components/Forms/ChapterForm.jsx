@@ -1,11 +1,12 @@
 import { PropTypes } from "prop-types";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom"; // Import useParams for URL parameters
 import { mainURL } from "../../constants/const";
 
-const ChapterForm = ({ subjectNameFromURL }) => {
+const ChapterForm = () => {
+  const { subjectCode } = useParams(); // Extract subjectCode from the URL
   const [chapName, setChapName] = useState("");
   const [className, setClassName] = useState("");
-  const [subjectCode, setSubjectCode] = useState("");
   const [chapterCode, setChapterCode] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
@@ -17,10 +18,9 @@ const ChapterForm = ({ subjectNameFromURL }) => {
     const fetchChapters = async () => {
       try {
         const response = await fetch(
-          `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
+          `${mainURL}/api/${subjectCode}/chapter/data`,
         );
         const data = await response.json();
-        // console.log("Chapters fetched:", data);
         setChapters(data);
       } catch (error) {
         console.error("Error fetching chapters:", error);
@@ -28,7 +28,7 @@ const ChapterForm = ({ subjectNameFromURL }) => {
     };
 
     fetchChapters();
-  }, [subjectNameFromURL]);
+  }, [subjectCode]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -45,7 +45,7 @@ const ChapterForm = ({ subjectNameFromURL }) => {
 
     try {
       const response = await fetch(
-        `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
+        `${mainURL}/api/${subjectCode}/chapter/data`,
         {
           method: "POST",
           headers: {
@@ -65,7 +65,6 @@ const ChapterForm = ({ subjectNameFromURL }) => {
 
       setChapName("");
       setClassName("");
-      setSubjectCode("");
       setChapterCode("");
       setSuccess(true);
     } catch (err) {
@@ -77,7 +76,7 @@ const ChapterForm = ({ subjectNameFromURL }) => {
   };
 
   return (
-    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-lg">
+    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-slate-100 p-6 shadow-lg">
       <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add New Chapter
       </h2>
@@ -121,25 +120,17 @@ const ChapterForm = ({ subjectNameFromURL }) => {
           />
         </div>
 
-        {/* Dropdown for selecting subject code */}
-        <div className="mb-6">
+        {/* Subject Code */}
+        <div>
           <label className="text-lg mb-2 block font-semibold">
-            Subject code
+            Subject Code
           </label>
-          <select
+          <input
+            type="text"
             value={subjectCode}
-            onChange={(e) => setSubjectCode(e.target.value)}
-            className="w-full transform rounded-lg border border-gray-300 bg-white p-3 shadow-lg transition duration-200 ease-in-out hover:scale-[1.01] hover:shadow-md focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500"
-          >
-            <option value="" disabled className="text-gray-500">
-              Select a subject code
-            </option>
-            {chapters.map((chapter) => (
-              <option key={chapter.chapterCode} value={chapter.subjectCode}>
-                {chapter.subjectCode}
-              </option>
-            ))}
-          </select>
+            disabled
+            className="w-full cursor-not-allowed rounded-md border border-gray-300 p-2 text-gray-500"
+          />
         </div>
 
         {/* Chapter Code */}
@@ -172,8 +163,4 @@ const ChapterForm = ({ subjectNameFromURL }) => {
   );
 };
 
-// adding prop type validation
-ChapterForm.propTypes = {
-  subjectNameFromURL: PropTypes.string.isRequired,
-};
 export default ChapterForm;

@@ -106,7 +106,7 @@ const MCQForm = ({ subjectNameFromURL }) => {
   };
 
   return (
-    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-lg">
+    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-slate-100 p-6 shadow-lg">
       <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add MCQ
       </h2>
@@ -203,7 +203,7 @@ const MCQForm = ({ subjectNameFromURL }) => {
         <div className="mt-6 flex justify-center">
           <button
             type="submit"
-            className="rounded-md bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
+            className="w-full rounded-md bg-blue-600 px-4 py-2 font-semibold text-white hover:bg-blue-700"
             disabled={isSubmitting}
           >
             {isSubmitting ? "Submitting..." : "Submit"}

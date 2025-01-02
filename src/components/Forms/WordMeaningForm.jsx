@@ -84,7 +84,7 @@ const WordMeaningForm = ({ subjectNameFromURL }) => {
     }
   };
   return (
-    <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-white p-6 shadow-lgf">
+    <div className="shadow-lgf mx-auto mt-8 max-w-4xl rounded-lg bg-slate-100 p-6">
       <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
         Add New Word
       </h2>

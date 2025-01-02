@@ -47,13 +47,13 @@ const SendDataPage = ({ onLogout }) => {
       </div> */}
 
       {/* Pass subjectNameFromURL as a prop to each component */}
-      <ContentForm subjectNameFromURL={subjectNameFromURL} />
       <ChapterForm subjectNameFromURL={subjectNameFromURL} />
+      <ContentForm subjectNameFromURL={subjectNameFromURL} />
       <MCQsForm subjectNameFromURL={subjectNameFromURL} />
       {/* <SubjectForm subjectNameFromURL={subjectNameFromURL} /> */}
       <WordMeaningForm subjectNameFromURL={subjectNameFromURL} />
       <QuestionAnswerForm subjectNameFromURL={subjectNameFromURL} />
-      <FillInTheBlanksForm subjectNameFromURL={subjectNameFromURL} />
+      {/* <FillInTheBlanksForm subjectNameFromURL={subjectNameFromURL} /> */}
     </div>
   );
 };

@@ -50,7 +50,7 @@ const FillInTheBlanksForm = ({ subjectNameFromURL }) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="mx-auto mt-8 max-w-4xl space-y-4 rounded-lg bg-white p-6 shadow-lg"
+      className="mx-auto mt-8 max-w-4xl space-y-4 rounded-lg bg-slate-100 p-6 shadow-lg"
     >
       {/* Sentence 1 */}
       <div>
