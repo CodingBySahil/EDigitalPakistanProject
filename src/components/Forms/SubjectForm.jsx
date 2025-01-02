@@ -161,7 +161,7 @@ const SubjectForm = () => {
     <>
       <TopNav />
 
-      <div className="mx-auto mt-28 max-w-4xl rounded-lg bg-white p-6 shadow-lg">
+      <div className="mx-auto mt-28 max-w-4xl rounded-lg bg-slate-100 p-6 shadow-lg">
         <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
           Add New Subject
         </h2>
