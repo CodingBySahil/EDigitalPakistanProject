@@ -3,8 +3,6 @@ import SubjectCard from "./SubjectCard";
 import { mainURL } from "../constants/const";
 
 export default function SubjectCardDisplay({ cardsArr }) {
-  console.log(cardsArr);
-
   return (
     <section className="grid grid-cols-1 gap-8 tabS:grid-cols-2 laptop14:grid-cols-4 laptop14:gap-[60px]">
       {cardsArr.map((val, index) => (
@@ -13,7 +11,7 @@ export default function SubjectCardDisplay({ cardsArr }) {
           subjectName={val?.title}
           buttonText={"Upload content"}
           buttonUrl={`/administration/${val?.code}`}
-          imgPath={`${mainURL}/${val?.subPic.replace(/\\/g, "/")}`}
+          imgPath={`/${val?.subPic}`}
         />
       ))}
     </section>

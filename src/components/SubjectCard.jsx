@@ -14,9 +14,6 @@ export default function SubjectCard({
   // VARIABLES
 
   // FUNCTIONS
-  console.log(imgPath);
-  console.log(`${mainURL}/${imgPath.replace(/\\/g, "/")}`);
-
   // JSX
   return (
     <div
@@ -26,7 +23,7 @@ export default function SubjectCard({
       {/* Image Section */}
       <section className="rounded-[5px] bg-stone-200">
         <img
-          src={`${mainURL}/${imgPath.replace(/\\/g, "/")}`}
+          src={`${mainURL}/${imgPath}`}
           alt={subjectName}
           className="h-full w-full rounded-[5px] object-cover object-top"
         />

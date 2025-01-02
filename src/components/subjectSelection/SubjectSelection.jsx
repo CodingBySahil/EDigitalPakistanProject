@@ -5,11 +5,10 @@ import ScrollableBody from "../ScrollableBody";
 import { mainURL } from "../../constants/const";
 
 export default function SubjectSelection() {
-  // reading class number from url 
+  // reading class number from url
   const urlParams = new URLSearchParams(window.location.search);
   const classNumber = urlParams.get("class");
   // console.log(classNumber);
-  
 
   // VARIABLES
   const [allSubjectsArray, setAllSubjectsArray] = useState([]);
@@ -22,13 +21,16 @@ export default function SubjectSelection() {
   useEffect(() => {
     async function fetchSubjects() {
       try {
-        const response = await fetch(`${mainURL}/api/${classNumber}/subject/data`, {
-          headers: {
-            Authorization: `Bearer ${userData.accessToken}`, // Include the access token in the headers
-            "Content-Type": "application/json",
+        const response = await fetch(
+          `${mainURL}/api/${classNumber}/subject/data`,
+          {
+            headers: {
+              Authorization: `Bearer ${userData.accessToken}`, // Include the access token in the headers
+              "Content-Type": "application/json",
+            },
+            credentials: "include", // Include cookies in the request if needed
           },
-          credentials: "include", // Include cookies in the request if needed
-        });
+        );
 
         if (!response.ok) {
           throw new Error(`Error: ${response.status} - ${response.statusText}`);
