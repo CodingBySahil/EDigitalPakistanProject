@@ -92,7 +92,8 @@ export default function CourseCalendar() {
         </>
       </courseCalendarContext.Provider>
     );
-  } else {
+  }
+  if (isLoading === true) {
     return (
       <LoadingSpinnerContainer>
         <LoadingSpinner />

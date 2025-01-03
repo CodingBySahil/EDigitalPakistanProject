@@ -27,7 +27,7 @@ export default function ClassSelectionCard({
     >
       <div className="h-[400px] rounded-[3px] bg-stone-100 laptop14:h-[620px]">
         <img
-          className="h-full w-full rounded-[3px] object-cover"
+          className="h-full w-full rounded-[3px] object-cover object-top"
           src={imgPath}
         />
       </div>

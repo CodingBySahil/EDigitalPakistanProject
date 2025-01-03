@@ -16,6 +16,8 @@ export default function SelectSubjectCourse() {
   const { dataClassSubject, statusClassSubjects } = useGetAllSubjectClass();
   const classNumber = useGetClassNumberQuery();
 
+  console.log(dataClassSubject);
+
   // FUNCTIONS
 
   // JSX
@@ -33,7 +35,7 @@ export default function SelectSubjectCourse() {
 
         <main className="over grid grid-rows-[auto_1fr_auto_auto] gap-[10px] overflow-y-auto">
           <div className="px-[10px] laptop14:px-[20px]">
-            <Heading>Select subject</Heading>
+            <Heading>Select subject to view details</Heading>
           </div>
 
           <div>
