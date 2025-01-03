@@ -1,25 +1,32 @@
 import { useEffect, useState } from "react";
 import { mainURL } from "../../constants/const";
+import { useSearchParams } from "react-router-dom";
 
 export function useGetLessonsData() {
   // VARIABLES
-  const [isLoading, setIsLoading] = useState(false);
+  const [status, setStatus] = useState("idle");
   const [lessonsData, setLessonsData] = useState([]);
+  const [searchParams] = useSearchParams();
+  const subjectCode = searchParams.get("subject-code");
 
   // FUNCTION gets data for lessons on the sidebar
   useEffect(() => {
     async function getLessonsData() {
       try {
-        setIsLoading(true);
+        setStatus("pending");
         // step 1 : sending a get request
-        const response = await fetch(`${mainURL}/api/subject/data`, {
-          method: "GET",
-        });
+        const response = await fetch(
+          `${mainURL}/api/${subjectCode}/chapter/data`,
+          {
+            method: "GET",
+          },
+        );
 
         // console.log(response);
 
         if (!response.ok) {
           const errorMessage = await response.text();
+          setStatus("error");
           throw new Error(`Unable to fetch lessons data ${errorMessage}`);
         }
 
@@ -27,19 +34,18 @@ export function useGetLessonsData() {
 
         // step 2 : parsing the json
         const data = JSON.parse(jsonText);
-        // console.log(data);
 
         // step 3 : setting the state
         setLessonsData(data);
-        setIsLoading(false);
+        setStatus("success");
       } catch (error) {
-        setIsLoading(false);
+        setStatus("error");
         throw new Error(`Unable to get lessons data ${error.message}`);
       }
     }
 
     getLessonsData();
-  }, []);
+  }, [subjectCode]);
 
-  return { isLoading, setIsLoading, lessonsData, setLessonsData };
+  return { status, lessonsData, setLessonsData };
 }

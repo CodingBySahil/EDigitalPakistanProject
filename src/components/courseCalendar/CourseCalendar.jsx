@@ -9,6 +9,7 @@ import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 import { sideBarToggleFalse992 } from "../../constants/const";
 import { useGetLessonsData } from "./useGetLessonsData";
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const courseCalendarContext = createContext();
 
 // COMPONENT START
@@ -16,7 +17,7 @@ export default function CourseCalendar() {
   // VARIABLES
   const [isShowing, setIsShowing] = useState(false);
   const { screenWidth } = useGetScreenWidth();
-  const { isLoading, lessonsData = [], setLessonsData } = useGetLessonsData();
+  const { status, lessonsData = [], setLessonsData } = useGetLessonsData();
 
   // FUNCTION
   function sideBarToggle() {
@@ -28,7 +29,7 @@ export default function CourseCalendar() {
   }
 
   // JSX
-  if (isLoading === false) {
+  if (status === "success") {
     return (
       <courseCalendarContext.Provider
         value={{
@@ -93,12 +94,15 @@ export default function CourseCalendar() {
       </courseCalendarContext.Provider>
     );
   }
-  if (isLoading === true) {
+  if (status === "pending") {
     return (
       <LoadingSpinnerContainer>
         <LoadingSpinner />
       </LoadingSpinnerContainer>
     );
+  }
+  if (status === "error") {
+    <p>an error occured</p>;
   }
 
   // JSX

@@ -2,20 +2,20 @@ import PropTypes from "prop-types";
 import { IoBookSharp } from "react-icons/io5";
 
 export default function LessonCMP({
-  type,
+  type = "lessons",
   lessonData,
   chapterNo,
   bgColor = "pink",
-  quizDetails,
+  quizDetails = {},
 }) {
   // JSX
   return (
     <div
-      className="cursor-pointer grid min-h-[40px] w-full grid-cols-[10%_70%_50px] gap-[5px] text-nowrap rounded-[5px] p-[5px] text-[10px] items-center"
+      className="grid min-h-[40px] w-full cursor-pointer grid-cols-[10%_70%_50px] items-center gap-[5px] text-nowrap rounded-[5px] p-[5px] text-[10px]"
       style={{ backgroundColor: bgColor }}
     >
       {/* Icon */}
-      <div className="flex justify-center items-center">
+      <div className="flex items-center justify-center">
         <IoBookSharp size={15} />
       </div>
 
@@ -45,4 +45,6 @@ LessonCMP.propTypes = {
   lessonData: PropTypes.object,
   chapterNo: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   bgColor: PropTypes.string,
+  type: PropTypes.string,
+  quizDetails: PropTypes.object,
 };

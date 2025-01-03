@@ -3,7 +3,7 @@ import { courseCalendarContext } from "./CourseCalendar";
 
 export function useCourseCalendarContext() {
   const { lessonsData, setLessonsData, isShowing, setIsShowing } = useContext(
-    courseCalendarContext
+    courseCalendarContext,
   );
 
   // console.log(lessonsData);

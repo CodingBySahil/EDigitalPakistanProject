@@ -7,7 +7,6 @@ import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import SubjectCard from "../SubjectCard";
 import { useGetAllSubjectClass } from "./useGetAllSubjectClass";
 import { useGetClassNumberQuery } from "../../hooks/useGetClassNumberQuery";
-import AppButton from "../AppButton";
 import OnlineCoaching from "../OnlineCoaching";
 
 // COMPONENT START
@@ -47,7 +46,7 @@ export default function SelectSubjectCourse() {
                       key={i}
                       subjectName={val?.subjectName}
                       buttonText={"view details"}
-                      buttonUrl={"/course-calender"}
+                      buttonUrl={`/course-calender?class-number=${classNumber}&subject-name=${val?.subjectName?.toLowerCase()}&subject-code=${val?.subjectCode}`}
                       imgPath={val?.subjectPic}
                     />
                   ))}

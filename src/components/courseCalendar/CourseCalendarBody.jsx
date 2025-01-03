@@ -11,10 +11,9 @@ import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 export default function CourseCalendarBody() {
   // VARIABLES
   const [searchParams] = useSearchParams();
-  let chapterCode = searchParams.get("chapterNumber") || "ENG101CH2";
+  let chapterCode = searchParams.get("chapter-code");
   const { status = "idle", chapterData = "" } = useGetChapterData(chapterCode);
   const chapterDataContainerRef = useRef(null);
-  const navigate = useNavigate();
   const screenHeight = useGetScreenHeight();
   const { screenWidth } = useGetScreenWidth();
 
@@ -27,15 +26,16 @@ export default function CourseCalendarBody() {
     }
   }, [status, chapterData]);
 
-  //    FUNCTION
-  useEffect(() => {
-    if (!searchParams.get("quizType"))
-      navigate("/course-calender?chapterNumber=ENG101CH2");
-  }, []);
-
   // JSX
 
-  if (searchParams.get("chapterNumber")) {
+  if (!chapterCode) {
+    return (
+      <div className="flex h-full items-center justify-center">
+        Select a chapter to view details
+      </div>
+    );
+  }
+  if (chapterCode) {
     if (chapterCode && status === "success") {
       return (
         <div
@@ -61,9 +61,9 @@ export default function CourseCalendarBody() {
     }
     if (status === "error") {
       return (
-        <LoadingSpinnerContainer>
+        <div className="flex h-full items-center justify-center">
           An error has been occured
-        </LoadingSpinnerContainer>
+        </div>
       );
     }
     // <LessonsDisplay />;

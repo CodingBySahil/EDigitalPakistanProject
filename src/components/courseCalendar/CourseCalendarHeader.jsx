@@ -26,7 +26,7 @@ export default function CourseCalendarHeader({ sideBarToggle }) {
       )}
 
       <div
-        className={`grid h-[70px] grid-rows-2 gap-[10px] bg-brand-color-cyan p-[10px] pl-[30px] text-white items-center `}
+        className={`grid h-[70px] grid-rows-2 items-center gap-[10px] bg-brand-color-cyan p-[10px] pl-[30px] text-white`}
       >
         {/*  main heading */}
         <div>

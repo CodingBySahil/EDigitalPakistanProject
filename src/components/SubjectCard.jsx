@@ -14,6 +14,7 @@ export default function SubjectCard({
   // VARIABLES
 
   // FUNCTIONS
+
   // JSX
   return (
     <div

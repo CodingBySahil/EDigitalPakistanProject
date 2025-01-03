@@ -1,7 +1,7 @@
 import LessonCMP from "./LessonsCMP";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { useCourseCalendarContext } from "./useCourseCalendarContext";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
 let i = 1;
 
@@ -34,13 +34,16 @@ function getBgColor(index) {
 export default function Lessons() {
   // VARIABLES
   const { lessonsData, setIsShowing } = useCourseCalendarContext();
-  console.log(lessonsData);
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const subjectCode = searchParams.get("subject-code");
 
   //FUNCTION
   function lessonClicked(val) {
     setIsShowing(false);
-    navigate(`/course-calender?chapterNumber=${val?.chapterCode}`);
+    navigate(
+      `/course-calender?subject-code=${subjectCode}&chapter-code=${val?.chapterCode}`,
+    );
   }
 
   useEffect(() => {
@@ -62,7 +65,8 @@ export default function Lessons() {
       </div>
 
       {/* Body */}
-      <div className="flex flex-col gap-[5px] overflow-y-auto overflow-x-hidden">
+      <div className="bg-gre flex flex-col gap-[5px] overflow-y-auto overflow-x-hidden">
+        {lessonsData?.length === 0 && <p>{`No chapters for ${subjectCode}`}</p>}
         {lessonsData?.map((val, index) => (
           <div key={index} onClick={() => lessonClicked(val)}>
             <LessonCMP
