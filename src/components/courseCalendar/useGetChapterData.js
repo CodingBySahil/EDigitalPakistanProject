@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { mainURL } from "../../constants/const";
+import { useSearchParams } from "react-router-dom";
 
 // FUNCTION the gets the data for single chapter once clicked from the side bar
 export function useGetChapterData(chapterCode) {
   // 2 : but if the chapter is selected than load the data for it
   const [chapterData, setChapterData] = useState({});
   const [status, setStatus] = useState("idle");
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     async function getChapterData() {
@@ -39,8 +41,12 @@ export function useGetChapterData(chapterCode) {
       }
     }
 
-    getChapterData();
-  }, [chapterCode]);
+    if (chapterCode && !searchParams.get("quizType")) {
+      getChapterData();
+    } else {
+      return;
+    }
+  }, [chapterCode, searchParams]);
 
   return { status, setStatus, chapterData, setChapterData };
 }

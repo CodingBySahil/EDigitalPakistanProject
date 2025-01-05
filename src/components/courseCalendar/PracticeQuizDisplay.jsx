@@ -7,7 +7,7 @@ import QuizQuestionAnswer from "./QuizQuestionAnswer";
 export default function PracticeQuizDisplay() {
   // VARIABLES
   const [searchParams] = useSearchParams();
-  const quizType = searchParams.get("quizType");
+  const quizType = searchParams.get("quiz-type");
 
   // FUNCTIONS
 

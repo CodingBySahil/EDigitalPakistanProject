@@ -15,8 +15,6 @@ export default function SelectSubjectCourse() {
   const { dataClassSubject, statusClassSubjects } = useGetAllSubjectClass();
   const classNumber = useGetClassNumberQuery();
 
-  console.log(dataClassSubject);
-
   // FUNCTIONS
 
   // JSX
@@ -27,7 +25,7 @@ export default function SelectSubjectCourse() {
       </LoadingSpinnerContainer>
     );
   }
-  if (statusClassSubjects === "success") {
+  if (statusClassSubjects === "success" && dataClassSubject.length > 0) {
     return (
       <div className="grid h-[100vh] grid-rows-[50px_1fr] gap-[10px] overflow-x-hidden overflow-y-hidden">
         <InAppHeader />
@@ -77,6 +75,9 @@ export default function SelectSubjectCourse() {
     <FlexCenter>
       <p>An error occured</p>
     </FlexCenter>;
+  }
+  if (statusClassSubjects === "success" && dataClassSubject.length === 0) {
+    return <FlexCenter>No data from class {classNumber}</FlexCenter>;
   }
 
   // JSX

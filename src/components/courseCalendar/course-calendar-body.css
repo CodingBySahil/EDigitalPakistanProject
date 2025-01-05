@@ -1,0 +1,21 @@
+.custom-font-size * {
+  font-size: 12px !important;
+}
+
+@media (max-width: 600px) {
+  .custom-font-size * {
+    font-size: 12px !important;
+  }
+}
+
+@media (min-width: 600px) {
+  .custom-font-size * {
+    font-size: 20px !important;
+  }
+}
+
+@media (min-width: 900px) {
+  .custom-font-size * {
+    font-size: 25px !important;
+  }
+}

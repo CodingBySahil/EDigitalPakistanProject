@@ -23,17 +23,17 @@ const classesArr = [
   {
     class: 6,
     url: "/classSelection/subjectSelection?class=6",
-    imgPath: "public/class-678-pics/class-6.jpg",
+    imgPath: "/class-678-pics/class-6.jpg",
   },
   {
     class: 7,
     url: "/classSelection/subjectSelection?class=7",
-    imgPath: "public/class-678-pics/class-7.jpg",
+    imgPath: "/class-678-pics/class-7.jpg",
   },
   {
     class: 8,
     url: "/classSelection/subjectSelection?class=8",
-    imgPath: "public/class-678-pics/class-8.jpg",
+    imgPath: "/class-678-pics/class-8.jpg",
   },
 ];
 

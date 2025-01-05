@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { mainURL } from "../../constants/const";
+import { useSearchParams } from "react-router-dom";
 
 export const useGetWordMeanings = () => {
   const [dataWordMeanings, setDataWordMeanings] = useState([]);
   const [statusWordMeanings, setStatusWordMeanings] = useState("idle");
+  const [searchParams] = useSearchParams();
+  const chapterCode = searchParams.get("chapter-code");
 
   useEffect(() => {
     const getWordMeanings = async () => {
@@ -11,7 +14,7 @@ export const useGetWordMeanings = () => {
         setStatusWordMeanings("pending");
         // const response = await fetch(`http://localhost:3000/questionsArr`);
         const response = await fetch(
-          `${mainURL}/api/ENG101CH1/wordMeaning/data`,
+          `${mainURL}/api/${chapterCode}/wordMeaning/data`,
         );
 
         if (!response.ok) {
