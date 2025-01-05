@@ -1,22 +1,23 @@
+import { useSearchParams } from "react-router-dom";
 import { useGetScreenHeight } from "../../hooks/useGetScreenHeight";
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import QuizHeader from "./QuizHeader";
 import { useGetQuestionAnswers } from "./useGetQuestionAnswers";
-import { useGetQuizType } from "./useGetQuizType";
 
 // COMPONENT START
 export default function QuizQuestionAnswer() {
   // VARIABLES
-  const quizType = useGetQuizType();
   const { statusQuestionAnswers = "idle", dataQuestionAnswers = [] } =
     useGetQuestionAnswers();
   const screenHeight = useGetScreenHeight();
+  const [searchParams] = useSearchParams();
+  const chapterCode = searchParams.get("chapter-code");
 
   // FUNCTIONS
 
   // JSX
-  if (statusQuestionAnswers === "success") {
+  if (statusQuestionAnswers === "success" && dataQuestionAnswers.length > 0) {
     return (
       <div className="grid grid-rows-[auto_1fr] gap-[10px]">
         <div>
@@ -57,6 +58,20 @@ export default function QuizQuestionAnswer() {
     return (
       <LoadingSpinnerContainer>
         <LoadingSpinner />
+      </LoadingSpinnerContainer>
+    );
+  }
+  if (statusQuestionAnswers === "error") {
+    return (
+      <LoadingSpinnerContainer>
+        <p>An error occured</p>
+      </LoadingSpinnerContainer>
+    );
+  }
+  if (statusQuestionAnswers === "success" && dataQuestionAnswers.length === 0) {
+    return (
+      <LoadingSpinnerContainer>
+        <p>No question answers for {chapterCode}</p>
       </LoadingSpinnerContainer>
     );
   }
