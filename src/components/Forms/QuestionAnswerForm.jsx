@@ -20,6 +20,8 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
         const data = await response.json();
         // console.log("Chapters fetched:", data); // Log the response
         setChapters(data); // Set chapters in state
+        console.log("chapter", chapters);
+        console.log("data", data);
       } catch (error) {
         console.error("Error fetching chapters:", error);
       }
@@ -45,6 +47,57 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
     setQuestions(updatedQuestions);
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setIsSubmitting(true);
+  //   setError(null);
+  //   setSuccess(false);
+
+  //   // Validation: Ensure all questions and answers are filled
+  //   for (let i = 0; i < questions.length; i++) {
+  //     if (!questions[i].question.trim() || !questions[i].answer.trim()) {
+  //       setError(`Please fill out all fields for question ${i + 1}.`);
+  //       setIsSubmitting(false);
+  //       return;
+  //     }
+  //   }
+
+  //   const formData = {
+  //     chapterID,
+  //     questions,
+  //   };
+  //   const api=`${mainURL}/api/${chapters.chapterCode}/qa/data`
+  //   console.log(api);
+
+  //   try {
+  //     // const response = await fetch(`${mainURL}/api/questions`, {
+  //     const response = await fetch(api, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify(formData),
+  //     });
+
+  //     if (!response.ok) {
+  //       const responseText = await response.text();
+  //       throw new Error(responseText || "Something went wrong!");
+  //     }
+
+  //     const data = await response.json();
+  //     console.log("Success:", data);
+
+  //     setChapterID("");
+  //     setQuestions([{ question: "", answer: "" }]);
+  //     setSuccess(true);
+  //   } catch (err) {
+  //     console.error("Error:", err);
+  //     setError(err.message);
+  //   } finally {
+  //     setIsSubmitting(false);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
@@ -65,8 +118,9 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
       questions,
     };
 
+    // Dynamically construct the API endpoint
     try {
-      const response = await fetch(`${mainURL}/api/questions`, {
+      const response = await fetch(`${mainURL}/api/${chapterID}/qa/data`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,6 +136,7 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
       const data = await response.json();
       console.log("Success:", data);
 
+      // Reset the form on success
       setChapterID("");
       setQuestions([{ question: "", answer: "" }]);
       setSuccess(true);
