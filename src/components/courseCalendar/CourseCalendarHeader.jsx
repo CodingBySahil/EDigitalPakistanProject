@@ -5,11 +5,15 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import CourseCalendarToggleButton from "./CourseCalendarToggleButton";
 import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 import { sideBarToggleFalse992 } from "../../constants/const";
+import { useSearchParams } from "react-router-dom";
 
 // COMPONENT START
 export default function CourseCalendarHeader({ sideBarToggle }) {
   // VARIABLES
   const { screenWidth } = useGetScreenWidth();
+  const [searchParams] = useSearchParams();
+  const chapterNumber = searchParams.get("chapter-code")?.slice(-1);
+  const chapterName = searchParams.get("chapter-name");
 
   // FUNCTIONS
 
@@ -30,22 +34,9 @@ export default function CourseCalendarHeader({ sideBarToggle }) {
       >
         {/*  main heading */}
         <div>
-          <p>Learn about Adobe XD & Prototyping</p>
-        </div>
-
-        {/*  introduction and time */}
-        <div className="flex items-center justify-between text-[11px]">
-          {/* topic name */}
-
-          <p>Introduction about XD</p>
-
-          <div className="flex items-center justify-between gap-[5px]">
-            <span className="font-bold">
-              <FaRegClock />
-            </span>
-
-            <p>1 hour</p>
-          </div>
+          <p>
+            Chapter {chapterNumber} : {chapterName}
+          </p>
         </div>
       </div>
     </header>

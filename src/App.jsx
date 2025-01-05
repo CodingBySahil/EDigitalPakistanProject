@@ -18,7 +18,7 @@ import CourseCalendarPage from "./pages/CourseCalendarPage";
 import CourseClassSelection from "./pages/courses/CourseClassSelection";
 import ClassDetails from "./pages/courses/ClassDetails";
 import SubjectSelection from "./components/subjectSelection/SubjectSelection";
-import PaymentPage from "./pages/PaymentPage";
+// import PaymentPage from "./pages/PaymentPage";
 import ClassSelectionPage from "./pages/ClassSelectionPage";
 import SelectSubjectCourse from "./components/classSubjectSelection/SelectSubjectCourse";
 import FAQPage from "./pages/FAQPage";
@@ -124,7 +124,7 @@ function App() {
         />
 
         {/* DIVIDER route for payment */}
-        <Route path="/payment" element={<PaymentPage />} />
+        {/* <Route path="/payment" element={<PaymentPage />} /> */}
 
         {/* Protected Administration Route */}
         <Route

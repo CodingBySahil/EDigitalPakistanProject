@@ -40,7 +40,7 @@ export function useGetLessonsData() {
         setLessonsData(data);
         setStatus("success");
         navigate(
-          `/course-calender?subject-code=GEO101&chapter-code=${data[0]?.chapterCode}`,
+          `/course-calender?subject-code=${subjectCode}&chapter-code=${data[0]?.chapterCode}&chapter-name=${data[0]?.name}`,
         );
       } catch (error) {
         setStatus("error");
@@ -50,8 +50,10 @@ export function useGetLessonsData() {
 
     if (!searchParams.get("quiz-type") && subjectCode) {
       getLessonsData();
+    } else {
+      return;
     }
-  }, [subjectCode, navigate, searchParams]);
+  }, []);
 
   return { status, lessonsData, setLessonsData };
 }

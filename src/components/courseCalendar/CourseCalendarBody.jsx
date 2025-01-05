@@ -54,6 +54,10 @@ export default function CourseCalendarBody() {
             overflowX: "none",
             paddingLeft: screenWidth >= 640 ? "60px" : "20px",
             paddingRight: screenWidth >= 640 ? "60px" : "20px",
+            maxWidth:
+              screenWidth >= 300
+                ? `${screenWidth - 20}px`
+                : `${screenWidth - 60}px`,
             paddingBottom: "20px",
             fontSize:
               screenWidth >= 320
@@ -82,7 +86,6 @@ export default function CourseCalendarBody() {
     }
     // <LessonsDisplay />;
   }
-
   if (searchParams.get("quiz-type")) {
     return <PracticeQuizDisplay />;
   }

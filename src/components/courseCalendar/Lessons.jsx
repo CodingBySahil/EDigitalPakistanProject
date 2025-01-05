@@ -42,7 +42,7 @@ export default function Lessons() {
   function lessonClicked(val) {
     setIsShowing(false);
     navigate(
-      `/course-calender?subject-code=${subjectCode}&chapter-code=${val?.chapterCode}`,
+      `/course-calender?subject-code=${subjectCode}&chapter-code=${val?.chapterCode}&chapter-name=${val?.name}`,
     );
   }
 

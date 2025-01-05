@@ -11,6 +11,7 @@ export default function PracticeQuiz() {
   const [searchParams] = useSearchParams();
   const chapterCode = searchParams.get("chapter-code");
   const subjectCode = searchParams.get("subject-code");
+  const subjectName = searchParams.get("chapter-name");
 
   // FUNCTIONS
 
@@ -18,7 +19,7 @@ export default function PracticeQuiz() {
   function quizComponentClicked(quizType) {
     setIsShowing(false);
     navigate(
-      `/course-calender/quiz?quiz-type=${quizType}&subject-code=${subjectCode}&chapter-code=${chapterCode}`,
+      `/course-calender/quiz?quiz-type=${quizType}&subject-code=${subjectCode}&chapter-code=${chapterCode}&chapter-name=${subjectName}`,
     );
   }
 
@@ -27,7 +28,7 @@ export default function PracticeQuiz() {
     <div className="grid grid-rows-[auto_1fr] gap-[10px]">
       {/* Heading */}
       <div className="font-bold">
-        <p className="uppercase">Practice Quiz</p>
+        <p className="">Exercise</p>
       </div>
 
       {/* Body */}
