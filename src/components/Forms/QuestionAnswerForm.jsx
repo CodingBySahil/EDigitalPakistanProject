@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import { mainURL } from "../../constants/const";
 
 const QuestionAnswerForm = ({ subjectNameFromURL }) => {
-  const [chapterID, setChapterID] = useState("");
-  const [questions, setQuestions] = useState([{ question: "", answer: "" }]);
+  const [chapterCode, setChapterCode] = useState("");
+  const [question, setQuestion] = useState("");
+  const [answer, setAnswer] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
@@ -15,13 +16,10 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
     const fetchChapters = async () => {
       try {
         const response = await fetch(
-          `${mainURL}/api/${subjectNameFromURL}/chapter/data`,
+          `${mainURL}/api/${subjectNameFromURL}/chapter/data`
         );
         const data = await response.json();
-        // console.log("Chapters fetched:", data); // Log the response
-        setChapters(data); // Set chapters in state
-        console.log("chapter", chapters);
-        console.log("data", data);
+        setChapters(data);
       } catch (error) {
         console.error("Error fetching chapters:", error);
       }
@@ -30,103 +28,37 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
     fetchChapters();
   }, [subjectNameFromURL]);
 
-  const handleQuestionChange = (index, field, value) => {
-    const updatedQuestions = questions.map((item, i) =>
-      i === index ? { ...item, [field]: value } : item,
-    );
-    setQuestions(updatedQuestions);
-  };
-
-  const addQuestionField = () => {
-    setQuestions([...questions, { question: "", answer: "" }]);
-  };
-
-  const removeQuestionField = (index) => {
-    if (questions.length === 1) return;
-    const updatedQuestions = questions.filter((_, i) => i !== index);
-    setQuestions(updatedQuestions);
-  };
-
-  // const handleSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setIsSubmitting(true);
-  //   setError(null);
-  //   setSuccess(false);
-
-  //   // Validation: Ensure all questions and answers are filled
-  //   for (let i = 0; i < questions.length; i++) {
-  //     if (!questions[i].question.trim() || !questions[i].answer.trim()) {
-  //       setError(`Please fill out all fields for question ${i + 1}.`);
-  //       setIsSubmitting(false);
-  //       return;
-  //     }
-  //   }
-
-  //   const formData = {
-  //     chapterID,
-  //     questions,
-  //   };
-  //   const api=`${mainURL}/api/${chapters.chapterCode}/qa/data`
-  //   console.log(api);
-
-  //   try {
-  //     // const response = await fetch(`${mainURL}/api/questions`, {
-  //     const response = await fetch(api, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify(formData),
-  //     });
-
-  //     if (!response.ok) {
-  //       const responseText = await response.text();
-  //       throw new Error(responseText || "Something went wrong!");
-  //     }
-
-  //     const data = await response.json();
-  //     console.log("Success:", data);
-
-  //     setChapterID("");
-  //     setQuestions([{ question: "", answer: "" }]);
-  //     setSuccess(true);
-  //   } catch (err) {
-  //     console.error("Error:", err);
-  //     setError(err.message);
-  //   } finally {
-  //     setIsSubmitting(false);
-  //   }
-  // };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setError(null);
     setSuccess(false);
 
-    // Validation: Ensure all questions and answers are filled
-    for (let i = 0; i < questions.length; i++) {
-      if (!questions[i].question.trim() || !questions[i].answer.trim()) {
-        setError(`Please fill out all fields for question ${i + 1}.`);
-        setIsSubmitting(false);
-        return;
-      }
+    // Validation: Ensure both question and answer are filled
+    if (!question.trim() || !answer.trim()) {
+      setError("Please fill out both the question and the answer.");
+      setIsSubmitting(false);
+      return;
     }
 
     const formData = {
-      chapterID,
-      questions,
+      chapterCode,
+      question,
+      answer,
     };
 
-    // Dynamically construct the API endpoint
+    // Send a single question-answer pair to the API
     try {
-      const response = await fetch(`${mainURL}/api/${chapterID}/qa/data`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        `${mainURL}/api/${chapterCode}/qa/data`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (!response.ok) {
         const responseText = await response.text();
@@ -137,9 +69,14 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
       console.log("Success:", data);
 
       // Reset the form on success
-      setChapterID("");
-      setQuestions([{ question: "", answer: "" }]);
+      setQuestion("");
+      setAnswer("");
       setSuccess(true);
+
+      // Hide the success message after 3 seconds
+      setTimeout(() => {
+        setSuccess(false);
+      }, 3000); // 3000 ms = 3 seconds
     } catch (err) {
       console.error("Error:", err);
       setError(err.message);
@@ -151,7 +88,7 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
   return (
     <div className="mx-auto mt-8 max-w-4xl rounded-lg bg-slate-100 p-6 shadow-lg">
       <h2 className="mb-6 text-center text-3xl font-bold text-gray-800">
-        Add New Questions
+        Add New Question
       </h2>
 
       {error && (
@@ -160,22 +97,24 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
 
       {success && (
         <div className="mb-4 rounded bg-green-100 p-3 text-green-700">
-          Questions saved successfully!
+          Question saved successfully!
         </div>
       )}
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Chapter ID Dropdown */}
+        {/* Chapter Code Dropdown */}
         <div>
-          <label className="text-lg mb-2 block font-semibold">Chapter ID</label>
+          <label className="text-lg mb-2 block font-semibold">
+            Chapter Code
+          </label>
           <select
-            value={chapterID}
-            onChange={(e) => setChapterID(e.target.value)}
+            value={chapterCode}
+            onChange={(e) => setChapterCode(e.target.value)}
             className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
             required
           >
             <option value="" disabled>
-              Select chapter ID
+              Select chapter code
             </option>
             {chapters.map((chapter) => (
               <option key={chapter.chapterCode} value={chapter.chapterCode}>
@@ -185,65 +124,30 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
           </select>
         </div>
 
-        {/* Questions and Answers */}
-        {questions.map((entry, index) => (
-          <div key={index} className="mb-4 rounded-md border p-4">
-            <h3 className="mb-2 text-xl font-semibold">Question {index + 1}</h3>
-
-            {/* Question Input */}
-            <div className="mb-4">
-              <label className="mb-1 block font-medium">Question</label>
-              <input
-                type="text"
-                value={entry.question}
-                onChange={(e) =>
-                  handleQuestionChange(index, "question", e.target.value)
-                }
-                placeholder="Enter question"
-                className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
-                required
-              />
-            </div>
-
-            {/* Answer Input */}
-            <div className="mb-4">
-              <label className="mb-1 block font-medium">Answer</label>
-              <textarea
-                value={entry.answer}
-                onChange={(e) =>
-                  handleQuestionChange(index, "answer", e.target.value)
-                }
-                placeholder="Enter answer"
-                className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
-                rows="3"
-                required
-              ></textarea>
-            </div>
-
-            {/* Remove Question Button */}
-            <div className="flex justify-end">
-              {questions.length > 1 && (
-                <button
-                  type="button"
-                  onClick={() => removeQuestionField(index)}
-                  className="font-semibold text-red-500 hover:text-red-700"
-                >
-                  Remove
-                </button>
-              )}
-            </div>
-          </div>
-        ))}
-
-        {/* Add Question Button */}
+        {/* Question Input */}
         <div>
-          <button
-            type="button"
-            onClick={addQuestionField}
-            className="w-full rounded-md bg-green-500 px-4 py-2 text-white shadow-md transition-all duration-200 ease-in-out hover:bg-green-600"
-          >
-            Add Another Question
-          </button>
+          <label className="mb-1 block font-medium">Question</label>
+          <input
+            type="text"
+            value={question}
+            onChange={(e) => setQuestion(e.target.value)}
+            placeholder="Enter question"
+            className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
+            required
+          />
+        </div>
+
+        {/* Answer Input */}
+        <div>
+          <label className="mb-1 block font-medium">Answer</label>
+          <textarea
+            value={answer}
+            onChange={(e) => setAnswer(e.target.value)}
+            placeholder="Enter answer"
+            className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
+            rows="3"
+            required
+          ></textarea>
         </div>
 
         {/* Submit Button */}
@@ -254,7 +158,7 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
           }`}
           disabled={isSubmitting}
         >
-          {isSubmitting ? "Saving..." : "Save Questions"}
+          {isSubmitting ? "Saving..." : "Save Question"}
         </button>
       </form>
     </div>
@@ -265,4 +169,5 @@ const QuestionAnswerForm = ({ subjectNameFromURL }) => {
 QuestionAnswerForm.propTypes = {
   subjectNameFromURL: PropTypes.string.isRequired,
 };
+
 export default QuestionAnswerForm;
