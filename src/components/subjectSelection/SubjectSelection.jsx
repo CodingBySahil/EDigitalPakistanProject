@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import SubjectCardDisplay from "../SubjectCardDisplay";
 import ScrollableBody from "../ScrollableBody";
 import { mainURL } from "../../constants/const";
+import InAppHeader from "../InAppHeader";
 
 export default function SubjectSelection() {
   // reading class number from url
@@ -50,7 +51,9 @@ export default function SubjectSelection() {
   return (
     <div className="grid grid-rows-[60px_1fr]">
       {/* Page header */}
-      <header className="bg-brand-color-cyan">header</header>
+      <header className="bg-brand-color-cyan">
+        <InAppHeader />
+      </header>
 
       <ScrollableBody pageHeaderHeight={60}>
         <div className="p-[10px]">
