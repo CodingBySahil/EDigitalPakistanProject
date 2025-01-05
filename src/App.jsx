@@ -94,19 +94,22 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
 
         <Route path="/" element={<Wrapper onLogout={handleLogout} />} />
+
         <Route path="/login" element={<Login onLogin={handleLogin} />} />
+
         <Route path="/register" element={<Register />} />
+
         <Route path="/class" element={<CourseClassSelection />} />
+
         <Route path="/class/:classLink" element={<ClassDetails />} />
-        {/* about us route */}
+
         <Route path="aboutus" element={<AboutUsPage />} />
 
-        {/* DIVIDER route to select a class */}
-        {/* <Route path="/classSelection" element={<ClassSelectionPage />} />
-        <Route
-          path="/classSelection/subjectSelection"
-          element={<SelectSubjectCourse />}
-        /> */}
+        <Route path="/faq" element={<FAQPage />} />
+
+        <Route path="/terms-condition" element={<TermsAndConditionsPage />} />
+
+        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
 
         {/* DIVIDER routes for course calendar */}
         <Route path="/course-calender" element={<CourseCalendarPage />} />
@@ -122,9 +125,6 @@ function App() {
           path="/admin-panel/upload-subjects"
           element={<SubjectForm onLogout={handleLogout} />}
         />
-
-        {/* DIVIDER route for payment */}
-        {/* <Route path="/payment" element={<PaymentPage />} /> */}
 
         {/* Protected Administration Route */}
         <Route
@@ -145,6 +145,7 @@ function App() {
             // </PrivateRoute>
           }
         />
+
         <Route
           path="/classSelection/subjectSelection"
           element={
@@ -154,12 +155,15 @@ function App() {
           }
         />
 
-        {/* FAQ route */}
-        <Route path="/faq" element={<FAQPage />} />
-        {/* term and condition */}
-        <Route path="/terms-condition" element={<TermsAndConditionsPage />} />
-        {/* privacy policy */}
-        <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+        {/* DIVIDER route to select a class */}
+        {/* <Route path="/classSelection" element={<ClassSelectionPage />} />
+        <Route
+          path="/classSelection/subjectSelection"
+          element={<SelectSubjectCourse />}
+        /> */}
+
+        {/* DIVIDER route for payment */}
+        {/* <Route path="/payment" element={<PaymentPage />} /> */}
       </Routes>
       <ToastContainer
         position="top-center"
