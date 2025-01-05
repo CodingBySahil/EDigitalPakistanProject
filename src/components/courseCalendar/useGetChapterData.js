@@ -39,7 +39,11 @@ export function useGetChapterData(chapterCode) {
       }
     }
 
-    getChapterData();
+    if (chapterCode) {
+      getChapterData();
+    } else {
+      return;
+    }
   }, [chapterCode]);
 
   return { status, setStatus, chapterData, setChapterData };
