@@ -9,14 +9,17 @@ export default function PracticeQuiz() {
   const navigate = useNavigate();
   const { setIsShowing } = useCourseCalendarContext();
   const [searchParams] = useSearchParams();
-  const chapterNumber = searchParams.get("chapterNumber");
+  const chapterCode = searchParams.get("chapter-code");
+  const subjectCode = searchParams.get("subject-code");
 
   // FUNCTIONS
 
   //    FUNCTION
   function quizComponentClicked(quizType) {
     setIsShowing(false);
-    navigate(`/course-calender/${chapterNumber}/quiz?quizType=${quizType}`);
+    navigate(
+      `/course-calender/quiz?quiz-type=${quizType}&subject-code=${subjectCode}&chapter-code=${chapterCode}`,
+    );
   }
 
   // JSX

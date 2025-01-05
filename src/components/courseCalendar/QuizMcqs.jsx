@@ -1,28 +1,28 @@
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
+// import Box from "@mui/material/Box";
+// import Button from "@mui/material/Button";
+// import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
-import { Slider } from "@mui/material";
-import { HiArrowSmallRight } from "react-icons/hi2";
+// import { Slider } from "@mui/material";
+// import { HiArrowSmallRight } from "react-icons/hi2";
 import { toast } from "react-toastify";
 
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import QuizHeader from "./QuizHeader";
-import QuizMcqsHeader from "./QuizMcqsHeader";
+// import QuizMcqsHeader from "./QuizMcqsHeader";
 import ScrollableBody from "../ScrollableBody";
-import SingleQuizMcqsBody from "./SingleQuizMcqsBody";
+// import SingleQuizMcqsBody from "./SingleQuizMcqsBody";
 import AllQuizMcqs from "./AllQuizMcqs";
 import QuizMcqsModalBody from "./QuizMcqsModalBody";
 import { useGetMcqs } from "./useGetMcqs";
-import { useGetQuizType } from "./useGetQuizType";
+// import { useGetQuizType } from "./useGetQuizType";
 
 // COMPONENT START
 export default function QuizMcqs() {
   // VARIABLES
-  const quizType = useGetQuizType();
+  // const quizType = useGetQuizType();
   const { statusMcqs = "idle", dataMcqs = [] } = useGetMcqs();
   const [attemptedMcqArray, setAttemptedMcqArray] = useState([]);
   const [mcqsSubmit, setMcqsSubmit] = useState(false);

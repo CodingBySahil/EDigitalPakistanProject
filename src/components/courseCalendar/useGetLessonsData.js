@@ -36,8 +36,6 @@ export function useGetLessonsData() {
         // step 2 : parsing the json
         const data = JSON.parse(jsonText);
 
-        console.log(data);
-
         // step 3 : setting the state
         setLessonsData(data);
         setStatus("success");
@@ -50,8 +48,10 @@ export function useGetLessonsData() {
       }
     }
 
-    getLessonsData();
-  }, [subjectCode]);
+    if (!searchParams.get("quiz-type") && subjectCode) {
+      getLessonsData();
+    }
+  }, [subjectCode, navigate, searchParams]);
 
   return { status, lessonsData, setLessonsData };
 }

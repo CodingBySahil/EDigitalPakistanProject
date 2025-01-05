@@ -21,8 +21,6 @@ export default function QuizWordMeaning() {
         {/* Quiz header */}
         <QuizHeader />
 
-        {/* Quiz body */}
-
         <ScrollableBody>
           <div className="pb-[60px] tabS:px-[10%]">
             <div className="self-start rounded-[8px] bg-white tabS:text-[23px] tabL:text-[26px]">

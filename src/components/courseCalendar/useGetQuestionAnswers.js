@@ -14,7 +14,7 @@ export const useGetQuestionAnswers = () => {
           setStatusQuestionAnswers("error");
           const errorMessage = await response.text();
           throw new Error(
-            `Unable to fetch question answers Error => ${errorMessage}`
+            `Unable to fetch question answers Error => ${errorMessage}`,
           );
         }
 
@@ -26,7 +26,7 @@ export const useGetQuestionAnswers = () => {
       } catch (error) {
         setStatusQuestionAnswers("error");
         throw new Error(
-          `Unable to fetch question answers Error => ${error.message}`
+          `Unable to fetch question answers Error => ${error.message}`,
         );
       }
     };

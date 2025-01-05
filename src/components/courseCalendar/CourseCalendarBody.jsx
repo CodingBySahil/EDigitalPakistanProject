@@ -7,7 +7,6 @@ import { useSearchParams } from "react-router-dom";
 import { useGetChapterData } from "./useGetChapterData";
 import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 import "./course-calendar-body.css";
-import FlexCenter from "../FlexCenter";
 
 // COMPONENT START
 export default function CourseCalendarBody() {
@@ -30,14 +29,14 @@ export default function CourseCalendarBody() {
 
   // JSX
 
-  if (!chapterCode) {
+  if (!chapterCode && !searchParams.get("quiz-type")) {
     return (
       <div className="flex h-full items-center justify-center">
         Select a chapter to view details
       </div>
     );
   }
-  if (chapterCode) {
+  if (chapterCode && !searchParams.get("quiz-type")) {
     if (chapterCode && status === "success" && chapterData.length === 0) {
       return (
         <LoadingSpinnerContainer>
@@ -84,7 +83,7 @@ export default function CourseCalendarBody() {
     // <LessonsDisplay />;
   }
 
-  if (searchParams.get("quizType")) {
+  if (searchParams.get("quiz-type")) {
     return <PracticeQuizDisplay />;
   }
 
