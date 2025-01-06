@@ -1,23 +1,16 @@
-// import Box from "@mui/material/Box";
-// import Button from "@mui/material/Button";
-// import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
-// import { Slider } from "@mui/material";
-// import { HiArrowSmallRight } from "react-icons/hi2";
 import { toast } from "react-toastify";
 
 import LoadingSpinner from "../LoadingSpinner";
 import LoadingSpinnerContainer from "../LoadingSpinnerContainer";
 import QuizHeader from "./QuizHeader";
-// import QuizMcqsHeader from "./QuizMcqsHeader";
 import ScrollableBody from "../ScrollableBody";
-// import SingleQuizMcqsBody from "./SingleQuizMcqsBody";
 import AllQuizMcqs from "./AllQuizMcqs";
 import QuizMcqsModalBody from "./QuizMcqsModalBody";
 import { useGetMcqs } from "./useGetMcqs";
-// import { useGetQuizType } from "./useGetQuizType";
+import { useSearchParams } from "react-router-dom";
 
 // COMPONENT START
 export default function QuizMcqs() {
@@ -27,6 +20,8 @@ export default function QuizMcqs() {
   const [attemptedMcqArray, setAttemptedMcqArray] = useState([]);
   const [mcqsSubmit, setMcqsSubmit] = useState(false);
   const [open, setOpen] = useState(false);
+  const [searchParams] = useSearchParams();
+  const chapterCode = searchParams.get("chapter-code");
 
   // FUNCTIONS
 
@@ -102,7 +97,7 @@ export default function QuizMcqs() {
   };
 
   // JSX
-  if (statusMcqs === "success") {
+  if (statusMcqs === "success" && dataMcqs.length > 0) {
     return (
       <div className="h-[100%]">
         {/* Quiz modal */}
@@ -144,6 +139,20 @@ export default function QuizMcqs() {
     return (
       <LoadingSpinnerContainer>
         <LoadingSpinner />
+      </LoadingSpinnerContainer>
+    );
+  }
+  if (statusMcqs === "success" && dataMcqs.length === 0) {
+    return (
+      <LoadingSpinnerContainer>
+        <p>No mcqs data for {chapterCode} </p>
+      </LoadingSpinnerContainer>
+    );
+  }
+  if (statusMcqs === "error") {
+    return (
+      <LoadingSpinnerContainer>
+        <p>An error occured</p>
       </LoadingSpinnerContainer>
     );
   }

@@ -16,12 +16,12 @@ export default function AllQuizMcqs({
 
   // JSX
   return (
-    <div className="overflow-x-hidden overflow-y-auto  tabS:px-[60px] tabL:px-[100px] laptop14:grid laptop14:grid-cols-1 laptop14:gap-[20px] laptop14:text-[25px]">
+    <div className="overflow-y-auto overflow-x-hidden tabS:px-[60px] tabL:px-[100px] laptop14:grid laptop14:grid-cols-1 laptop14:gap-[20px] laptop14:text-[25px]">
       {dataMcqs.map((val, i) => (
         <div
           key={i}
           style={{ border: "1px solid white" }}
-          className="w-[100%] py-[20px] grid grid-rows-[20px_1fr] px-[15px]  rounded-[8px] mt-[20px] bg-brand-color-cyan/30 "
+          className="mt-[20px] grid w-[100%] grid-rows-[20px_1fr] rounded-[8px] bg-brand-color-cyan/30 px-[15px] py-[20px]"
         >
           {/* quiz header*/}
           <QuizMcqsHeader
@@ -40,13 +40,12 @@ export default function AllQuizMcqs({
           />
         </div>
       ))}
-      <div className="min-h-[70px] flex justify-end items-center laptop14:justify-start ">
+      <div className="mb-[50px] flex min-h-[70px] items-center justify-end laptop14:justify-start">
         <button
           disabled={mcqsSubmit}
           onClick={() => submitButtonClicked()}
           style={{ border: "1px solid white" }}
-          className="bg-brand-color-cyan cursor-pointer text-white font-semibold text-[20px] px-[10px] py-[5px] rounded-[8px] active:bg-brand-color-cyan/60
-  "
+          className="cursor-pointer rounded-[8px] bg-brand-color-cyan px-[10px] py-[5px] text-[20px] font-semibold text-white active:bg-brand-color-cyan/60"
         >
           Submit
         </button>
@@ -59,6 +58,9 @@ export default function AllQuizMcqs({
 AllQuizMcqs.propTypes = {
   dataMcqs: PropTypes.array,
   submitButtonClicked: PropTypes.func,
+  optionCLicked: PropTypes.any,
+  attemptedMcqArray: PropTypes.array,
+  mcqsSubmit: PropTypes.bool,
 };
 //size: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
 // COMPONENT END

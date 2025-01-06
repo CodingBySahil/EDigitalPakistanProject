@@ -5,17 +5,20 @@ import TableRow from "../TableRow";
 import QuizHeader from "./QuizHeader";
 import { useGetWordMeanings } from "./useGetWordMeanings";
 import ScrollableBody from "../ScrollableBody";
+import { useSearchParams } from "react-router-dom";
 
 // COMPONENT START
 export default function QuizWordMeaning() {
   // VARIABLES
 
   const { statusWordMeanings, dataWordMeanings = [] } = useGetWordMeanings();
+  const [searchParams] = useSearchParams();
+  const chapterCode = searchParams.get("chapter-code");
 
   // FUNCTIONS
 
   // JSX
-  if (statusWordMeanings === "success") {
+  if (statusWordMeanings === "success" && dataWordMeanings.length > 0) {
     return (
       <div className="flex flex-col gap-[10px]">
         {/* Quiz header */}
@@ -47,6 +50,13 @@ export default function QuizWordMeaning() {
           </div>
         </ScrollableBody>
       </div>
+    );
+  }
+  if (statusWordMeanings === "success" && dataWordMeanings.length === 0) {
+    return (
+      <LoadingSpinnerContainer>
+        <p>No word meaning data for {chapterCode}</p>
+      </LoadingSpinnerContainer>
     );
   }
   if (statusWordMeanings === "pending") {
