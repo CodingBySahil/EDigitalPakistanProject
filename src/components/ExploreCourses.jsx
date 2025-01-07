@@ -79,7 +79,7 @@ const ExploreCourses = ({ levelOfClass }) => {
                   <div className="h-full max-w-20 rounded-lg bg-green-200 p-2 shadow-md">
                     <div
                       className={`flex h-full flex-shrink-0 items-start justify-center rounded-md px-4 py-2 text-center text-white transition-transform duration-500 ${getBackgroundColor(
-                        subject
+                        subject,
                       )}`}
                     >
                       <p className="my-auto w-auto rotate-[90deg] transform whitespace-nowrap text-xl">
@@ -94,9 +94,13 @@ const ExploreCourses = ({ levelOfClass }) => {
                   <div className="animate-fadeIn w-96 transform p-2 transition-all duration-500 ease-in-out hover:scale-105 md:p-4">
                     <div className="flex h-72 rounded-lg bg-white p-4 shadow-lg">
                       <img
-                        src="/book-1@2x.png" // respective image path
+                        src={
+                          subject === "General Science"
+                            ? `/staticClass${levelOfClass}Subjects/generalScience${levelOfClass}.jpg`
+                            : `/staticClass${levelOfClass}Subjects/${subject.toLowerCase()}${levelOfClass}.jpg`
+                        } // respective image path
                         alt={`${subject} book`}
-                        className="h-full w-full object-contain"
+                        className="h-full w-full rounded-lg object-contain"
                       />
                       <div>
                         <div className="md:text-lg mt-2 text-base font-bold">
