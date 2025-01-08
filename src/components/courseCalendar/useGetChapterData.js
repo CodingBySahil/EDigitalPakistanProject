@@ -29,9 +29,9 @@ export function useGetChapterData(chapterCode) {
         }
 
         const responseText = await response.text();
-        const data = JSON.parse(responseText);
+        const { data } = JSON.parse(responseText);
 
-        setChapterData(data?.data?.[0]?.text);
+        setChapterData(data);
         setStatus("success");
       } catch (error) {
         setStatus("error");

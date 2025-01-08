@@ -18,12 +18,14 @@ export default function CourseCalendarBody() {
   const screenHeight = useGetScreenHeight();
   const { screenWidth } = useGetScreenWidth();
 
-  // FUNCTIONS
-
   //    FUNCTION Update the innerHTML
   useEffect(() => {
     if (status === "success" && chapterDataContainerRef.current) {
-      chapterDataContainerRef.current.innerHTML = chapterData;
+      for (let i = 0; i < chapterData?.length; i++) {
+        for (let i = 0; i < chapterData?.length; i++) {
+          chapterDataContainerRef.current.innerHTML += chapterData[i]?.text;
+        }
+      }
     }
   }, [status, chapterData]);
 
