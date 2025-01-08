@@ -7,6 +7,7 @@ import { useSearchParams } from "react-router-dom";
 import { useGetChapterData } from "./useGetChapterData";
 import { useGetScreenWidth } from "../../hooks/useGetScreenWidth";
 import "./course-calendar-body.css";
+import { mainURL } from "../../constants/const";
 
 // COMPONENT START
 export default function CourseCalendarBody() {
@@ -18,16 +19,41 @@ export default function CourseCalendarBody() {
   const screenHeight = useGetScreenHeight();
   const { screenWidth } = useGetScreenWidth();
 
-  //    FUNCTION Update the innerHTML
+  // FUNCTION Update the innerHTML
   useEffect(() => {
     if (status === "success" && chapterDataContainerRef.current) {
+      let content = `<div style="display: flex; flex-direction: column; gap: 20px; margin-top:10px">`;
       for (let i = 0; i < chapterData?.length; i++) {
-        for (let i = 0; i < chapterData?.length; i++) {
-          chapterDataContainerRef.current.innerHTML += chapterData[i]?.text;
+        if (chapterData[i]?.img?.length > 0) {
+          if (screenWidth < 600) {
+            content += `<div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div><img style="width:100%; height:200px; object-fit:cover" src="${mainURL}/${chapterData[i]?.img}" alt="Chapter Image" /></div>
+                        <div>${chapterData[i]?.text}</div>
+                      </div>`;
+          }
+          if (screenWidth > 600 && screenWidth < 1500) {
+            content += `<div style="display: flex; flex-direction: column; gap: 10px;">
+                        <div><img style="width:100%; height:300px; object-fit:cover" src="${mainURL}/${chapterData[i]?.img}" alt="Chapter Image" /></div>
+                        <div>${chapterData[i]?.text}</div>
+                      </div>`;
+          }
+          if (screenWidth > 1500) {
+            content += `<div style="display: grid; grid-template-columns: 1fr 500px; gap: 10px;">
+              <div>${chapterData[i]?.text}</div>
+              <div>
+                <img style="width: 100%; height: 300px; object-fit: cover;" src="${mainURL}/${chapterData[i]?.img}" alt="Chapter Image" />
+              </div>
+            </div>`;
+          }
+        } else {
+          content += `<div>${chapterData[i]?.text}</div>`;
         }
       }
+      content += `</div>`;
+
+      chapterDataContainerRef.current.innerHTML = content;
     }
-  }, [status, chapterData]);
+  }, [status, chapterData, screenWidth]);
 
   // JSX
 
