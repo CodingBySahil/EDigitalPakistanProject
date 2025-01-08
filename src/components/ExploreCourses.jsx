@@ -97,10 +97,12 @@ const ExploreCourses = ({ levelOfClass }) => {
                         src={
                           subject === "General Science"
                             ? `/staticClass${levelOfClass}Subjects/generalScience${levelOfClass}.jpg`
-                            : `/staticClass${levelOfClass}Subjects/${subject.toLowerCase()}${levelOfClass}.jpg`
+                            : subject === "Mathematics"
+                              ? `/staticClass${levelOfClass}Subjects/maths${levelOfClass}.jpg`
+                              : `/staticClass${levelOfClass}Subjects/${subject.toLowerCase()}${levelOfClass}.jpg`
                         } // respective image path
                         alt={`${subject} book`}
-                        className="h-full w-full rounded-lg object-contain"
+                        className="mr-[10px] h-full w-full rounded-lg object-contain p-[5px]"
                       />
                       <div>
                         <div className="md:text-lg mt-2 text-base font-bold">
