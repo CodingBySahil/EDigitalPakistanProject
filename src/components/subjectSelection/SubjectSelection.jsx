@@ -59,7 +59,7 @@ export default function SubjectSelection() {
         <div className="p-[10px]">
           {/* Message */}
           <section className="flex min-h-[50px] items-center">
-            <p className="text-[18px] font-bold">Please select a course</p>
+            <p className="text-[18px] font-bold">Please select a course for class {classNumber}</p>
           </section>
 
           {/* Subject cards display */}

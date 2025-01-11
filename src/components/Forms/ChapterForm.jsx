@@ -1,5 +1,4 @@
-import { PropTypes } from "prop-types";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom"; // Import useParams for URL parameters
 import { mainURL } from "../../constants/const";
 
@@ -11,24 +10,10 @@ const ChapterForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
-  const [chapters, setChapters] = useState([]);
 
-  // Fetch chapters from API when component mounts
-  useEffect(() => {
-    const fetchChapters = async () => {
-      try {
-        const response = await fetch(
-          `${mainURL}/api/${subjectCode}/chapter/data`,
-        );
-        const data = await response.json();
-        setChapters(data);
-      } catch (error) {
-        console.error("Error fetching chapters:", error);
-      }
-    };
-
-    fetchChapters();
-  }, [subjectCode]);
+  // reading class number from url
+  const urlParams = new URLSearchParams(window.location.search);
+  const classNumber = urlParams.get("class");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,19 +92,16 @@ const ChapterForm = () => {
           />
         </div>
 
-        {/* Class Name */}
+        {/* Class */}
         <div>
           <label className="text-lg mb-2 block font-semibold">Class</label>
           <input
             type="text"
-            value={className}
-            onChange={(e) => setClassName(e.target.value)}
-            placeholder="Enter class"
-            className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
-            required
+            value={`${classNumber === "1" ? "1st" : classNumber === "2" ? "2nd" : classNumber === "3" ? "3rd" : classNumber + "th"}`}
+            disabled
+            className="w-full cursor-not-allowed rounded-md border border-gray-300 p-2 text-gray-500"
           />
         </div>
-
         {/* Subject Code */}
         <div>
           <label className="text-lg mb-2 block font-semibold">
