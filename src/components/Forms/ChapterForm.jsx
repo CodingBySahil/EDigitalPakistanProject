@@ -25,7 +25,7 @@ const ChapterForm = () => {
       chapName,
       className,
       subjectCode,
-      chapterCode,
+      // chapterCode,
     };
 
     try {
@@ -116,7 +116,7 @@ const ChapterForm = () => {
         </div>
 
         {/* Chapter Code */}
-        <div>
+        {/* <div>
           <label className="text-lg mb-2 block font-semibold">
             Chapter Code
           </label>
@@ -128,7 +128,7 @@ const ChapterForm = () => {
             className="w-full rounded-md border border-gray-300 p-2 focus:ring-2 focus:ring-blue-400"
             required
           />
-        </div>
+        </div> */}
 
         {/* Submit Button */}
         <button
