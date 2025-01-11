@@ -32,15 +32,15 @@ const AdminPanel = ({ onLogout }) => {
       <TopNav className="bg-[#4abd86]" onLogout={onLogout} />
 
       {/* Main Content */}
-      <div className="flex flex-grow flex-col items-center justify-center bg-gray-100 ">
-        <div className="flex w-full max-w-md flex-col items-center space-y-6 px-4 mb-28">
+      <div className="flex flex-grow flex-col items-center justify-center bg-gray-100">
+        <div className="mb-28 flex w-full max-w-md flex-col items-center space-y-6 px-4">
           {/* Action Links */}
-          <button
+          <Link
             onClick={handleFirstLinkClick}
-            className="text-lg w-full rounded-lg bg-[#4abd86] py-3 text-center font-medium text-white shadow-md hover:bg-[#3ca66e] focus:outline-none focus:ring-2 focus:ring-[#4abd86]"
+            className="text-lg w-full rounded-lg bg-[#4abd86] py-3 text-center font-medium text-white no-underline shadow-md hover:bg-[#3ca66e] focus:outline-none focus:ring-2 focus:ring-[#4abd86]"
           >
             Upload Chapters and Chapters Data
-          </button>
+          </Link>
           <Link
             to="/admin-panel/upload-subjects"
             className="text-lg w-full rounded-lg bg-blue-500 py-3 text-center font-medium text-white no-underline shadow-md hover:bg-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400"
@@ -78,13 +78,13 @@ const AdminPanel = ({ onLogout }) => {
             <div className="flex justify-end space-x-4">
               <button
                 onClick={handleCloseDialog}
-                className="rounded-md bg-gray-300 px-4 py-2 text-gray-800 hover:bg-gray-400"
+                className="cursor-pointer rounded-md bg-gray-300 px-4 py-2 hover:bg-gray-400 hover:text-white"
               >
                 Cancel
               </button>
               <button
                 onClick={handleProceed}
-                className="rounded-md bg-[#4abd86] px-4 py-2 text-white hover:bg-[#3ca66e]"
+                className="cursor-pointer rounded-md bg-[#4abd86] px-4 py-2 text-white hover:bg-[#3ca66e]"
               >
                 Proceed
               </button>
