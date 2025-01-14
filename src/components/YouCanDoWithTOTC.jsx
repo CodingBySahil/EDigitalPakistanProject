@@ -36,11 +36,6 @@ const YouCanDoWithTOTC = ({ className = "" }) => {
           <div className="absolute -bottom-0 -right-4 -z-10 h-32 w-32 rounded-xl bg-deepskyblue-100" />
 
           {/* Image */}
-          {/* <img
-            className="w-full max-w-lg lg:max-w-xl h-auto rounded-xl object-cover"
-            alt="Classroom"
-            src="/group-17.svg"
-          /> */}
           <VideoWithPlayButton />
         </div>
       </div>

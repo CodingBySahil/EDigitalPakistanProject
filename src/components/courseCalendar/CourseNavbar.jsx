@@ -34,7 +34,7 @@ const CourseNavbar = () => {
         <div className="flex items-center">
           <span className="mr-2"><b>{username.toUpperCase()}</b></span>
           <img
-            src="group-88@2x.png"
+            src="TickIcon.png"
             alt="User Profile"
             className="h-8 w-8 rounded-full"
           />

@@ -58,7 +58,7 @@ const Landing = () => {
           <img
             className="absolute top-[0rem] left-[0rem] w-[45.788rem] h-[26.181rem]"
             alt=""
-            src="/group-106.svg"
+            src="/ALPCardBG.svg"
           />
         </div>
       </div>
@@ -76,15 +76,15 @@ const Landing = () => {
       <img
         className="absolute top-[239.063rem] left-[19.938rem] rounded-[21px] w-[31.813rem] h-[45.25rem] object-cover"
         alt=""
-        src="/3@2x.png"
+        src="/Biology.png"
       />
       <img
         className="absolute top-[348.375rem] left-[17.813rem] w-[35.25rem] h-[22.625rem] object-cover"
         alt=""
-        src="/image-16@2x.png"
+        src="/DigiPackagesTable.png"
       />
       <Frame
-        book="/book-1@2x.png"
+        book="/EnglishTeacherBook.png"
         class6th="Class - 6th"
         frameDivWidth="38.5rem"
         frameDivPosition="absolute"

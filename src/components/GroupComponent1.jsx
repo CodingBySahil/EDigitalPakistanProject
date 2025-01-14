@@ -10,7 +10,7 @@ const GroupComponent1 = ({ className = "" }) => {
         <img
           className="w-full  rounded-[21px] object-cover"
           alt="Biology Book"
-          src="/3@2x.png"
+          src="/Biology.png"
         />
         <div className="absolute top-0 -z-10 left-0 w-[8rem] h-[8rem] bg-mediumspringgreen-100 rounded-full" />
         <div className="absolute top-4 left-40 transform -translate-x-1/2 w-[1.8rem] h-[1.8rem] bg-darkturquoise-100 rounded-full" />

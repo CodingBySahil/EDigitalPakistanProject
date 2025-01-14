@@ -11,12 +11,12 @@ const AlpCurriculum = ({ className = "" }) => {
         <img
           className="absolute z-10 top-0 left-0 w-full h-full object-cover"
           alt="decorative graphic"
-          src="/group-106.svg"
+          src="/ALPCardBG.svg"
         />
         <img
           className="relative z-20 w-[100%] h-[100%] object-cover"
           alt="curriculum illustration"
-          src="/image-16@2x.png"
+          src="/DigiPackagesTable.png"
         />
       </div>
 

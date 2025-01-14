@@ -40,18 +40,18 @@ const SelfAssessments = ({ className = "" }) => {
           <img
             className="w-full h-auto object-cover"
             alt="question"
-            src="/mask-group-1@2x.png"
+            src="/PlantPic.png"
           />
           {/* Decorative Images */}
           <img
             className="w-32 sm:w-40 object-contain absolute z-50 -top-12 right-0"
             alt="decorative"
-            src="/group-90@2x.png"
+            src="/CrossIcon.png"
           />
           <img
             className="w-32 sm:w-40 object-contain absolute z-50 top-4 -right-12"
             alt="decorative"
-            src="/group-88@2x.png"
+            src="/TickIcon.png"
           />
         </div>
       </div>

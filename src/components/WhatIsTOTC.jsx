@@ -25,7 +25,7 @@ const WhatIsTOTC = ({ className = "" }) => {
           <img
             className=" w-full h-auto rounded-xl shadow-lg  object-cover"
             alt="For students"
-            src="/group-23@2x.png"
+            src="/GirlClassRoom.png"
           />
           <div className="absolute bottom-28 left-1/2">
             <div className=" transform -translate-x-1/2  py-2 px-4 my-7  text-white font-semibold text-lg">

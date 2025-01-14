@@ -21,7 +21,7 @@ const AllInOne = ({ className = "" }) => {
               <img
                 className="w-[6.25rem] h-[6.25rem] md:w-[8rem] md:h-[8rem] lg:w-[10rem] lg:h-[10rem]"
                 alt=""
-                src="/group-80.svg"
+                src="/cellenderIcon.svg"
               />
             </div>
             <h3 className="text-xl font-semibold mb-2 ">
@@ -41,7 +41,7 @@ const AllInOne = ({ className = "" }) => {
               <img
                 className="w-[6.25rem] h-[6.25rem] md:w-[8rem] md:h-[8rem] lg:w-[10rem] lg:h-[10rem]"
                 alt=""
-                src="/group-81.svg"
+                src="/CartIcon.svg"
               />
             </div>
             <h3 className="text-xl font-semibold mb-2 ">
@@ -62,7 +62,7 @@ const AllInOne = ({ className = "" }) => {
               <img
                 className="w-[6.25rem] h-[6.25rem] md:w-[8rem] md:h-[8rem] lg:w-[10rem] lg:h-[10rem]"
                 alt=""
-                src="/group-79.svg"
+                src="/NotePageIcon.svg"
               />
             </div>
             <h3 className="text-xl font-semibold mb-2 ">
